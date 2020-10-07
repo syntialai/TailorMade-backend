@@ -57,6 +57,10 @@
 
 ```json
 {
+  "timestamp": "2019-08-23T04:22:26.690+0000",
+  "errorCode": null,
+  "errorMessage": "",
+  "success": true,
   "verificationCode": "123456",
   "expiresIn": 16783
 }
@@ -92,6 +96,10 @@
 
 ```json
 {
+  "timestamp": "2019-08-23T04:22:26.690+0000",
+  "errorCode": null,
+  "errorMessage": "",
+  "success": true,
   "accessToken": "b3912854-5bc2-46a8-b57a-8828daf395f6",
   "tokenType": "bearer",
   "expiresIn": 16783,
@@ -106,6 +114,46 @@
   "timestamp": "2019-08-23T04:22:26.690+0000",
   "errorCode": 401,
   "errorMessage": "Unauthorized: You are not allowed to access.",
+  "success": false
+}
+```
+
+## Get Firebase Token
+
++ Endpoint : ``/3p/token``
++ HTTP Method : ``GET``
++ Request Header :
+  + Accept : ``application/json``
++ Request Param :
+  + userId
++ Response Body (Success) :
+
+```json
+{
+  "timestamp": "2019-08-23T04:22:26.690+0000",
+  "errorCode": null,
+  "errorMessage": "",
+  "success": true,
+  "value": "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJzZWxsZXJJZCI6ImFkN2NhZWYzLWMyOGEtNDViNS1iZjJkLTFmOWE1NDdjYzYxYiIsInN0b3JlTmFtZSI6IlRva28gUUEgQ00iLCJzd"
+}
+```
+
++ Response Body (Fail) :
+
+```json
+{
+  "timestamp": "2019-08-23T04:22:26.690+0000",
+  "errorCode": 401,
+  "errorMessage": "Unauthorized: You are not allowed to access.",
+  "success": false
+}
+```
+
+```json
+{
+  "timestamp": "2019-08-23T04:22:26.690+0000",
+  "errorCode": 404,
+  "errorMessage": "Not found: Cannot found user with id {id}",
   "success": false
 }
 ```
