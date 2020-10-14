@@ -61,8 +61,10 @@
   "errorCode": null,
   "errorMessage": "",
   "success": true,
-  "verificationCode": "123456",
-  "expiresIn": 16783
+  "content": {
+    "verificationCode": "123456",
+    "expiresIn": 16783
+  }
 }
 ```
 
@@ -100,10 +102,12 @@
   "errorCode": null,
   "errorMessage": "",
   "success": true,
-  "accessToken": "b3912854-5bc2-46a8-b57a-8828daf395f6",
-  "tokenType": "bearer",
-  "expiresIn": 16783,
-  "scope": "read write trust"
+  "content": {
+    "accessToken": "b3912854-5bc2-46a8-b57a-8828daf395f6",
+    "tokenType": "bearer",
+    "expiresIn": 16783,
+    "scope": "read write trust"
+  }
 }
 ```
 
