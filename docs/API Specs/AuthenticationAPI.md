@@ -11,7 +11,9 @@
   "name" : "Syntia",
   "email" : "syntia@gmail.com",
   "phoneNumber" : "+6281990333364",
-  "birthDate" : "2020-03-28"
+  "birthDate" : "2020-03-28",
+  "role": "USER",
+  "gender": "female"
 }
 ```
 
@@ -138,7 +140,8 @@
   "errorCode": null,
   "errorMessage": "",
   "success": true,
-  "value": "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJzZWxsZXJJZCI6ImFkN2NhZWYzLWMyOGEtNDViNS1iZjJkLTFmOWE1NDdjYzYxYiIsInN0b3JlTmFtZSI6IlRva28gUUEgQ00iLCJzd"
+  "value": "dMqNCIBjCEk:APA91bEq-0KM_ES1EfiYyOmw7KhcqksxuDVJc-zfKLhs-cYmMEJvlKDASY-24-4ySZToYsQ-
+  K6106wJ5KSNIocNLE35Jejce23RZp29vToDriu01lI1-UEW6xLbbDuAVkqsmd76zgib5"
 }
 ```
 
