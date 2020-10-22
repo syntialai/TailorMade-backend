@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.4.RELEASE</version>
+		<version>2.2.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.future</groupId>
@@ -49,16 +49,16 @@
 			<version>0.9.0</version>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.blibli.oss</groupId>-->
-<!--			<artifactId>command-plugin</artifactId>-->
-<!--			<version>2.0.0</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>com.blibli.oss</groupId>-->
-<!--			<artifactId>common-plugin</artifactId>-->
-<!--			<version>2.0.1</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.blibli.oss</groupId>
+			<artifactId>command-plugin</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.blibli.oss</groupId>
+			<artifactId>common-plugin</artifactId>
+			<version>2.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
