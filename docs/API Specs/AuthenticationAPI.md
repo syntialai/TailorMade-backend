@@ -12,7 +12,7 @@
   "email" : "syntia@gmail.com",
   "phoneNumber" : "+6281990333364",
   "birthDate" : "2020-03-28",
-  "role": "USER",
+  "role": "user",
   "gender": "female"
 }
 ```

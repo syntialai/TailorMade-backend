@@ -2,7 +2,7 @@
 
 ## Get Chats by User
 
-+ Endpoint : ``/chat``
++ Endpoint : ``/chats``
 + HTTP Method : `GET`
 + Request Header :
   + Accept: `application/json`
@@ -67,7 +67,7 @@
 
 ## Get Chats by User and by Id
 
-+ Endpoint : ``/chat/{id}``
++ Endpoint : ``/chats/{id}``
 + HTTP Method : `GET`
 + Path Variable :
   + id
