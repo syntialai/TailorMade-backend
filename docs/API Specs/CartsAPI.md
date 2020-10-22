@@ -245,65 +245,21 @@
 }
 ```
 
-## Add Cart Item Quantity by User and by Id
+## Edit Cart Item Quantity by User and by Id
 
-+ Endpoint : ``/user/{userId}/cart/{id}/add``
++ Endpoint : ``/user/{userId}/cart/{id}/quantity/edit``
 + HTTP Method : `PUT`
 + Path Variable :
   + userId
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
-  + tailorId
-+ Response Body (Success) :
++ Request Body :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "quantity": 1
 }
 ```
 
-+ Response Body (Fail) :
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 400,
-  "errorMessage": "Bad Request: Duplicate data.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with id STE-0001.",
-  "success": false
-}
-```
-
-## Reduce Cart Item Quantity by User and by Id
-
-+ Endpoint : ``/user/{userId}/cart/{id}/reduce``
-+ HTTP Method : `PUT`
-+ Path Variable :
-  + userId
-  + id
 + Request Header :
   + Accept: `application/json`
   + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
