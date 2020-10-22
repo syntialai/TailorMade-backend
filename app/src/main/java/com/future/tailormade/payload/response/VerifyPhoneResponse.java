@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class VerifyPhoneResponse {
 
     private String verificationCode;
+
+    private Integer expiresIn;
 }
