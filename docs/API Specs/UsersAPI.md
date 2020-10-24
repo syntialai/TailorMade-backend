@@ -32,12 +32,21 @@
   "code": 400,
   "status": "BAD_REQUEST",
   "errors": {
+    "email": [
+      "Required", "Email", "NotAvailable"
+    ],
+    "name": [
+      "Required", "InvalidFormat"
+    ],
     "password": [
       "Required", "InvalidFormat"
     ],
-    "username": [
-      "Required", "InvalidFormat", "NotAvailable"
+    "birthDate": [
+      "Required", "InvalidFormat"
     ],
+    "gender": [
+      "Required"
+    ]
   },
 }
 ```
@@ -197,45 +206,49 @@
 }
 ```
 
-## Get User by Phone Number
+## Edit User Basic Information by Id
 
-+ Endpoint : ``/user/phoneNumber/{phoneNumber}``
-+ HTTP Method : `GET`
++ Endpoint : ``/api/users/{id}/_update-basic-info``
++ HTTP Method : `PUT`
++ Auth : Required
 + Path Variable :
-  + phoneNumber
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
+  + id
++ Request Body :
+
+```json
+{
+  "name" : "Steven R",
+  "phoneNumber" : "+6281990333364",
+  "birthDate" : "1999-10-15",
+  "location": {
+    "address": "Jl. Demak No. 5G/E",
+    "distinct": "Medan Area",
+    "city": "Medan",
+    "province": "Sumatera Utara",
+    "country": "Indonesia",
+    "postCode": 20214
+  }
+}
+```
+
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": {
-    "id" : "STE_12001",
+  "code": 200,
+  "status": "OK",
+  "data": {
     "name" : "Steven R",
-    "email" : "stevenR@gmail.com",
     "phoneNumber" : "+6281990333364",
     "birthDate" : "1999-10-15",
-    "image": "user/STE_12001.png",
-    "role" : "Tailor",
-    "gender": "male",
-    "address": "Jl. Demak No. 5G/E, Medan Area, Kota Medan, Sumatera Utara 20214",
-    "location": "Kota Medan, Indonesia",
-    "occupation": {
-      "company": "",
-      "city": "",
-      "job": "",
-    },
-    "education": {
-      "school": "",
-      "major": "",
-      "city": "",
-    },
-    "designs": []
+    "location": {
+      "address": "Jl. Demak No. 5G/E",
+      "distinct": "Medan Area",
+      "city": "Medan",
+      "province": "Sumatera Utara",
+      "country": "Indonesia",
+      "postCode": 20214
+    }
   }
 }
 ```
@@ -244,41 +257,50 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 400,
+  "status": "BAD_REQUEST",
+  "errors": {
+    "phoneNumber": [
+      "Required", "InvalidFormat"
+    ],
+    "name": [
+      "Required", "InvalidFormat"
+    ],
+    "birthDate": [
+      "Required", "InvalidFormat"
+    ],
+    "location": [
+      "Required"
+    ]
+  }
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
-## Edit User by Id
+```json
+{
+  "code": 404,
+  "status": "NOT_FOUND"
+}
+```
 
-+ Endpoint : ``/user/{id}/edit``
+## Edit User Additional Information by Id
+
++ Endpoint : ``/api/users/{id}/_update-more-info``
 + HTTP Method : `PUT`
++ Auth : Required
 + Path Variable :
   + id
 + Request Body :
 
 ```json
 {
-  "name" : "Steven R",
-  "email" : "stevenR@gmail.com",
-  "phoneNumber" : "+6281990333364",
-  "birthDate" : "1999-10-15",
-  "image": "user/STE_12001.png",
-  "role" : "Tailor",
-  "gender": "male",
-  "address": "Jl. Demak No. 5G/E, Medan Area, Kota Medan, Sumatera Utara 20214",
-  "location": "Kota Medan, Indonesia",
   "occupation": {
     "company": "",
     "city": "",
@@ -288,22 +310,28 @@
     "school": "",
     "major": "",
     "city": "",
-  },
-  "designs": []
+  }
 }
 ```
 
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "occupation": {
+      "company": "",
+      "city": "",
+      "job": "",
+    },
+    "education": {
+      "school": "",
+      "major": "",
+      "city": "",
+    }
+  }
 }
 ```
 
@@ -311,27 +339,43 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 400,
-  "errorMessage": "Bad Request: Duplicate data.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
+}
+```
+
+## Sign Out
+
++ Endpoint : ``/api/users/_sign-out``
++ HTTP Method : ``POST``
++ Response Body (Success) :
+
+```json
+{
+  "code": 200,
+  "status": "OK"
+}
+```
+
++ Response Body (Fail) :
+
+```json
+{
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with id STE-0001.",
-  "success": false
+  "code": 500,
+  "status": "INTERNAL_SERVER_ERROR"
 }
 ```
