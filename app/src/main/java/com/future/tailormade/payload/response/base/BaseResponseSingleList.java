@@ -13,5 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 public class BaseResponseSingleList<T> extends BaseResponse {
 
-    private List<T> content;
+    private List<T> data;
 }
