@@ -305,13 +305,6 @@
 }
 ```
 
-```json
-{
-  "code": 404,
-  "status": "NOT_FOUND"
-}
-```
-
 ## Edit Design by Tailor and by Id
 
 + Endpoint : ``/api/tailors/{tailorId}/designs/{id}``
@@ -434,13 +427,6 @@
     ],
   }
 }
-
-```json
-{
-  "code": 401,
-  "status": "UNAUTHORIZED"
-}
-```
 
 ```json
 {

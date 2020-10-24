@@ -116,18 +116,14 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find design with id STE_12001_MEN_0001.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```

@@ -2,22 +2,16 @@
 
 ## Get Cart Items by User
 
-+ Endpoint : ``/user/{userId}/cart``
++ Endpoint : ``/api/carts``
 + HTTP Method : `GET`
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
-  + userId
++ Auth : Required
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": [{
+  "code": 200,
+  "status": "OK",
+  "data": [{
     "id" : "1234567890",
     "createdAt": "2019-08-23T04:22:26.690+0000",
     "updatedAt": "2019-08-23T04:22:26.690+0000",
@@ -85,41 +79,32 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Get Cart Item by Id
 
-+ Endpoint : ``/user/{userId}/cart/{id}``
++ Endpoint : ``/api/carts/{id}``
 + HTTP Method : `GET`
++ Auth : Required
 + Path Variable :
-  + userId
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": {
+  "code": 200,
+  "status": "OK",
+  "data": {
     "id" : "1234567890",
     "createdAt": "2019-08-23T04:22:26.690+0000",
     "updatedAt": "2019-08-23T04:22:26.690+0000",
@@ -157,31 +142,23 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Add Cart Item by User
 
-+ Endpoint : ``/user/{userId}/cart/add``
++ Endpoint : ``/api/carts``
 + HTTP Method : `POST`
-+ Path Variable :
-  + userId
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
++ Auth : Required
 + Request Body :
 
 ```json
@@ -218,10 +195,8 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 201,
+  "status": "CREATED"
 }
 ```
 
@@ -229,28 +204,49 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 400,
+  "status": "BAD_REQUEST",
+  "errors": {
+    "design": {
+      "title": [
+        "NotBlank", "InvalidFormat"
+      ],
+      "image": [
+        "NotBlank", "InvalidType"
+      ],
+      "price": [
+        "NotBlank"
+      ],
+      "size": [
+        "NotBlank"
+      ],
+      "color": [
+        "NotBlank"
+      ]
+    }
+  }
+}
+
+```json
+{
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Edit Cart Item Quantity by User and by Id
 
-+ Endpoint : ``/user/{userId}/cart/{id}/quantity/edit``
++ Endpoint : ``/api/carts/{id}/_edit-quantity``
 + HTTP Method : `PUT`
++ Auth : Required
 + Path Variable :
-  + userId
   + id
 + Request Body :
 
@@ -260,19 +256,16 @@
 }
 ```
 
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
-  + tailorId
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "id": "cartId",
+    "quantity": 1
+  }
 }
 ```
 
@@ -280,49 +273,43 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 400,
-  "errorMessage": "Bad Request: Duplicate data.",
-  "success": false
+  "code": 400,
+  "status": "BAD_REQUEST",
+  "errors": {
+    "quantity": [
+      "NotBlank", "InvalidFormat"
+    ]
+  }
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with id STE-0001.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Delete Cart Item by Id
 
-+ Endpoint : ``/user/{userId}/cart/{id}/delete``
++ Endpoint : ``/api/carts/{id}``
 + HTTP Method : `DELETE`
++ Auth : Required
 + Path Variable :
-  + userId
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK"
 }
 ```
 
@@ -330,27 +317,7 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 400,
-  "errorMessage": "Bad Request: Duplicate data.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with id STE-0001.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
