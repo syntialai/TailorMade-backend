@@ -1,47 +1,43 @@
-# CHats API
+# Chats API
 
-## Get Chats by User
+## Get Chats
 
-+ Endpoint : ``/chats``
++ Endpoint : ``/api/chats``
 + HTTP Method : `GET`
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
++ Auth : Required
 + Request Param :
-  + userId
+  + page
+  + itemPerPage
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": [{
-    "id": "generate-id",
-    "code": "d3b133d2-8293-49e3-9dee-722cd3becd62",
-    "identifierType": "Tailor",
-    "identifierCode": "STE_12001",
-    "text": "Barang ready!",
+  "code": 200,
+  "status": "OK",
+  "data": [{
+    "id": "ChatId",
     "userId": "STE_12001",
+    "text": "Barang ready!",
     "createdBy": "Steven",
     "createdDate": "2020-10-05T08:29:01.809+00:00",
     "updatedBy": "Steven",
     "updatedDate": "2020-10-05T08:30:23.279+00:00",
     "hasSeen": false
   }, {
-    "id": "generate-id",
-    "code": "d3b133d2-8293-49e3-9dee-722cd3becd62",
-    "identifierType": "User",
-    "identifierCode": "SYN_0001",
-    "text": "Barang ready!",
+    "id": "ChatId",
     "userId": "SYN_0001",
+    "text": "Barang ready!",
     "createdBy": "Syntia",
     "createdDate": "2020-10-05T08:29:01.809+00:00",
     "updatedBy": "Steven",
     "updatedDate": "2020-10-05T08:30:23.279+00:00",
     "hasSeen": true
-  }]
+  }],
+  "paging": {
+    "page": 1,
+    "itemPerPage": 10,
+    "totalPage": 50
+  }
 }
 ```
 
@@ -49,62 +45,65 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
+## Get Unread Count from Chats
+
++ Endpoint : ``/api/chats``
++ HTTP Method : `GET`
++ Auth : Required
++ Request Param :
+  + userId
++ Response Body (Success) :
+
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find chat with user id STE_12001.",
-  "success": false
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "unreadCount": 3
+  }
+}
+```
+
++ Response Body (Fail) :
+
+```json
+{
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ## Get Chats by User and by Id
 
-+ Endpoint : ``/chats/{id}``
++ Endpoint : ``/api/chats/{id}``
 + HTTP Method : `GET`
++ Auth : Required
 + Path Variable :
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
-  + userId
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": [{
-    "code": "d3b133d2-8293-49e3-9dee-722cd3becd62",
-    "identifierType": "Tailor",
-    "identifierCode": "STE_12001",
+  "code": 200,
+  "status": "OK",
+  "data": [{
     "text": "Barang ready!",
-    "userId": "SYN_0001",
+    "image": "",
     "createdBy": "Steven",
     "createdDate": "2020-10-05T08:29:01.809+00:00",
-    "updatedBy": "Steven",
-    "updatedDate": "2020-10-05T08:30:23.279+00:00"
+    "hasSeen": false
   }, {
-    "code": "d3b133d2-8293-49e3-9dee-722cd3becd62",
-    "identifierType": "Tailor",
-    "identifierCode": "STE_12001",
     "text": "Barang ready!",
-    "userId": "SYN_0001",
+    "image": "",
     "createdBy": "Syntia",
     "createdDate": "2020-10-05T08:29:01.809+00:00",
-    "updatedBy": "Steven",
-    "updatedDate": "2020-10-05T08:30:23.279+00:00"
-  }]
+    "hasSeen": true
+  }],
 }
 ```
 
@@ -112,48 +111,46 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find chat with user id STE_12001.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Add Chat by User
 
-+ Endpoint : ``/chat``
++ Endpoint : ``/api/chats``
 + HTTP Method : `POST`
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
++ Auth : Required
 + Request Body :
 
 ```json
 {
-  "userId": "SYN_0001"
+  "userId": "UUID"
 }
 ```
 
-+ Request Param :
-  + userId
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "value": "generate-id"
+  "code": 201,
+  "status": "CREATED",
+  "data": {
+    "id": "ChatId",
+    "userId": "SYN_0001",
+    "createdBy": "Steven",
+    "createdDate": "2020-10-05T08:29:01.809+00:00",
+    "updatedBy": "Steven",
+    "updatedDate": "2020-10-05T08:30:23.279+00:00",
+    "hasSeen": false
+  }
 }
 ```
 
@@ -161,31 +158,25 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find chat with user id STE_12001.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Add Chat by User and by Id
 
-+ Endpoint : ``/chat/{id}``
++ Endpoint : ``/api/chats/{id}``
 + HTTP Method : `POST`
++ Auth : Required
 + Path Variable :
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
 + Request Body :
 
 ```json
@@ -194,17 +185,19 @@
 }
 ```
 
-+ Request Param :
-  + userId
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "value": "Barang ready"
+  "code": 201,
+  "status": "CREATED",
+  "data": {
+    "text": "Barang ready!",
+    "image": "",
+    "createdBy": "Steven",
+    "createdDate": "2020-10-05T08:29:01.809+00:00",
+    "hasSeen": false
+  }
 }
 ```
 
@@ -212,41 +205,31 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find chat with user id STE_12001.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Delete Chat by User and by Id
 
-+ Endpoint : ``/chat/{id}``
++ Endpoint : ``/api/chats/{id}``
 + HTTP Method : `DELETE`
++ Auth : Required
 + Path Variable :
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
-  + userId
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK"
 }
 ```
 
@@ -254,18 +237,7 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find chat with user id STE_12001.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```

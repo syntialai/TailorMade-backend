@@ -42,9 +42,9 @@
 }
 ```
 
-## Log In
+## Sign In
 
-+ Endpoint : ``/api/users/_login``
++ Endpoint : ``/api/users/_sign-in``
 + HTTP Method : ``POST``
 + Request Body :
 
@@ -55,8 +55,6 @@
 }
 ```
 
-+ Request Header :
-  + Accept : ``application/json``
 + Response Body (Success) :
 
 ```json
@@ -93,8 +91,6 @@
 }
 ```
 
-+ Request Header :
-  + Accept : ``application/json``
 + Response Body (Success) :
 
 ```json
@@ -123,10 +119,7 @@
 
 + Endpoint : ``/api/users/_get-firebase-token``
 + HTTP Method : ``GET``
-+ Request Header :
-  + Accept : ``application/json``
-+ Request Param :
-  + userId
++ Auth : Required
 + Response Body (Success) :
 
 ```json
@@ -144,19 +137,8 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not found: Cannot found user with id {id}",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
