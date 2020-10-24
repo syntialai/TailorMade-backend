@@ -1,5 +1,6 @@
-package com.future.tailormade.payload.response;
+package com.future.tailormade.payload.response.auth;
 
+import com.future.tailormade.model.entity.auth.Token;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VerifyPhoneResponse {
+public class TokenResponse {
 
-    private String verificationCode;
-
-    private Integer expiresIn;
+    private Token token;
 }
