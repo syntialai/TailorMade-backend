@@ -5,11 +5,15 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseResponseSingleValue<T> extends BaseResponse {
+public class BaseResponseSingleListPaging<T> extends BaseResponse {
 
-    private T value;
+    private List<T> data;
+
+    private BaseResponsePaging paging;
 }

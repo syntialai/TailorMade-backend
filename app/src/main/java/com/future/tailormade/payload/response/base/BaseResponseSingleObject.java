@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BaseResponseSingleObject<T> extends BaseResponse {
 
-    private T content;
+    private T data;
 }

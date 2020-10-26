@@ -1,12 +1,16 @@
 package com.future.tailormade.component;
 
+import com.future.tailormade.model.entity.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class JwtTokenProvider {
@@ -40,24 +44,25 @@ public class JwtTokenProvider {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
-//
-//    public String generateToken(User user) {
-//        Map<String, Object> claims = new HashMap<>();
-//        claims.put("ROLE", user.getRoles());
-//        return doGenerateToken(claims, user.getId());
-//    }
-//
-//    public String doGenerateToken(String userId) {
-//        Date createdDate = new Date();
-//        Date expirationDate = new Date(createdDate.getTime() + jwtExpirationTime);
-//
-//        return Jwts.builder()
-//                .setSubject(userId)
-//                .setIssuedAt(createdDate)
-//                .setExpiration(expirationDate)
-//                .signWith(SignatureAlgorithm.RS512, jwtSecret)
-//                .compact();
-//    }
+
+    public String generateToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("ROLE", user.getRole());
+        return doGenerateToken(claims, user.getId());
+    }
+
+    public String doGenerateToken(Map<String, Object> claims, String userId) {
+        Date createdDate = new Date();
+        Date expirationDate = new Date(createdDate.getTime() + jwtExpirationTime);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(userId)
+                .setIssuedAt(createdDate)
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.RS512, jwtSecret)
+                .compact();
+    }
 
     public Boolean validateToken(String token) {
         return !isTokenExpired(token);
