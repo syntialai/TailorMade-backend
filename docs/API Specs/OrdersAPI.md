@@ -2,22 +2,18 @@
 
 ## Get Orders by User
 
-+ Endpoint : ``/orders``
++ Endpoint : ``/api/users/{userId}/orders``
 + HTTP Method : `GET`
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
++ Auth : Required
++ Path Variable :
   + userId
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": [{
+  "code": 200,
+  "status": "OK",
+  "data": [{
     "id" : "1234567890",
     "createdAt": "2019-08-23T04:22:26.690+0000",
     "updatedAt": "2019-08-23T04:22:26.690+0000",
@@ -110,7 +106,12 @@
       "color": "Navy"
     },
     "status": "CANCELLED"
-  }]
+  }],
+  "paging": {
+    "page": 1,
+    "itemPerPage": 10,
+    "totalPage": 50
+  }
 }
 ```
 
@@ -118,42 +119,27 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ## Get Orders by User and by Status
 
-+ Endpoint : ``/orders/{status}``
++ Endpoint : ``/api/users/{userId}/orders``
 + HTTP Method : `GET`
++ Auth : Required
 + Path Variable :
-  + category
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
   + userId
++ Request Param :
+  + status
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": [{
+  "code": 200,
+  "status": "OK",
+  "data": [{
     "id" : "1234567890",
     "createdAt": "2019-08-23T04:22:26.690+0000",
     "updatedAt": "2019-08-23T04:22:26.690+0000",
@@ -184,7 +170,12 @@
       "color": "Navy"
     },
     "status": "PENDING"
-  }]
+  }],
+  "paging": {
+    "page": 1,
+    "itemPerPage": 10,
+    "totalPage": 50
+  }
 }
 ```
 
@@ -192,40 +183,32 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Get Order by Id
 
-+ Endpoint : ``/order/{id}``
++ Endpoint : ``/api/users/{userId}/orders/{id}``
 + HTTP Method : `GET`
++ Auth : Required
 + Path Variable :
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true,
-  "content": {
+  "code": 200,
+  "status": "OK",
+  "data": {
     "id" : "1234567890",
     "createdAt": "2019-08-23T04:22:26.690+0000",
     "updatedAt": "2019-08-23T04:22:26.690+0000",
@@ -264,29 +247,23 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Add Order by User
 
-+ Endpoint : ``/order/add``
++ Endpoint : ``/api/users/{userId}/orders``
 + HTTP Method : `POST`
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
++ Auth : Required
 + Request Body :
 
 ```json
@@ -320,16 +297,12 @@
 }
 ```
 
-+ Request Param :
-  + userId
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK"
 }
 ```
 
@@ -337,41 +310,32 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with role Tailor.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Accept Order by Tailor and by Id
 
-+ Endpoint : ``/order/{id}/accept``
++ Endpoint : ``/api/tailors/{tailorId}/orders/{id}/_accept``
 + HTTP Method : `PUT`
++ Auth : Required
 + Path Variable :
-  + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
   + tailorId
+  + id
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK"
 }
 ```
 
@@ -379,50 +343,32 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 400,
-  "errorMessage": "Bad Request: Duplicate data.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with id STE-0001.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Reject Order by Tailor and by Id
 
-+ Endpoint : ``/order/{id}/reject``
++ Endpoint : ``/api/tailors/{tailorId}/orders/{id}/_reject``
 + HTTP Method : `PUT`
++ Auth : Required
 + Path Variable :
-  + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
-+ Request Param :
   + tailorId
+  + id
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK"
 }
 ```
 
@@ -430,48 +376,31 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 400,
-  "errorMessage": "Bad Request: Duplicate data.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with id STE-0001.",
-  "success": false
+  "code": 404,
+  "status": "NOT_FOUND"
 }
 ```
 
 ## Delete Order by Id
 
-+ Endpoint : ``/order/{id}/delete``
++ Endpoint : ``/api/tailors/{tailorId}/orders/{id}``
 + HTTP Method : `DELETE`
 + Path Variable :
+  + tailorId
   + id
-+ Request Header :
-  + Accept: `application/json`
-  + Authorization : `bearer b3912854-5bc2-46a8-b57a-8828daf395f6`
 + Response Body (Success) :
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": null,
-  "errorMessage": "",
-  "success": true
+  "code": 200,
+  "status": "OK"
 }
 ```
 
@@ -479,27 +408,7 @@
 
 ```json
 {
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 400,
-  "errorMessage": "Bad Request: Duplicate data.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 401,
-  "errorMessage": "Unauthorized: You are not allowed to access.",
-  "success": false
-}
-```
-
-```json
-{
-  "timestamp": "2019-08-23T04:22:26.690+0000",
-  "errorCode": 404,
-  "errorMessage": "Not Found: Cannot find user with id STE-0001.",
-  "success": false
+  "code": 401,
+  "status": "UNAUTHORIZED"
 }
 ```
