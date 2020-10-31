@@ -3,6 +3,8 @@ package com.future.tailormade.command.auth.impl;
 import com.future.tailormade.command.auth.SignInCommand;
 import com.future.tailormade.model.entity.auth.Token;
 import com.future.tailormade.model.entity.user.User;
+import com.future.tailormade.payload.request.auth.SignInRequest;
+import com.future.tailormade.payload.response.auth.TokenResponse;
 import com.future.tailormade.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ public class SignInCommandImpl implements SignInCommand {
     @Override
     public Mono<TokenResponse> execute(SignInRequest request) {
         return findByUsername(request.getUsername()).map(user -> {
+            // Check user password and create response
         });
     }
 
