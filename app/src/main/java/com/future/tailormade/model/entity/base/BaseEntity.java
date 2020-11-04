@@ -1,4 +1,4 @@
-package com.future.tailormade.model.entity;
+package com.future.tailormade.model.entity.base;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
