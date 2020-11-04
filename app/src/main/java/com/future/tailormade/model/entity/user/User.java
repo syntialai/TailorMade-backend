@@ -1,6 +1,6 @@
-package com.future.tailormade.model.entity;
+package com.future.tailormade.model.entity.user;
 
-import com.future.tailormade.config.UserConstants;
+import com.future.tailormade.constants.UserConstants;
 import com.future.tailormade.model.enums.GenderEnum;
 import com.future.tailormade.model.enums.RoleEnum;
 import lombok.AllArgsConstructor;
