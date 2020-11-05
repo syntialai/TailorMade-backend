@@ -93,13 +93,11 @@
   "status": "OK",
   "data": [{
     "text": "Barang ready!",
-    "image": "",
     "createdBy": "Steven",
     "createdDate": "2020-10-05T08:29:01.809+00:00",
     "hasSeen": false
   }, {
     "text": "Barang ready!",
-    "image": "",
     "createdBy": "Syntia",
     "createdDate": "2020-10-05T08:29:01.809+00:00",
     "hasSeen": true

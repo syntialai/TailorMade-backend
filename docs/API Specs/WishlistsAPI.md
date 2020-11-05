@@ -1,8 +1,8 @@
-# Carts API
+# Wishlists API
 
-## Get Cart Items by User
+## Get Wishlist Items by User
 
-+ Endpoint : ``/api/carts``
++ Endpoint : ``/api/wishlists``
 + HTTP Method : `GET`
 + Auth : Required
 + Response Body (Success) :
@@ -16,28 +16,14 @@
     "createdAt": "2019-08-23T04:22:26.690+0000",
     "updatedAt": "2019-08-23T04:22:26.690+0000",
     "userId": "SYN_0001",
-    "userName": "Syntia",
     "tailorId": "STE_12001",
-    "tailorName": "Steven",
     "quantity": 1,
-    "totalPrice": 500000.0,
-    "totalDiscount": 0.0,
-    "measurement": [{
-      "chest": 120,
-      "waist": 120,
-      "hips": 120,
-      "neckToWaist": 120,
-      "inseam": 120
-    }],
-    "specialInstructions": "",
     "design": {
       "id" : "STE_12001_MEN_0001",
       "title": "Men's Suits",
       "image": "design/STE_12001_MEN_0001.png",
       "price": 500000.0,
       "discount": 0.0,
-      "tailorId": "STE_12001",
-      "tailorName": "Steven",
       "size": "S",
       "color": "Navy"
     }
@@ -46,28 +32,14 @@
     "createdAt": "2019-08-23T04:22:26.690+0000",
     "updatedAt": "2019-08-23T04:22:26.690+0000",
     "userId": "SYN_0001",
-    "userName": "Syntia",
     "tailorId": "STE_12001",
-    "tailorName": "Steven",
     "quantity": 1,
-    "totalPrice": 500000.0,
-    "totalDiscount": 0.0,
-    "measurement": [{
-      "chest": 120,
-      "waist": 120,
-      "hips": 120,
-      "neckToWaist": 120,
-      "inseam": 120
-    }],
-    "specialInstructions": "",
     "design": {
       "id" : "STE_12001_MEN_0001",
       "title": "Men's Suits",
       "image": "design/STE_12001_MEN_0001.png",
       "price": 500000.0,
       "discount": 0.0,
-      "tailorId": "STE_12001",
-      "tailorName": "Steven",
       "size": "S",
       "color": "Navy"
     }
@@ -91,9 +63,9 @@
 }
 ```
 
-## Get Cart Item by Id
+## Get Wishlists Item by Id
 
-+ Endpoint : ``/api/carts/{id}``
++ Endpoint : ``/api/wishlists/{id}``
 + HTTP Method : `GET`
 + Auth : Required
 + Path Variable :
@@ -113,24 +85,12 @@
     "tailorId": "STE_12001",
     "tailorName": "Steven",
     "quantity": 1,
-    "totalPrice": 50000.0,
-    "totalDiscount": 0.0,
-    "measurement": [{
-      "chest": 120,
-      "waist": 120,
-      "hips": 120,
-      "neckToWaist": 120,
-      "inseam": 120
-    }],
-    "specialInstructions": "",
     "design": {
       "id" : "STE_12001_MEN_0001",
       "title": "Men's Suits",
       "image": "design/STE_12001_MEN_0001.png",
       "price": 500000.0,
       "discount": 0.0,
-      "tailorId": "STE_12001",
-      "tailorName": "Steven",
       "size": "S",
       "color": "Navy"
     }
@@ -154,37 +114,26 @@
 }
 ```
 
-## Add Cart Item by User
+## Add Wishlists Item by User
 
-+ Endpoint : ``/api/carts``
++ Endpoint : ``/api/wishlists``
 + HTTP Method : `POST`
 + Auth : Required
 + Request Body :
 
 ```json
 {
+  "userId": "SYN_0001",
   "userName": "Syntia",
   "tailorId": "STE_12001",
   "tailorName": "Steven",
   "quantity": 1,
-  "totalPrice": 50000.0,
-  "totalDiscount": 0,
-  "measurement": [{
-    "chest": 120,
-    "waist": 120,
-    "hips": 120,
-    "neckToWaist": 120,
-    "inseam": 120
-  }],
-  "specialInstructions": "",
   "design": {
     "id" : "STE_12001_MEN_0001",
     "title": "Men's Suits",
     "image": "design/STE_12001_MEN_0001.png",
     "price": 500000.0,
     "discount": 0.0,
-    "tailorId": "STE_12001",
-    "tailorName": "Steven",
     "size": "S",
     "color": "Navy"
   }
@@ -241,9 +190,9 @@
 }
 ```
 
-## Edit Cart Item Quantity by User and by Id
+## Edit Wishlists Item Quantity by User and by Id
 
-+ Endpoint : ``/api/carts/{id}/_edit-quantity``
++ Endpoint : ``/api/wishlists/{id}/_edit-quantity``
 + HTTP Method : `PUT`
 + Auth : Required
 + Path Variable :
@@ -263,7 +212,7 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id": "cartId",
+    "id": "wishlistId",
     "quantity": 1
   }
 }
@@ -297,9 +246,9 @@
 }
 ```
 
-## Delete Cart Item by Id
+## Delete Wishlists Item by Id
 
-+ Endpoint : ``/api/carts/{id}``
++ Endpoint : ``/api/wishlists/{id}``
 + HTTP Method : `DELETE`
 + Auth : Required
 + Path Variable :
