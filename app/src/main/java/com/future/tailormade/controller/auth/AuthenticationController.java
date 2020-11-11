@@ -3,6 +3,7 @@ package com.future.tailormade.controller.auth;
 import com.blibli.oss.command.CommandExecutor;
 import com.blibli.oss.common.response.Response;
 import com.blibli.oss.common.response.ResponseHelper;
+import com.future.tailormade.command.auth.ActivateTailorCommand;
 import com.future.tailormade.command.auth.RefreshTokenCommand;
 import com.future.tailormade.command.auth.SignInCommand;
 import com.future.tailormade.command.auth.SignUpCommand;
@@ -57,6 +58,22 @@ public class AuthenticationController {
     )
     public Mono<Response> signUp(@RequestBody SignUpRequest signUpRequest) {
         return commandExecutor.execute(SignUpCommand.class, signUpRequest)
+                .subscribeOn(Schedulers.elastic());
+    }
+
+    @PutMapping(ApiPath.USERS_ACTIVATE_TAILOR)
+    @RequestMapping(
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Mono<Response<?>> activateTailor(@PathVariable("id") String id) {
+        return commandExecutor.execute(ActivateTailorCommand.class, id)
+                .map(response -> {
+                    if (response.getRole() == null) {
+                        return com.future.tailormade.payload.response.base.helper.ResponseHelper.notFound();
+                    }
+                    return ResponseHelper.ok(response);
+                })
                 .subscribeOn(Schedulers.elastic());
     }
 }
