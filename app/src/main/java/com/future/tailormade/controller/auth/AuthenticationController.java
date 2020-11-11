@@ -37,11 +37,16 @@ public class AuthenticationController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Mono<Response<TokenResponse>> signIn(
+    public Mono<Response<?>> signIn(
             @RequestBody SignInRequest signInRequest
     ) {
         return commandExecutor.execute(SignInCommand.class, signInRequest)
-                .map(ResponseHelper::ok)
+                .map(response -> {
+                    if (response.getToken() == null) {
+                        return ResponseHelper.badRequest(null);
+                    }
+                    return ResponseHelper.ok(response);
+                })
                 .subscribeOn(Schedulers.elastic());
     }
 
