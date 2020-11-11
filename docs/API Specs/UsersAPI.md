@@ -21,7 +21,15 @@
 ```json
 {
   "code": 200,
-  "status": "OK"
+  "status": "OK",
+  "data": {
+    "id" : "UUID",
+    "name" : "Siapa",
+    "email": "Siapajuga@mail.com",
+    "birthDate": "",
+    "gender": "Female",
+    "role": 0
+  }
 }
 ```
 
@@ -138,6 +146,32 @@
   "data": {
     "token": "dMqNCIBjCEk:APA91bEq-0KM_ES1EfiYyOmw7KhcqksxuDVJc-zfKLhs-cYmMEJvlKDASY-24-4ySZToYsQ-
     K6106wJ5KSNIocNLE35Jejce23RZp29vToDriu01lI1-UEW6xLbbDuAVkqsmd76zgib5"
+  }
+}
+```
+
++ Response Body (Fail) :
+
+```json
+{
+  "code": 401,
+  "status": "UNAUTHORIZED"
+}
+```
+
+## Activate Tailor Role
+
++ Endpoint : ``/api/users/_activate-tailor``
++ HTTP Method : `GET`
++ Required : Auth
++ Response Body (Success) :
+
+```json
+{
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "role": 1
   }
 }
 ```
