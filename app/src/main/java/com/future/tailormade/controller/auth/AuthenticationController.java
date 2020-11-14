@@ -13,7 +13,6 @@ import com.future.tailormade.payload.request.auth.SignInRequest;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
 import com.future.tailormade.payload.response.auth.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -34,10 +33,10 @@ public class AuthenticationController {
     }
 
     @PostMapping(ApiPath.USERS_SIGN_IN)
-    @RequestMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+//    @RequestMapping(
+//            consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE
+//    )
     public Mono<Response<?>> signIn(
             @RequestBody SignInRequest signInRequest
     ) {
@@ -52,20 +51,20 @@ public class AuthenticationController {
     }
 
     @PostMapping(ApiPath.USERS_SIGN_UP)
-    @RequestMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+//    @RequestMapping(
+//            consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE
+//    )
     public Mono<Response> signUp(@RequestBody SignUpRequest signUpRequest) {
         return commandExecutor.execute(SignUpCommand.class, signUpRequest)
                 .subscribeOn(Schedulers.elastic());
     }
 
     @PutMapping(ApiPath.USERS_ACTIVATE_TAILOR)
-    @RequestMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+//    @RequestMapping(
+//            consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE
+//    )
     public Mono<Response<?>> activateTailor(@PathVariable("id") String id) {
         return commandExecutor.execute(ActivateTailorCommand.class, id)
                 .map(response -> {
