@@ -92,6 +92,13 @@
       "price": 500000.0,
       "discount": 0.0,
       "size": "S",
+      "sizeDetail": {
+        "chest": 120,
+        "waist": 120,
+        "hips": 120,
+        "neckToWaist": 120,
+        "inseam": 120
+      },
       "color": "Navy"
     }
   }

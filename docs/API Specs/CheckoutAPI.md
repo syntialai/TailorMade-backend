@@ -1,6 +1,6 @@
 # Checkout API (For Users)
 
-## Get Checkout Detail by User
+## Checkout Item by User
 
 + Endpoint : ``/api/wishlists/{id}/_checkout``
 + HTTP Method : `POST`
