@@ -127,3 +127,28 @@
   "status": "NOT_FOUND"
 }
 ```
+
+## Delete Design by Id
+
++ Endpoint : ``/api/tailors/{tailorId}/designs/{id}``
++ HTTP Method : `DELETE`
++ Path Variable :
+  + tailorId
+  + id
++ Response Body (Success) :
+
+```json
+{
+  "code": 200,
+  "status": "OK"
+}
+```
+
++ Response Body (Fail) :
+
+```json
+{
+  "code": 401,
+  "status": "UNAUTHORIZED"
+}
+```
