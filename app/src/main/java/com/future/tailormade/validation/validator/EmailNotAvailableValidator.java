@@ -23,6 +23,6 @@ public class EmailNotAvailableValidator implements ConstraintValidator<EmailNotA
             return true;
         }
 
-        return userRepository.existsByEmail(value).block();
+        return !userRepository.existsByEmail(value).block();
     }
 }
