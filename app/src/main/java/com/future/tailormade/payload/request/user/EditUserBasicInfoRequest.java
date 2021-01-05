@@ -17,6 +17,9 @@ import javax.validation.constraints.NotBlank;
 public class EditUserBasicInfoRequest {
 
     @NotBlank
+    private String id;
+
+    @NotBlank
     private String name;
 
     @PhoneNumberNotAvailable
