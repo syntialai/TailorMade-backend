@@ -3,6 +3,7 @@ package com.future.tailormade.command.auth.impl;
 import com.future.tailormade.command.auth.SignInCommand;
 import com.future.tailormade.component.CustomPasswordEncoder;
 import com.future.tailormade.component.JwtTokenProvider;
+import com.future.tailormade.exceptions.UnauthorizedException;
 import com.future.tailormade.model.entity.auth.Token;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.auth.SignInRequest;
@@ -36,7 +37,7 @@ public class SignInCommandImpl implements SignInCommand {
                 );
                 return createResponse(token);
             }
-            return createResponse(null);
+            throw new UnauthorizedException();
         });
     }
 

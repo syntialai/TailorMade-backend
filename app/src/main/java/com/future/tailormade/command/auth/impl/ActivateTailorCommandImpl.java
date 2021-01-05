@@ -20,8 +20,7 @@ public class ActivateTailorCommandImpl implements ActivateTailorCommand {
                     user.setRole(RoleEnum.ROLE_TAILOR);
                     return userRepository.save(user);
                 })
-                .map(user -> createResponse(user.getRole()))
-                .onErrorReturn(createResponse(null));
+                .map(user -> createResponse(user.getRole()));
     }
 
     private Mono<User> findById(String id) {
