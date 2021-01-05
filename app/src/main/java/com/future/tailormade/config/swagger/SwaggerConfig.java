@@ -19,7 +19,6 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-        log.debug("Hey, I'm Swagger!");
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))

@@ -35,14 +35,13 @@ public class SignInCommandImpl implements SignInCommand {
                         jwtTokenProvider.generateRefreshToken(user)
                 );
                 return createResponse(token);
-            } else {
-                return createResponse(null);
             }
-        }).onErrorReturn(createResponse(null));
+            return createResponse(null);
+        });
     }
 
     private Mono<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByEmail(username);
     }
 
     private Token getToken(String access, String refresh) {

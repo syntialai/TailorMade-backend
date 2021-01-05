@@ -1,4 +1,4 @@
-package com.future.tailormade.controller.auth;
+package com.future.tailormade.controller;
 
 import com.blibli.oss.command.CommandExecutor;
 import com.blibli.oss.common.response.Response;
@@ -11,6 +11,7 @@ import com.future.tailormade.constants.ApiPath;
 import com.future.tailormade.payload.request.auth.RefreshTokenRequest;
 import com.future.tailormade.payload.request.auth.SignInRequest;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
+import com.future.tailormade.payload.response.auth.ActivateTailorResponse;
 import com.future.tailormade.payload.response.auth.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,46 +34,26 @@ public class AuthenticationController {
     }
 
     @PostMapping(ApiPath.USERS_SIGN_IN)
-//    @RequestMapping(
-//            consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE
-//    )
-    public Mono<Response<?>> signIn(
+    public Mono<Response<TokenResponse>> signIn(
             @RequestBody SignInRequest signInRequest
     ) {
         return commandExecutor.execute(SignInCommand.class, signInRequest)
-                .map(response -> {
-                    if (response.getToken() == null) {
-                        return ResponseHelper.badRequest(null);
-                    }
-                    return ResponseHelper.ok(response);
-                })
+                .map(ResponseHelper::ok)
                 .subscribeOn(Schedulers.elastic());
     }
 
     @PostMapping(ApiPath.USERS_SIGN_UP)
-//    @RequestMapping(
-//            consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE
-//    )
     public Mono<Response> signUp(@RequestBody SignUpRequest signUpRequest) {
         return commandExecutor.execute(SignUpCommand.class, signUpRequest)
                 .subscribeOn(Schedulers.elastic());
     }
 
     @PutMapping(ApiPath.USERS_ACTIVATE_TAILOR)
-//    @RequestMapping(
-//            consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE
-//    )
-    public Mono<Response<?>> activateTailor(@PathVariable("id") String id) {
+    public Mono<Response<ActivateTailorResponse>> activateTailor(
+            @PathVariable("id") String id
+    ) {
         return commandExecutor.execute(ActivateTailorCommand.class, id)
-                .map(response -> {
-                    if (response.getRole() == null) {
-                        return com.future.tailormade.payload.response.base.helper.ResponseHelper.notFound();
-                    }
-                    return ResponseHelper.ok(response);
-                })
+                .map(ResponseHelper::ok)
                 .subscribeOn(Schedulers.elastic());
     }
 }
