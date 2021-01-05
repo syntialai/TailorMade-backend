@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class EditUserBasicInfoRequest {
 
-    @NotBlank
     private String id;
 
     @NotBlank
