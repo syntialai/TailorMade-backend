@@ -23,7 +23,9 @@ public class GetDesignsCommandImpl implements GetDesignsCommand {
 
     @Override
     public Mono<List<GetDesignsResponse>> execute(GetDesignsRequest request) {
-        return getAllDesign(request).map(this::createResponse).collectList();
+        return getAllDesign(request)
+                .map(this::createResponse)
+                .collectList();
     }
 
     private Flux<Design> getAllDesign(GetDesignsRequest request) {
