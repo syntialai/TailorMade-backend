@@ -1,6 +1,7 @@
 package com.future.tailormade.model.entity.design;
 
 import com.future.tailormade.constants.DesignConstants;
+import io.github.classgraph.json.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.util.List;
 @Document(collection = DesignConstants.DESIGN_COLLECTION)
 public class Design {
 
+    @Id
     private String id;
 
     private String title;
