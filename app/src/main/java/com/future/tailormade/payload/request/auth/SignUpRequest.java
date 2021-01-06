@@ -1,5 +1,6 @@
 package com.future.tailormade.payload.request.auth;
 
+import com.future.tailormade.validation.EmailNotAvailable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class SignUpRequest {
 
     @NotBlank
     @Email
+    @EmailNotAvailable
     private String email;
 
     @NotBlank

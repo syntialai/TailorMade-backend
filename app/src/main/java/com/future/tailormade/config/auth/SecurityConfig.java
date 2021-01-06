@@ -22,6 +22,16 @@ public class SecurityConfig {
     @Autowired
     private SecurityContextRepository securityContextRepository;
 
+    private static final String[] SWAGGER_LIST = {
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources",
+            "/configuration/security",
+            "/webjars/**",
+            "/swagger-resources/configuration/ui",
+            "/swagger-ui.html**"
+    };
+
     private static final String[] AUTH_LIST = {
             ApiPath.USERS_SIGN_IN,
             ApiPath.USERS_SIGN_UP
@@ -32,8 +42,8 @@ public class SecurityConfig {
         return http
                 .cors()
                 .and()
-                .csrf()
-                .disable()
+                .csrf().disable()
+                .formLogin().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint((serverWebExchange, e) ->
                         Mono.fromRunnable(() ->
@@ -53,8 +63,9 @@ public class SecurityConfig {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeExchange()
+                .pathMatchers(SWAGGER_LIST).permitAll()
                 .pathMatchers(AUTH_LIST).permitAll()
-                .anyExchange().authenticated()
+                .anyExchange().permitAll()
                 .and().build();
     }
 }

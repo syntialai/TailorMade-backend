@@ -3,6 +3,7 @@ package com.future.tailormade.command.auth.impl;
 import com.future.tailormade.command.auth.SignInCommand;
 import com.future.tailormade.component.CustomPasswordEncoder;
 import com.future.tailormade.component.JwtTokenProvider;
+import com.future.tailormade.exceptions.UnauthorizedException;
 import com.future.tailormade.model.entity.auth.Token;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.auth.SignInRequest;
@@ -35,14 +36,13 @@ public class SignInCommandImpl implements SignInCommand {
                         jwtTokenProvider.generateRefreshToken(user)
                 );
                 return createResponse(token);
-            } else {
-                return createResponse(null);
             }
-        }).onErrorReturn(createResponse(null));
+            throw new UnauthorizedException();
+        });
     }
 
     private Mono<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByEmail(username);
     }
 
     private Token getToken(String access, String refresh) {
