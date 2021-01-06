@@ -29,7 +29,7 @@ public class SignInCommandImpl implements SignInCommand {
     public Mono<TokenResponse> execute(SignInRequest request) {
         return findByUsername(request.getUsername()).map(user -> {
             if (passwordEncoder.encode(
-                    request.getUsername()).equals(user.getPassword())
+                    request.getPassword()).equals(user.getPassword())
             ) {
                 Token token = getToken(
                         jwtTokenProvider.generateAccessToken(user),
