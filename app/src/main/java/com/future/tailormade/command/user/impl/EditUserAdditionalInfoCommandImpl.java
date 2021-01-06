@@ -4,7 +4,7 @@ import com.future.tailormade.command.user.EditUserAdditionalInfoCommand;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.user.EditUserAdditionalInfoRequest;
 import com.future.tailormade.payload.response.user.EditUserAdditionalInfoResponse;
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

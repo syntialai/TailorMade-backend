@@ -8,7 +8,7 @@ import com.future.tailormade.model.entity.auth.Token;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.auth.SignInRequest;
 import com.future.tailormade.payload.response.auth.TokenResponse;
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
