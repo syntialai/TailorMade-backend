@@ -1,6 +1,7 @@
 package com.future.tailormade.model.entity.user;
 
 import com.future.tailormade.constants.UserConstants;
+import com.future.tailormade.model.entity.base.Location;
 import com.future.tailormade.model.enums.GenderEnum;
 import com.future.tailormade.model.enums.RoleEnum;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,14 @@ public class User implements UserDetails {
     private GenderEnum gender;
 
     private RoleEnum role;
+
+    private String image;
+
+    private Location location;
+
+    private Education education;
+
+    private Occupation occupation;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

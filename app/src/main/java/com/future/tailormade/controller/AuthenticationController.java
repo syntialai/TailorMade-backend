@@ -14,7 +14,13 @@ import com.future.tailormade.payload.request.auth.SignUpRequest;
 import com.future.tailormade.payload.response.auth.ActivateTailorResponse;
 import com.future.tailormade.payload.response.auth.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
@@ -33,7 +39,9 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PostMapping(ApiPath.USERS_SIGN_IN)
+    @PostMapping(value = ApiPath.USERS_SIGN_IN,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<TokenResponse>> signIn(
             @RequestBody SignInRequest signInRequest
     ) {
@@ -42,13 +50,18 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PostMapping(ApiPath.USERS_SIGN_UP)
-    public Mono<Response> signUp(@RequestBody SignUpRequest signUpRequest) {
+    @PostMapping(value = ApiPath.USERS_SIGN_UP,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<Response<Object>> signUp(@RequestBody SignUpRequest signUpRequest) {
         return commandExecutor.execute(SignUpCommand.class, signUpRequest)
+                .map((user) -> ResponseHelper.ok())
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PutMapping(ApiPath.USERS_ACTIVATE_TAILOR)
+    @PutMapping(value = ApiPath.USERS_ACTIVATE_TAILOR,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<ActivateTailorResponse>> activateTailor(
             @PathVariable("id") String id
     ) {

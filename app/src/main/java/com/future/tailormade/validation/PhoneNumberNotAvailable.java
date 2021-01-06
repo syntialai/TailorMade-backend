@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = {EmailNotAvailableValidator.class})
 @Documented
-public @interface EmailNotAvailable {
+public @interface PhoneNumberNotAvailable {
 
     String message() default "NotAvailable";
 
