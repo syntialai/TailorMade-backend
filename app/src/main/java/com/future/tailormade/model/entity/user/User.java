@@ -45,6 +45,8 @@ public class User implements UserDetails {
 
     private Education education;
 
+    private Occupation occupation;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

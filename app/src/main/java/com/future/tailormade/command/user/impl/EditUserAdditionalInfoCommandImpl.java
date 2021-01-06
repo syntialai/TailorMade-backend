@@ -1,7 +1,6 @@
 package com.future.tailormade.command.user.impl;
 
 import com.future.tailormade.command.user.EditUserAdditionalInfoCommand;
-import com.future.tailormade.exceptions.NotFoundException;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.user.EditUserAdditionalInfoRequest;
 import com.future.tailormade.payload.response.user.EditUserAdditionalInfoResponse;
@@ -20,9 +19,6 @@ public class EditUserAdditionalInfoCommandImpl implements EditUserAdditionalInfo
     @Override
     public Mono<EditUserAdditionalInfoResponse> execute(EditUserAdditionalInfoRequest request) {
         return userRepository.findById(request.getId())
-                .doOnError((onError) -> {
-                    throw new NotFoundException();
-                })
                 .flatMap(user -> updateUser(user, request))
                 .map(this::createResponse);
     }

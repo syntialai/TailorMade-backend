@@ -13,6 +13,7 @@ import com.future.tailormade.payload.response.user.EditUserAdditionalInfoRespons
 import com.future.tailormade.payload.response.user.EditUserBasicInfoResponse;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -30,7 +31,9 @@ public class UserController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PutMapping(ApiPath.USERS_UPDATE_BASIC_INFO)
+    @PutMapping(value = ApiPath.USERS_UPDATE_BASIC_INFO,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<EditUserBasicInfoResponse>> updateUserBasicInfo(
             @PathVariable("id") String id,
             @RequestBody EditUserBasicInfoRequest request)
@@ -41,7 +44,9 @@ public class UserController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PutMapping(ApiPath.USERS_UPDATE_MORE_INFO)
+    @PutMapping(value = ApiPath.USERS_UPDATE_MORE_INFO,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<EditUserAdditionalInfoResponse>> updateUserAdditionalInfo(
             @PathVariable("id") String id,
             @RequestBody EditUserAdditionalInfoRequest request)
