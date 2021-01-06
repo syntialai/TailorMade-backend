@@ -1,7 +1,5 @@
 package com.future.tailormade.command.auth.impl;
 
-import com.blibli.oss.common.response.Response;
-import com.blibli.oss.common.response.ResponseHelper;
 import com.future.tailormade.command.auth.SignUpCommand;
 import com.future.tailormade.component.CustomPasswordEncoder;
 import com.future.tailormade.model.entity.user.User;
@@ -25,10 +23,9 @@ public class SignUpCommandImpl implements SignUpCommand {
     private CustomPasswordEncoder passwordEncoder;
 
     @Override
-    public Mono<Response> execute(SignUpRequest request) {
+    public Mono<User> execute(SignUpRequest request) {
         return Mono.fromCallable(() -> createUser(request))
-                .flatMap(user -> userRepository.save(user))
-                .map(user -> ResponseHelper.ok());
+                .flatMap(user -> userRepository.save(user));
     }
 
     private User createUser(SignUpRequest signUpRequest) {

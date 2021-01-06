@@ -48,8 +48,9 @@ public class AuthenticationController {
     @PostMapping(value = ApiPath.USERS_SIGN_UP,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Response> signUp(@RequestBody SignUpRequest signUpRequest) {
+    public Mono<Response<Object>> signUp(@RequestBody SignUpRequest signUpRequest) {
         return commandExecutor.execute(SignUpCommand.class, signUpRequest)
+                .map((user) -> ResponseHelper.ok())
                 .subscribeOn(Schedulers.elastic());
     }
 
