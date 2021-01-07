@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GetTailorDesignsRequest {
 
-    private String id;
-
     private String tailorId;
 
     private int page;

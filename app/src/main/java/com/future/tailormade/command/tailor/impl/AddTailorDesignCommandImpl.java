@@ -11,7 +11,7 @@ import com.future.tailormade.payload.response.tailor.AddOrEditTailorDesignRespon
 import com.future.tailormade.repository.DesignRepository;
 import com.future.tailormade.repository.SequenceRepository;
 import com.future.tailormade.repository.UserRepository;
-import com.future.tailormade.utils.SequenceGenerator;
+import com.future.tailormade.utils.SequenceGeneratorUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -85,11 +85,11 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     }
 
     private Mono<String> generateId(String title) {
-        String name = SequenceGenerator.getId(SequenceGenerator.DESIGN, title);
+        String name = SequenceGeneratorUtil.getId(SequenceGeneratorUtil.DESIGN, title);
         return sequenceRepository.findById(name)
                 .switchIfEmpty(createSequence(name))
                 .flatMap(this::saveSequence)
-                .map(SequenceGenerator::generateSequence);
+                .map(SequenceGeneratorUtil::generateSequence);
     }
 
     private Mono<Sequence> saveSequence(Sequence sequence) {

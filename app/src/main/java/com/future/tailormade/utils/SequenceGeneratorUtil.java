@@ -4,7 +4,7 @@ import com.future.tailormade.model.entity.base.Sequence;
 
 import java.text.DecimalFormat;
 
-public class SequenceGenerator {
+public class SequenceGeneratorUtil {
 
     public static final String DESIGN = "DSGN";
 
