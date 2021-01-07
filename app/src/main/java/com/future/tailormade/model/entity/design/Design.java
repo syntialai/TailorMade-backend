@@ -1,21 +1,24 @@
 package com.future.tailormade.model.entity.design;
 
 import com.future.tailormade.constants.DesignConstants;
+import com.future.tailormade.model.entity.base.BaseEntity;
 import io.github.classgraph.json.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = DesignConstants.DESIGN_COLLECTION)
-public class Design {
+public class Design extends BaseEntity {
 
     @Id
     private String id;
