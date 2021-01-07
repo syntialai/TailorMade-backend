@@ -22,6 +22,10 @@ import java.util.List;
 @AllArgsConstructor
 public class EditTailorDesignRequest {
 
+    private String id;
+
+    private String tailorId;
+
     @NotBlank
     @Min(BaseConstants.MIN_DESIGN_TITLE_COUNT)
     @Max(BaseConstants.MAX_DESIGN_TITLE_COUNT)
