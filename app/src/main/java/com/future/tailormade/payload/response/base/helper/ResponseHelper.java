@@ -14,16 +14,17 @@ public class ResponseHelper {
         return com.blibli.oss.common.response.ResponseHelper.status(HttpStatus.NOT_FOUND);
     }
 
-    public static <T> Response<T> ok(T data, int page, int itemPerPage) {
+    public static <T> Response<T> ok(T data, int page, int itemPerPage, int totalItem) {
         Response<T> response = com.blibli.oss.common.response.ResponseHelper.ok(data);
-        response.setPaging(createPaging(page, itemPerPage));
+        response.setPaging(createPaging(page, itemPerPage, totalItem));
         return response;
     }
 
-    private static Paging createPaging(int page, int itemPerPage) {
+    private static Paging createPaging(int page, int itemPerPage, int totalItem) {
         return Paging.builder()
                 .page(page)
                 .itemPerPage(itemPerPage)
+                .totalItem(totalItem)
                 .build();
     }
 }

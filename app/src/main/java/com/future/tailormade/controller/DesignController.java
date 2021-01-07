@@ -38,7 +38,13 @@ public class DesignController {
                 .build();
         return commandExecutor.execute(GetDesignsCommand.class, request)
                 .map(getDesignsResponses -> com.future.tailormade.payload.response.base.helper
-                        .ResponseHelper.ok(getDesignsResponses, page, itemPerPage))
+                        .ResponseHelper.ok(
+                                getDesignsResponses.getData(),
+                                page,
+                                itemPerPage,
+                                getDesignsResponses.getTotalItem()
+                        )
+                )
                 .subscribeOn(Schedulers.elastic());
     }
 
