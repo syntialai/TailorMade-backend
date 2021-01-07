@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetTailorDesignRequest {
+public class GetTailorDesignsRequest {
 
     private String id;
 

@@ -35,7 +35,6 @@ public class SignUpCommandImpl implements SignUpCommand {
         BeanUtils.copyProperties(signUpRequest, user);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         user.setRole(RoleEnum.ROLE_USER);
 
         return user;
