@@ -1,6 +1,7 @@
 package com.future.tailormade.payload.response.tailor;
 
 import com.future.tailormade.model.entity.base.Location;
+import com.future.tailormade.model.entity.user.TailorDesign;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,5 +23,5 @@ public class GetDashboardTailorsResponse {
 
     private Location location;
 
-    private List<GetTailorDesignsResponse> designs;
+    private List<TailorDesign> designs;
 }
