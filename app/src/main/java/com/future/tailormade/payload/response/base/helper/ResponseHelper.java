@@ -25,6 +25,7 @@ public class ResponseHelper {
                 .page(page)
                 .itemPerPage(itemPerPage)
                 .totalItem(totalItem)
+                .totalPage(totalItem / itemPerPage)
                 .build();
     }
 }
