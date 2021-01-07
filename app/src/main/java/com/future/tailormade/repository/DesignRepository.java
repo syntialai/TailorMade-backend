@@ -11,11 +11,17 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface DesignRepository extends ReactiveMongoRepository<Design, String> {
 
+    Mono<Integer> countAllByTailorId(String tailorId);
+
+    Mono<Integer> countAllByTitleIsLikeOrCategoryExists(String keyword);
+
     @Query("{ id: { $exists: true }}")
     Flux<Design> findAllByTailorId(String tailorId, Pageable pageable);
 
     @Query("{ id: { $exists: true }}")
     Flux<Design> findAllByTitleIsLikeOrCategoryExists(String keyword, Pageable pageable);
 
-    Mono<Integer> countAllByTitleIsLikeOrCategoryExists(String keyword);
+    Mono<Design> findByTailorIdAndId(String tailorId, String id);
+
+    Mono<Void> deleteByTailorIdAndId(String tailorId, String id);
 }

@@ -22,4 +22,13 @@ public class ApiPath {
      */
     public static final String DESIGNS = API_PATH + "/designs";
     public static final String DESIGNS_ID = DESIGNS + "/{id}";
+
+    /**
+     * Tailors API Path
+     */
+    public static final String DASHBOARD_TAILORS = API_PATH + "/dashboard/tailors";
+    public static final String TAILORS = API_PATH + "/tailors";
+    public static final String TAILORS_ID = TAILORS + "/{tailorId}";
+    public static final String TAILORS_ID_DESIGNS = TAILORS_ID + "/designs";
+    public static final String TAILORS_ID_DESIGNS_ID = TAILORS_ID_DESIGNS + "/{id]";
 }
