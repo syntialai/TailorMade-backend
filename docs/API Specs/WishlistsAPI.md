@@ -2,9 +2,11 @@
 
 ## Get Wishlist Items by User
 
-+ Endpoint : ``/api/wishlists``
++ Endpoint : ``/api/user/{userId}/wishlists``
 + HTTP Method : `GET`
 + Auth : Required
++ Path Variable :
+  + userId
 + Response Body (Success) :
 
 ```json
@@ -65,10 +67,11 @@
 
 ## Get Wishlists Item by Id
 
-+ Endpoint : ``/api/wishlists/{id}``
++ Endpoint : ``/api/user/{userId}/wishlists/{id}``
 + HTTP Method : `GET`
 + Auth : Required
 + Path Variable :
+  + userId
   + id
 + Response Body (Success) :
 
@@ -123,9 +126,11 @@
 
 ## Add Wishlists Item by User
 
-+ Endpoint : ``/api/wishlists``
++ Endpoint : ``/api/user/{userId}/wishlists``
 + HTTP Method : `POST`
 + Auth : Required
++ Path Variable :
+  + userId
 + Request Body :
 
 ```json
@@ -199,10 +204,11 @@
 
 ## Edit Wishlists Item Quantity by User and by Id
 
-+ Endpoint : ``/api/wishlists/{id}/_edit-quantity``
++ Endpoint : ``/api/user/{userId}/wishlists/{id}/_edit-quantity``
 + HTTP Method : `PUT`
 + Auth : Required
 + Path Variable :
+  + userId
   + id
 + Request Body :
 
@@ -255,10 +261,11 @@
 
 ## Delete Wishlists Item by Id
 
-+ Endpoint : ``/api/wishlists/{id}``
++ Endpoint : ``/api/user/{userId}/wishlists/{id}``
 + HTTP Method : `DELETE`
 + Auth : Required
 + Path Variable :
+  + userId
   + id
 + Response Body (Success) :
 
