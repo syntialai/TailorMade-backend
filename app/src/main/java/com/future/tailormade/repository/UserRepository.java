@@ -1,4 +1,4 @@
-package com.future.tailormade.repository.user;
+package com.future.tailormade.repository;
 
 import com.future.tailormade.model.entity.user.User;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
