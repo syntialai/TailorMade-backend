@@ -1,7 +1,6 @@
 package com.future.tailormade.model.entity.wishlist;
 
-import com.future.tailormade.model.entity.design.Color;
-import com.future.tailormade.model.entity.design.Size;
+import com.future.tailormade.model.entity.design.SizeDetail;
 import io.github.classgraph.json.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,17 +24,15 @@ public class WishlistDesign {
 
     private Double discount = 0.0;
 
-    private Size size;
+    private String size;
 
-    private Color color;
+    private SizeDetail sizeDetail;
+
+    private String color;
 
     private String tailorId;
 
     private String tailorName;
-
-    private String userId;
-
-    private String userName;
 
     private boolean active = true;
 }

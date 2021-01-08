@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
 public class SequenceGeneratorUtil {
 
     public static final String DESIGN = "DSGN";
+    public static final String WISHLIST = "WLST";
 
     public static String generateSequence(Sequence sequence) {
         return sequence.getName() + "_" + getCountString(sequence.getCount());
@@ -16,7 +17,7 @@ public class SequenceGeneratorUtil {
         return type + "_" + getName(name);
     }
 
-    private static String getName(String name) {
+    public static String getName(String name) {
         return name.toUpperCase().substring(0, 4);
     }
 
