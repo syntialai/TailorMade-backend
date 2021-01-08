@@ -1,5 +1,6 @@
 package com.future.tailormade.payload.response.wishlist;
 
+import com.future.tailormade.model.entity.design.SizeDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,8 +24,7 @@ public class GetWishlistDesignByIdResponse {
 
     private String size;
 
-//    TODO: Uncomment this when design api is merged
-//    private SizeDetail sizeDetail;
+    private SizeDetail sizeDetail;
 
     private String color;
 }

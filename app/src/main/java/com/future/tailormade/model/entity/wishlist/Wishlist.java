@@ -28,6 +28,5 @@ public class Wishlist extends BaseEntity {
 
     private Integer quantity;
 
-    // TODO: Uncomment this when design api merged
-//    private Design design;
+    private WishlistDesign design;
 }

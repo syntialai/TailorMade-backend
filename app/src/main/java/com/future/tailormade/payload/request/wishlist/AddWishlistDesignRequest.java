@@ -1,6 +1,7 @@
 package com.future.tailormade.payload.request.wishlist;
 
 import com.future.tailormade.constants.BaseConstants;
+import com.future.tailormade.model.entity.design.SizeDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,9 +41,8 @@ public class AddWishlistDesignRequest {
     @NotBlank
     private String size;
 
-//    TODO: Uncomment this when design api is merged
-//    @NotBlank
-//    private SizeDetail sizeDetail;
+    @NotBlank
+    private SizeDetail sizeDetail;
 
     @NotBlank
     private String color;
