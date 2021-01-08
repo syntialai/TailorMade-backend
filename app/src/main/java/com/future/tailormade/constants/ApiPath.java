@@ -31,4 +31,10 @@ public class ApiPath {
     public static final String TAILORS_ID = TAILORS + "/{tailorId}";
     public static final String TAILORS_ID_DESIGNS = TAILORS_ID + "/designs";
     public static final String TAILORS_ID_DESIGNS_ID = TAILORS_ID_DESIGNS + "/{id}";
+
+    /**
+     * Wishlist API Path
+     */
+    public static final String USERS_ID_WISHLISTS = USERS + "{userId}/wishlists";
+    public static final String USERS_ID_WISHLISTS_ID = USERS_ID_WISHLISTS + "/{id}";
 }
