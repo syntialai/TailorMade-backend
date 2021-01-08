@@ -1,6 +1,6 @@
 package com.future.tailormade.validation.validator;
 
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import com.future.tailormade.validation.EmailNotAvailable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
