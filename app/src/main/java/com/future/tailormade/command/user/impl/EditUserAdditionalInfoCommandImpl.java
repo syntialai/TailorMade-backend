@@ -25,15 +25,12 @@ public class EditUserAdditionalInfoCommandImpl implements EditUserAdditionalInfo
 
     private EditUserAdditionalInfoResponse createResponse(User user) {
         EditUserAdditionalInfoResponse response = EditUserAdditionalInfoResponse.builder().build();
-
         BeanUtils.copyProperties(user, response);
-
         return response;
     }
 
     private Mono<User> updateUser(User user, EditUserAdditionalInfoRequest request) {
         BeanUtils.copyProperties(request, user);
-
         return userRepository.save(user);
     }
 }

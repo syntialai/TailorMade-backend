@@ -25,15 +25,12 @@ public class EditUserBasicInfoCommandImpl implements EditUserBasicInfoCommand {
 
     private EditUserBasicInfoResponse createResponse(User user) {
         EditUserBasicInfoResponse response = EditUserBasicInfoResponse.builder().build();
-
         BeanUtils.copyProperties(user, response);
-
         return response;
     }
 
     private Mono<User> updateUser(User user, EditUserBasicInfoRequest request) {
         BeanUtils.copyProperties(request, user);
-
         return userRepository.save(user);
     }
 }
