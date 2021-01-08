@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class SignInRequest {
 
     @NotBlank
-    @Email
+    @Email(message = "InvalidFormat")
     private String username;
 
     @NotBlank

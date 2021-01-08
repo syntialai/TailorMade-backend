@@ -7,7 +7,7 @@ import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.GenderEnum;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

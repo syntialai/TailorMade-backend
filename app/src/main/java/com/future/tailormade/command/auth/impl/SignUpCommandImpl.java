@@ -5,7 +5,7 @@ import com.future.tailormade.component.CustomPasswordEncoder;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,6 @@ public class SignUpCommandImpl implements SignUpCommand {
         BeanUtils.copyProperties(signUpRequest, user);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         user.setRole(RoleEnum.ROLE_USER);
 
         return user;
