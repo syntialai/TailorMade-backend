@@ -1,6 +1,6 @@
 package com.future.tailormade.model.entity.wishlist;
 
-import com.future.tailormade.constants.WishlistConstants;
+import com.future.tailormade.constants.CollectionConstants;
 import com.future.tailormade.model.entity.base.BaseEntity;
 import io.github.classgraph.json.Id;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = WishlistConstants.WISHLIST_COLLECTION)
+@Document(collection = CollectionConstants.WISHLIST_COLLECTION)
 public class Wishlist extends BaseEntity {
 
     @Id

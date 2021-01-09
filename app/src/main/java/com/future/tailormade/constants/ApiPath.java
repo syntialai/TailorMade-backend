@@ -35,8 +35,18 @@ public class ApiPath {
     /**
      * Wishlist API Path
      */
-    public static final String USERS_ID_WISHLISTS = USERS + "{userId}/wishlists";
+    public static final String USERS_ID_WISHLISTS = USERS + "/{userId}/wishlists";
     public static final String USERS_ID_WISHLISTS_ID = USERS_ID_WISHLISTS + "/{id}";
     public static final String USERS_ID_WISHLISTS_ID_CHECKOUT = USERS_ID_WISHLISTS_ID + "/_checkout";
     public static final String USERS_ID_WISHLISTS_ID_EDIT_QUANTITY = USERS_ID_WISHLISTS_ID + "/_edit-quantity";
+
+    /**
+     * Order API Path
+     */
+    public static final String USERS_ID_ORDERS = USERS + "/{userId}/orders";
+    public static final String USERS_ID_ORDERS_ID = USERS_ID_ORDERS + "/{id}";
+    public static final String TAILORS_ID_ORDERS = TAILORS_ID + "/orders";
+    public static final String TAILORS_ID_ORDERS_ID = TAILORS_ID_ORDERS + "/{id}";
+    public static final String TAILORS_ID_ORDERS_ID_ACCEPT = TAILORS_ID_ORDERS_ID + "/_accept";
+    public static final String TAILORS_ID_ORDERS_ID_REJECT = TAILORS_ID_ORDERS_ID + "/_reject";
 }

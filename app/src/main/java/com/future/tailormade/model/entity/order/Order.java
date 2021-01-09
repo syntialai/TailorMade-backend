@@ -1,6 +1,6 @@
 package com.future.tailormade.model.entity.order;
 
-import com.future.tailormade.constants.OrderConstants;
+import com.future.tailormade.constants.CollectionConstants;
 import com.future.tailormade.model.entity.base.BaseEntity;
 import com.future.tailormade.model.enums.OrderStatusEnum;
 import io.github.classgraph.json.Id;
@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = OrderConstants.ORDER_COLLECTION)
+@Document(collection = CollectionConstants.ORDER_COLLECTION)
 public class Order extends BaseEntity {
 
     @Id
