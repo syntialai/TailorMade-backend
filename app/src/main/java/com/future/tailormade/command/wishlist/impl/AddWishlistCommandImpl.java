@@ -70,6 +70,17 @@ public class AddWishlistCommandImpl implements AddWishlistCommand {
     }
 
     private Mono<Wishlist> saveWishlist(String userId, Wishlist wishlist) {
-        return findUser(userId).flatMap(user -> wishlistRepository.save(wishlist));
+        return findUser(userId)
+                .flatMap(user -> getFinalWishlist(wishlist))
+                .flatMap(finalWishlist -> wishlistRepository.save(finalWishlist));
+    }
+
+    private Mono<Wishlist> getFinalWishlist(Wishlist wishlist) {
+        return wishlistRepository
+                .findByUserIdAndDesign(wishlist.getUserId(), wishlist.getDesign())
+                .map(existWishlist -> {
+                    existWishlist.setQuantity(existWishlist.getQuantity() + wishlist.getQuantity());
+                    return existWishlist;
+                }).switchIfEmpty(Mono.just(wishlist));
     }
 }

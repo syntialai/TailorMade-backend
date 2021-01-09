@@ -1,6 +1,7 @@
 package com.future.tailormade.repository;
 
 import com.future.tailormade.model.entity.wishlist.Wishlist;
+import com.future.tailormade.model.entity.wishlist.WishlistDesign;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
@@ -17,4 +18,6 @@ public interface WishlistRepository extends ReactiveMongoRepository<Wishlist, St
     Flux<Wishlist> findAllByUserId(String userId, Pageable pageable);
 
     Mono<Wishlist> findByUserIdAndId(String userId, String id);
+
+    Mono<Wishlist> findByUserIdAndDesign(String userId, WishlistDesign design);
 }
