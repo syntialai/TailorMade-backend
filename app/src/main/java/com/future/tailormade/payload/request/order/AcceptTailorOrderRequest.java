@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AcceptTailorOrderByIdRequest {
+public class AcceptTailorOrderRequest {
 
     private String id;
 

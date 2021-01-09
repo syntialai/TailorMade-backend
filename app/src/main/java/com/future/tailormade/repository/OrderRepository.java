@@ -29,7 +29,9 @@ public interface OrderRepository extends ReactiveMongoRepository<Order, String> 
     @Query("{ id: { $exists: true }}")
     Flux<Order> findAllByTailorIdAndStatusIsNot(String tailorId, OrderStatusEnum status);
 
-    Mono<Order> findByUserIdAndAndId(String userId, String id);
+    Mono<Order> findByUserIdAndId(String userId, String id);
 
-    Mono<Order> findByTailorIdAndAndId(String userId, String id);
+    Mono<Order> findByTailorIdAndId(String tailorId, String id);
+
+    Mono<Order> findByTailorIdAndIdAndStatus(String tailorId, String id, OrderStatusEnum status);
 }
