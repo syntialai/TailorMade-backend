@@ -26,4 +26,6 @@ public class GetOrdersResponse {
     private Double totalPrice;
 
     private Double totalDiscount;
+
+    private GetOrdersDesignResponse design;
 }
