@@ -20,6 +20,15 @@ public class ImageInvalidTypeValidator implements ConstraintValidator<ImageInval
             return false;
         }
 
-        return Pattern.matches(BaseConstants.REGEX_IMAGE_BASE64, value);
+        if (!value.contains(BaseConstants.PART_SEPARATOR)) {
+            return false;
+        }
+
+        String encodedImage = getEncodedBase64Image(value);
+        return Pattern.matches(BaseConstants.REGEX_IMAGE_BASE64, encodedImage);
+    }
+
+    private String getEncodedBase64Image(String base64File) {
+        return base64File.split(BaseConstants.PART_SEPARATOR)[1];
     }
 }
