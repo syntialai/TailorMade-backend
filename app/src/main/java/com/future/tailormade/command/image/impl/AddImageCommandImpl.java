@@ -9,17 +9,19 @@ import reactor.core.publisher.Mono;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Base64;
 
 @Service
 public class AddImageCommandImpl implements AddImageCommand {
 
     @Override
-    public Mono<Object> execute(AddImageRequest request) {
+    public Mono<String> execute(AddImageRequest request) {
         return createFile(request.getFileName(), request.getFilePath())
                 .map(file -> {
                     String encodedImageFile = getEncodedBase64Image(request.getFileInBase64());
-                    return putFile(file, encodedImageFile);
+                    putFile(file, encodedImageFile);
+                    return file.getPath();
                 });
     }
 
@@ -29,13 +31,12 @@ public class AddImageCommandImpl implements AddImageCommand {
         return Mono.just(new File(directoryPath + imageFileName));
     }
 
-    private Mono<Void> putFile(File imageFile, String encodedImageFile) {
+    private void putFile(File imageFile, String encodedImageFile) {
         try (FileOutputStream fos = new FileOutputStream(imageFile)) {
             byte[] dataBytes = Base64.getMimeDecoder().decode(encodedImageFile);
             fos.write(dataBytes);
-            return Mono.empty().then();
-        } catch (Exception e) {
-            return Mono.error(e);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
