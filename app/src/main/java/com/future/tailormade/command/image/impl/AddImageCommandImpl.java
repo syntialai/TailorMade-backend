@@ -1,6 +1,7 @@
 package com.future.tailormade.command.image.impl;
 
 import com.future.tailormade.command.image.AddImageCommand;
+import com.future.tailormade.constants.ApiPath;
 import com.future.tailormade.constants.BaseConstants;
 import com.future.tailormade.payload.request.image.AddImageRequest;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,6 @@ import java.util.Base64;
 @Service
 public class AddImageCommandImpl implements AddImageCommand {
 
-    private static final String STATIC_IMAGES = "/src/main/resources/static/images/";
-
     @Override
     public Mono<Object> execute(AddImageRequest request) {
         return createFile(request.getFileName(), request.getFilePath())
@@ -25,7 +24,7 @@ public class AddImageCommandImpl implements AddImageCommand {
     }
 
     private Mono<File> createFile(String fileName, String filePath) {
-        String directoryPath = new File("").getAbsolutePath() + STATIC_IMAGES + filePath;
+        String directoryPath = new File("").getAbsolutePath() + ApiPath.STATIC_IMAGES + filePath;
         String imageFileName = "/" + fileName + BaseConstants.IMAGE_EXTENSION_PNG;
         return Mono.just(new File(directoryPath + imageFileName));
     }

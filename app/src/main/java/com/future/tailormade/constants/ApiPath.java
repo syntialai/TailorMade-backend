@@ -31,4 +31,11 @@ public class ApiPath {
     public static final String TAILORS_ID = TAILORS + "/{tailorId}";
     public static final String TAILORS_ID_DESIGNS = TAILORS_ID + "/designs";
     public static final String TAILORS_ID_DESIGNS_ID = TAILORS_ID_DESIGNS + "/{id}";
+
+    /**
+     * Image Path
+     */
+    public static final String STATIC_IMAGES_PATH = "./src/main/resources/static/images/";
+    public static final String STATIC_IMAGES = "/src/main/resources/static/images/";
+    public static final String IMAGE_FILE_PATH_FILE_NAME = "/image/{filePath}/{fileName}";
 }
