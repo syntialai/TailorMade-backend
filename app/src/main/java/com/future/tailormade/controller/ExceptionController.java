@@ -27,11 +27,13 @@ public class ExceptionController {
     }
 
     @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public Response<Object> handleNotFoundException() {
         return ResponseHelper.notFound();
     }
 
     @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public Response<Object> handleUnauthorizedException() {
         return ResponseHelper.unauthorized();
     }
