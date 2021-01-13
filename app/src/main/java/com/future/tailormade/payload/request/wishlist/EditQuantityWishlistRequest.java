@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 @Data
@@ -18,7 +17,6 @@ public class EditQuantityWishlistRequest {
 
     private String userId;
 
-    @NotBlank
     @Positive
     private Integer quantity;
 }

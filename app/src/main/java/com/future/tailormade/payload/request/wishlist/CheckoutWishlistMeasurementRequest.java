@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 @Data
@@ -14,23 +13,18 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class CheckoutWishlistMeasurementRequest {
 
-    @NotBlank
     @Positive
     private Float chest;
 
-    @NotBlank
     @Positive
     private Float waist;
 
-    @NotBlank
     @Positive
     private Float hips;
 
-    @NotBlank
     @Positive
     private Float neckToWaist;
 
-    @NotBlank
     @Positive
     private Float inseam;
 }

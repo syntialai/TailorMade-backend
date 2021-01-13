@@ -34,11 +34,9 @@ public class EditTailorDesignRequest {
     @NotBlank
     private String image;
 
-    @NotBlank
     @Positive
     private Double price;
 
-    @NotBlank
     @PositiveOrZero
     private Double discount = 0.0;
 
