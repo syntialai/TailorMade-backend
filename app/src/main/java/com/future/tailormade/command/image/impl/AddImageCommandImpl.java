@@ -26,7 +26,7 @@ public class AddImageCommandImpl implements AddImageCommand {
     }
 
     private Mono<File> createFile(String fileName, String filePath) {
-        String directoryPath = new File("").getAbsolutePath() + ApiPath.STATIC_IMAGES + filePath;
+        String directoryPath = new File("").getAbsolutePath() + ApiPath.UPLOADS_FOLDER_PATH + filePath;
         String imageFileName = "/" + fileName + BaseConstants.IMAGE_EXTENSION_PNG;
         return Mono.just(new File(directoryPath + imageFileName));
     }

@@ -35,7 +35,7 @@ public class ApiPath {
     /**
      * Image Path
      */
-    public static final String STATIC_IMAGES_PATH = "./src/main/resources/static/images/";
-    public static final String STATIC_IMAGES = "/src/main/resources/static/images/";
+    public static final String UPLOADS_PATH = "./uploads/";
+    public static final String UPLOADS_FOLDER_PATH = "/uploads/";
     public static final String IMAGE_FILE_PATH_FILE_NAME = "/image/{filePath}/{fileName}";
 }

@@ -21,7 +21,7 @@ public class GetImageCommandImpl implements GetImageCommand {
 
     private Mono<File> createImageFile(GetImageRequest request) {
         String fileName = request.getFilePath() + "/" + request.getFileName();
-        return Mono.just(new File(ApiPath.STATIC_IMAGES_PATH + fileName));
+        return Mono.just(new File(ApiPath.UPLOADS_PATH + fileName));
     }
 
     private byte[] loadImage(File file) {
