@@ -65,7 +65,7 @@ public class SecurityConfig {
                 .authorizeExchange()
                 .pathMatchers(SWAGGER_LIST).permitAll()
                 .pathMatchers(AUTH_LIST).permitAll()
-                .anyExchange().permitAll()
+                .anyExchange().authenticated()
                 .and().build();
     }
 }
