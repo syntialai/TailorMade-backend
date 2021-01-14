@@ -20,6 +20,7 @@ import com.future.tailormade.payload.response.wishlist.GetWishlistByIdResponse;
 import com.future.tailormade.payload.response.wishlist.GetWishlistsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,7 @@ public class WishlistController {
     private CommandExecutor commandExecutor;
 
     @GetMapping(ApiPath.USERS_ID_WISHLISTS)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<List<GetWishlistsResponse>>> getUserWishlists(
             @PathVariable("userId") String userId,
             @RequestParam("page") int page,
@@ -62,6 +64,7 @@ public class WishlistController {
     }
 
     @GetMapping(ApiPath.USERS_ID_WISHLISTS_ID)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<GetWishlistByIdResponse>> getUserWishlistById(
             @PathVariable("userId") String userId,
             @PathVariable("id") String id
@@ -78,6 +81,7 @@ public class WishlistController {
     @PostMapping(value = ApiPath.USERS_ID_WISHLISTS,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<Object>> addUserWishlist(
             @PathVariable("userId") String userId,
             @RequestBody AddWishlistRequest request
@@ -92,6 +96,7 @@ public class WishlistController {
     @PostMapping(value = ApiPath.USERS_ID_WISHLISTS_ID_CHECKOUT,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<CheckoutWishlistResponse>> checkoutUserWishlist(
             @PathVariable("userId") String userId,
             @PathVariable("id") String id,
@@ -107,6 +112,7 @@ public class WishlistController {
     @PutMapping(value = ApiPath.USERS_ID_WISHLISTS_ID_EDIT_QUANTITY,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<EditQuantityWishlistResponse>> editUserWishlistQuantity(
             @PathVariable("userId") String userId,
             @PathVariable("id") String id,

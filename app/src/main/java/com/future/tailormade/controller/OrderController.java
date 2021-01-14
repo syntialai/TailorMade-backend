@@ -21,6 +21,7 @@ import com.future.tailormade.payload.request.order.RejectTailorOrderRequest;
 import com.future.tailormade.payload.response.order.GetOrdersResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,6 +39,7 @@ public class OrderController {
     private CommandExecutor commandExecutor;
 
     @GetMapping(ApiPath.USERS_ID_ORDERS)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<List<GetOrdersResponse>>> getUserOrders(
             @PathVariable("userId") String userId,
             @RequestParam("page") Integer page,
@@ -61,6 +63,7 @@ public class OrderController {
     }
 
     @GetMapping(ApiPath.TAILORS_ID_ORDERS)
+    @PreAuthorize("hasRole('TAILOR')")
     public Mono<Response<List<GetOrdersResponse>>> getTailorOrders(
             @PathVariable("tailorId") String tailorId,
             @RequestParam("status") OrderStatusEnum status,
@@ -86,6 +89,7 @@ public class OrderController {
     }
 
     @GetMapping(ApiPath.USERS_ID_ORDERS_ID)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<Order>> getUserOrderById(
             @PathVariable("userId") String userId,
             @PathVariable("id") String id
@@ -100,6 +104,7 @@ public class OrderController {
     }
 
     @GetMapping(ApiPath.TAILORS_ID_ORDERS_ID)
+    @PreAuthorize("hasRole('TAILOR')")
     public Mono<Response<Order>> getTailorOrderById(
             @PathVariable("tailorId") String tailorId,
             @PathVariable("id") String id
@@ -116,6 +121,7 @@ public class OrderController {
     @PutMapping(value = ApiPath.TAILORS_ID_ORDERS_ID_ACCEPT,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('TAILOR')")
     public Mono<Response<Object>> acceptOrderByTailor(
             @PathVariable("tailorId") String tailorId,
             @PathVariable("id") String id
@@ -132,6 +138,7 @@ public class OrderController {
     @PutMapping(value = ApiPath.TAILORS_ID_ORDERS_ID_REJECT,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('TAILOR')")
     public Mono<Response<Object>> rejectOrderByTailor(
             @PathVariable("tailorId") String tailorId,
             @PathVariable("id") String id
