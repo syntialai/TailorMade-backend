@@ -13,9 +13,9 @@ public class ApiPath {
     public static final String USERS_SIGN_OUT = USERS + "/_sign-out";
     public static final String USERS_SIGN_UP = USERS + "/_sign-up";
     public static final String USERS_REFRESH_TOKEN = USERS + "/_refresh-token";
-    public static final String USERS_ACTIVATE_TAILOR = USERS_ID + "/_activate-tailor";
-    public static final String USERS_UPDATE_BASIC_INFO = USERS_ID + "/_update-basic-info";
-    public static final String USERS_UPDATE_MORE_INFO = USERS_ID + "/_update-more-info";
+    public static final String USERS_ID_ACTIVATE_TAILOR = USERS_ID + "/_activate-tailor";
+    public static final String USERS_ID_UPDATE_BASIC_INFO = USERS_ID + "/_update-basic-info";
+    public static final String USERS_ID_UPDATE_MORE_INFO = USERS_ID + "/_update-more-info";
 
     /**
      * Designs API Path
@@ -31,4 +31,12 @@ public class ApiPath {
     public static final String TAILORS_ID = TAILORS + "/{tailorId}";
     public static final String TAILORS_ID_DESIGNS = TAILORS_ID + "/designs";
     public static final String TAILORS_ID_DESIGNS_ID = TAILORS_ID_DESIGNS + "/{id}";
+
+    /**
+     * Wishlist API Path
+     */
+    public static final String USERS_ID_WISHLISTS = USERS + "{userId}/wishlists";
+    public static final String USERS_ID_WISHLISTS_ID = USERS_ID_WISHLISTS + "/{id}";
+    public static final String USERS_ID_WISHLISTS_ID_CHECKOUT = USERS_ID_WISHLISTS_ID + "/_checkout";
+    public static final String USERS_ID_WISHLISTS_ID_EDIT_QUANTITY = USERS_ID_WISHLISTS_ID + "/_edit-quantity";
 }
