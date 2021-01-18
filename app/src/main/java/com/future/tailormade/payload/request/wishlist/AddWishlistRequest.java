@@ -25,7 +25,6 @@ public class AddWishlistRequest {
     @NotBlank
     private String tailorName;
 
-    @NotBlank
     @Positive
     private Integer quantity;
 

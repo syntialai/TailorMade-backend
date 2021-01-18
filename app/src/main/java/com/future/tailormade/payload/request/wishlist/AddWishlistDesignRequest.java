@@ -30,11 +30,9 @@ public class AddWishlistDesignRequest {
     @NotBlank
     private String image;
 
-    @NotBlank
     @Positive
     private Double price;
 
-    @NotBlank
     @PositiveOrZero
     private Double discount;
 

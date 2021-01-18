@@ -8,6 +8,7 @@ public class SequenceGeneratorUtil {
 
     public static final String DESIGN = "DSGN";
     public static final String WISHLIST = "WLST";
+    public static final String ORDER = "ORDR";
 
     public static String generateSequence(Sequence sequence) {
         return sequence.getName() + "_" + getCountString(sequence.getCount());

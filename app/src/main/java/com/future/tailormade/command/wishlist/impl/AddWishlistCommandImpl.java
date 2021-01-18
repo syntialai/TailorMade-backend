@@ -39,10 +39,9 @@ public class AddWishlistCommandImpl implements AddWishlistCommand {
     }
 
     private Wishlist createWishlist(String id, AddWishlistRequest request) {
-        Wishlist wishlist = Wishlist.builder()
-                .id(id)
-                .build();
+        Wishlist wishlist = Wishlist.builder().build();
         BeanUtils.copyProperties(request, wishlist);
+        wishlist.setId(id);
         wishlist.setDesign(createWishlistDesign(
                 request.getDesign(), request.getTailorId(), request.getTailorName()));
         return wishlist;

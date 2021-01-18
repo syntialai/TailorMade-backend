@@ -1,6 +1,6 @@
 package com.future.tailormade.model.entity.design;
 
-import com.future.tailormade.constants.DesignConstants;
+import com.future.tailormade.constants.CollectionConstants;
 import com.future.tailormade.model.entity.base.BaseEntity;
 import io.github.classgraph.json.Id;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = DesignConstants.DESIGN_COLLECTION)
+@Document(collection = CollectionConstants.DESIGN_COLLECTION)
 public class Design extends BaseEntity {
 
     @Id

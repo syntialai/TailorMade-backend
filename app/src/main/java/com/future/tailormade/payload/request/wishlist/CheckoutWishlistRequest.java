@@ -14,6 +14,8 @@ import javax.validation.constraints.Max;
 @AllArgsConstructor
 public class CheckoutWishlistRequest {
 
+    private String userId;
+
     private String wishlistId;
 
     @Max(BaseConstants.MAX_SPECIAL_INSTRUCTIONS_COUNT)

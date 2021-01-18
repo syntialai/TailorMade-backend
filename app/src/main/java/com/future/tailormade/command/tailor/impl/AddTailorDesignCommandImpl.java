@@ -2,7 +2,6 @@ package com.future.tailormade.command.tailor.impl;
 
 import com.future.tailormade.command.tailor.AddTailorDesignCommand;
 import com.future.tailormade.exceptions.UnauthorizedException;
-import com.future.tailormade.model.entity.base.Sequence;
 import com.future.tailormade.model.entity.design.Design;
 import com.future.tailormade.model.entity.user.TailorDesign;
 import com.future.tailormade.model.entity.user.User;
@@ -60,19 +59,11 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     }
 
     private Design createDesign(String id, User tailor, AddTailorDesignRequest request) {
-        Design design = Design.builder()
-                .id(id)
-                .build();
+        Design design = Design.builder().build();
         BeanUtils.copyProperties(request, design);
+        design.setId(id);
         design.setTailorName(tailor.getName());
         return design;
-    }
-
-    private Mono<Sequence> createSequence(String name) {
-        return Mono.just(Sequence.builder()
-                .name(name)
-                .count(0L)
-                .build());
     }
 
     private TailorDesign createTailorDesign(Design design) {

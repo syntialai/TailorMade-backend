@@ -31,7 +31,7 @@ public class SignUpCommandImplTest extends BaseTest {
     private static final String USER_PASSWORD = "USER_PASSWORD";
     private static final String USER_PASSWORD_ENCODED = "USER_PASSWORD_ENCODED";
     private static final String USER_BIRTH_DATE = "2020-12-12";
-    private static final GenderEnum USER_GENDER = GenderEnum.GENDER_FEMALE;
+    private static final GenderEnum USER_GENDER = GenderEnum.Female;
 
     @InjectMocks
     private SignUpCommandImpl command;
