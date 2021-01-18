@@ -1,6 +1,7 @@
 package com.future.tailormade.command.tailor.impl;
 
 import com.future.tailormade.command.tailor.GetTailorByIdCommand;
+import com.future.tailormade.exceptions.NotFoundException;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
@@ -22,7 +23,8 @@ public class GetTailorByIdCommandImpl implements GetTailorByIdCommand {
     }
 
     private Mono<User> findTailor(String id) {
-        return userRepository.findByIdAndRole(id, RoleEnum.ROLE_TAILOR);
+        return userRepository.findByIdAndRole(id, RoleEnum.ROLE_TAILOR)
+                .switchIfEmpty(Mono.error(NotFoundException::new));
     }
 
     private GetUserByIdResponse createResponse(User user) {

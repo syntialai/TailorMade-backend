@@ -1,6 +1,7 @@
 package com.future.tailormade.command.user.impl;
 
 import com.future.tailormade.command.user.GetUserByIdCommand;
+import com.future.tailormade.exceptions.NotFoundException;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import com.future.tailormade.repository.UserRepository;
@@ -21,7 +22,8 @@ public class GetUserByIdCommandImpl implements GetUserByIdCommand {
     }
 
     private Mono<User> findUser(String id) {
-        return userRepository.findById(id);
+        return userRepository.findById(id)
+                .switchIfEmpty(Mono.error(NotFoundException::new));
     }
 
     private GetUserByIdResponse createResponse(User user) {
