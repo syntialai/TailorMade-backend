@@ -11,7 +11,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +28,7 @@ public class JwtTokenProvider {
     private Long jwtRefreshExpirationTime;
 
     public String getKey() {
-        return Base64.getEncoder().encodeToString(jwtSecret.getBytes());
+        return jwtSecret;
     }
 
     public Claims getAllClaimsFromToken(String token) {
@@ -79,7 +78,7 @@ public class JwtTokenProvider {
                 .setSubject(userId)
                 .setIssuedAt(createdDate)
                 .setExpiration(expirationDate)
-                .signWith(SignatureAlgorithm.RS512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 

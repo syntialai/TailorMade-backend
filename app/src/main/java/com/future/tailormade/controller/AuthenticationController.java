@@ -30,7 +30,7 @@ public class AuthenticationController {
     @Autowired
     private CommandExecutor commandExecutor;
 
-    @GetMapping(ApiPath.USERS_REFRESH_TOKEN)
+    @GetMapping(ApiPath.USER_REFRESH_TOKEN)
     public Mono<Response<TokenResponse>> refreshToken(
             @RequestBody RefreshTokenRequest refreshTokenRequest
     ) {
@@ -39,7 +39,7 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PostMapping(value = ApiPath.USERS_SIGN_IN,
+    @PostMapping(value = ApiPath.USER_SIGN_IN,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<TokenResponse>> signIn(
@@ -50,7 +50,7 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PostMapping(value = ApiPath.USERS_SIGN_UP,
+    @PostMapping(value = ApiPath.USER_SIGN_UP,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<Object>> signUp(@RequestBody SignUpRequest signUpRequest) {
