@@ -9,6 +9,7 @@ public class BaseConstants {
 
     public static final String PART_SEPARATOR = ",";
     public static final String IMAGE_EXTENSION_PNG = ".png";
+    public static final String IMAGE_EXTENSION_JPEG = ".jpeg";
     public static final String REGEX_IMAGE_BASE64 =
             "\"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$\"";
 

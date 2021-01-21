@@ -37,6 +37,16 @@ public class SecurityConfig {
             ApiPath.USERS_SIGN_UP
     };
 
+    private static final String[] ALL_API = {
+            ApiPath.USERS,
+            ApiPath.USERS + "/**",
+            ApiPath.DESIGNS,
+            ApiPath.DESIGNS + "/**",
+            ApiPath.TAILORS,
+            ApiPath.TAILORS + "/**",
+            ApiPath.DASHBOARD_TAILORS
+    };
+
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
@@ -65,6 +75,11 @@ public class SecurityConfig {
                 .authorizeExchange()
                 .pathMatchers(SWAGGER_LIST).permitAll()
                 .pathMatchers(AUTH_LIST).permitAll()
+                .pathMatchers("/",
+                        "/**/*.png",
+                        "/**/*.gif",
+                        "/**/*.svg",
+                        "/**/*.jpeg").permitAll()
                 .anyExchange().authenticated()
                 .and().build();
     }

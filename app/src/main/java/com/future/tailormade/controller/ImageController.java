@@ -31,7 +31,7 @@ public class ImageController {
                 .fileName(fileName)
                 .build();
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_PNG);
+        headers.setContentType(MediaType.IMAGE_JPEG);
         return commandExecutor.execute(GetImageCommand.class, request)
                 .map(file -> new ResponseEntity<>(file, headers, HttpStatus.OK))
                 .subscribeOn(Schedulers.elastic());
