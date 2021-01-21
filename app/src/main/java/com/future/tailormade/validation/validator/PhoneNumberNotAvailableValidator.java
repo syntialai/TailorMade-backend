@@ -23,6 +23,6 @@ public class PhoneNumberNotAvailableValidator implements ConstraintValidator<Pho
             return true;
         }
 
-        return userRepository.existsByPhoneNumber(value).block();
+        return !userRepository.existsByPhoneNumber(value).block();
     }
 }

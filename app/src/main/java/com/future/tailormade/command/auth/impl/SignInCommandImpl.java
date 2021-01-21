@@ -42,7 +42,8 @@ public class SignInCommandImpl implements SignInCommand {
     }
 
     private Mono<User> findByUsername(String username) {
-        return userRepository.findByEmail(username);
+        return userRepository.findByEmail(username)
+                .switchIfEmpty(Mono.error(UnauthorizedException::new));
     }
 
     private Token getToken(String access, String refresh) {
