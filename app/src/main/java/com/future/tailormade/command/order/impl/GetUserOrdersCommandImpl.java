@@ -42,7 +42,8 @@ public class GetUserOrdersCommandImpl implements GetUserOrdersCommand {
     private Mono<BasePagingResponse<GetOrdersResponse>> getUserOrdersCount(
             String userId, BasePagingResponse<GetOrdersResponse> pagingResponse) {
         return orderRepository.countAllByUserId(userId)
-                .map(count -> ResponseHelper.setPagingResponseTotalItem(pagingResponse, count));
+                .map(count -> ResponseHelper
+                        .setPagingResponseTotalItem(pagingResponse, count.intValue()));
     }
 
     private GetOrdersResponse createResponse(Order order) {

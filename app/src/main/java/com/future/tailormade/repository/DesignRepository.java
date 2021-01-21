@@ -11,9 +11,9 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface DesignRepository extends ReactiveMongoRepository<Design, String> {
 
-    Mono<Integer> countAllByTailorId(String tailorId);
+    Mono<Long> countAllByTailorId(String tailorId);
 
-    Mono<Integer> countAllByTitleIsLikeOrCategoryExists(String keyword);
+    Mono<Long> countAllByTitleIsLikeOrCategoryExists(String keyword);
 
     @Query("{ id: { $exists: true }}")
     Flux<Design> findAllByTailorId(String tailorId, Pageable pageable);

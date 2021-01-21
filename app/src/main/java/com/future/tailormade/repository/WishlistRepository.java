@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface WishlistRepository extends ReactiveMongoRepository<Wishlist, String> {
 
-    Mono<Integer> countAllByUserId(String userId);
+    Mono<Long> countAllByUserId(String userId);
 
     @Query("{ id: { $exists: true }}")
     Flux<Wishlist> findAllByUserId(String userId, Pageable pageable);

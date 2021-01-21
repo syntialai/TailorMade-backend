@@ -12,11 +12,11 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface OrderRepository extends ReactiveMongoRepository<Order, String> {
 
-    Mono<Integer> countAllByTailorIdAndStatus(String tailorId, OrderStatusEnum status);
+    Mono<Long> countAllByTailorIdAndStatus(String tailorId, OrderStatusEnum status);
 
-    Mono<Integer> countAllByTailorIdAndStatusIsNot(String tailorId, OrderStatusEnum status);
+    Mono<Long> countAllByTailorIdAndStatusIsNot(String tailorId, OrderStatusEnum status);
 
-    Mono<Integer> countAllByUserId(String userId);
+    Mono<Long> countAllByUserId(String userId);
 
     @Query("{ id: { $exists: true }}")
     Flux<Order> findAllByUserId(String userId, Pageable pageable);

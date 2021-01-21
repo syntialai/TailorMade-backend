@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface UserRepository extends ReactiveMongoRepository<User, String> {
 
-    Mono<Integer> countAllByRole(RoleEnum role);
+    Mono<Long> countAllByRole(RoleEnum role);
 
     @Query("{ id: { $exists: true }}")
     Flux<User> findAllByRole(RoleEnum role, Pageable pageable);
