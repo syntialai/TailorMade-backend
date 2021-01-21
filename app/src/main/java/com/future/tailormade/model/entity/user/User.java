@@ -1,6 +1,6 @@
 package com.future.tailormade.model.entity.user;
 
-import com.future.tailormade.constants.UserConstants;
+import com.future.tailormade.constants.CollectionConstants;
 import com.future.tailormade.exceptions.NotFoundException;
 import com.future.tailormade.model.entity.base.BaseEntity;
 import com.future.tailormade.model.entity.base.Location;
@@ -25,7 +25,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = UserConstants.USER_COLLECTION)
+@Document(collection = CollectionConstants.USER_COLLECTION)
 public class User extends BaseEntity implements UserDetails {
 
     @Id

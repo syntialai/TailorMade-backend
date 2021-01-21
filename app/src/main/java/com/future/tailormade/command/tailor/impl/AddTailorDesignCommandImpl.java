@@ -3,7 +3,7 @@ package com.future.tailormade.command.tailor.impl;
 import com.future.tailormade.command.image.AddImageCommand;
 import com.future.tailormade.command.tailor.AddTailorDesignCommand;
 import com.future.tailormade.constants.BaseConstants;
-import com.future.tailormade.model.entity.base.Sequence;
+import com.future.tailormade.exceptions.UnauthorizedException;
 import com.future.tailormade.model.entity.design.Design;
 import com.future.tailormade.model.entity.user.TailorDesign;
 import com.future.tailormade.model.entity.user.User;
@@ -12,8 +12,8 @@ import com.future.tailormade.payload.request.image.AddImageRequest;
 import com.future.tailormade.payload.request.tailor.AddTailorDesignRequest;
 import com.future.tailormade.payload.response.tailor.AddOrEditTailorDesignResponse;
 import com.future.tailormade.repository.DesignRepository;
-import com.future.tailormade.repository.SequenceRepository;
 import com.future.tailormade.repository.UserRepository;
+import com.future.tailormade.service.SequenceService;
 import com.future.tailormade.utils.SequenceGeneratorUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     private UserRepository userRepository;
 
     @Autowired
-    private SequenceRepository sequenceRepository;
+    private SequenceService sequenceService;
 
     @Autowired
     private AddImageCommand addImageCommand;
@@ -46,7 +46,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     }
 
     private Mono<Pair<User, Design>> addDesign(User tailor, AddTailorDesignRequest request) {
-        return generateId(request.getTitle())
+        return sequenceService.generateId(request.getTitle(), SequenceGeneratorUtil.DESIGN)
                 .map(sequence -> createDesign(sequence, tailor, request))
                 .flatMap(this::saveDesign)
                 .map(design -> Pair.of(tailor, design));
@@ -74,19 +74,11 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     }
 
     private Design createDesign(String id, User tailor, AddTailorDesignRequest request) {
-        Design design = Design.builder()
-                .id(id)
-                .build();
+        Design design = Design.builder().build();
         BeanUtils.copyProperties(request, design);
+        design.setId(id);
         design.setTailorName(tailor.getName());
         return design;
-    }
-
-    private Mono<Sequence> createSequence(String name) {
-        return Mono.just(Sequence.builder()
-                .name(name)
-                .count(0L)
-                .build());
     }
 
     private TailorDesign createTailorDesign(Design design) {
@@ -96,24 +88,12 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     }
 
     private Mono<User> findTailor(String tailorId) {
-        return userRepository.findByIdAndRole(tailorId, RoleEnum.ROLE_TAILOR);
-    }
-
-    private Mono<String> generateId(String title) {
-        String name = SequenceGeneratorUtil.getId(SequenceGeneratorUtil.DESIGN, title);
-        return sequenceRepository.findById(name)
-                .switchIfEmpty(createSequence(name))
-                .flatMap(this::saveSequence)
-                .map(SequenceGeneratorUtil::generateSequence);
+        return userRepository.findByIdAndRole(tailorId, RoleEnum.ROLE_TAILOR)
+                .switchIfEmpty(Mono.error(UnauthorizedException::new));
     }
 
     private Mono<Design> saveDesign(Design design) {
         return addImage(design.getId(), design.getImage())
                 .flatMap(image -> designRepository.save(design));
-    }
-
-    private Mono<Sequence> saveSequence(Sequence sequence) {
-        sequence.setCount(sequence.getCount() + 1);
-        return sequenceRepository.save(sequence);
     }
 }

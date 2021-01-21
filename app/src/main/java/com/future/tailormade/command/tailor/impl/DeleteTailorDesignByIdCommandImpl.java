@@ -2,6 +2,7 @@ package com.future.tailormade.command.tailor.impl;
 
 import com.future.tailormade.command.tailor.DeleteTailorDesignByIdCommand;
 import com.future.tailormade.exceptions.NotFoundException;
+import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.tailor.DeleteTailorDesignRequest;
 import com.future.tailormade.repository.DesignRepository;
@@ -31,9 +32,12 @@ public class DeleteTailorDesignByIdCommandImpl implements DeleteTailorDesignById
     private Mono<Void> deleteTailorDesign(DeleteTailorDesignRequest request) {
         return userRepository.findByIdAndRole(request.getTailorId(), RoleEnum.ROLE_TAILOR)
                 .switchIfEmpty(Mono.error(NotFoundException::new))
-                .flatMap(tailor -> {
-                    tailor.deleteDesign(request.getId());
-                    return userRepository.save(tailor);
-                }).then();
+                .flatMap(tailor -> updateTailor(request.getId(), tailor))
+                .then();
+    }
+
+    private Mono<User> updateTailor(String id, User tailor) {
+        tailor.deleteDesign(id);
+        return userRepository.save(tailor);
     }
 }

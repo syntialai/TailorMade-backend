@@ -64,19 +64,12 @@ public class EditTailorDesignCommandImpl implements EditTailorDesignCommand {
     }
     
     private Mono<Design> findDesign(String tailorId, String id) {
-        return designRepository.findByTailorIdAndId(tailorId, id).doOnNext(design -> {
-           if (design == null) {
-               throw new NotFoundException();
-           }
-        });
+        return designRepository.findByTailorIdAndId(tailorId, id)
+                .switchIfEmpty(Mono.error(NotFoundException::new));
     }
 
     private Mono<User> findTailor(String tailorId) {
         return userRepository.findByIdAndRole(tailorId, RoleEnum.ROLE_TAILOR)
-                .doOnNext(tailor -> {
-                    if (tailor == null) {
-                        throw new NotFoundException();
-                    }
-                });
+                .switchIfEmpty(Mono.error(NotFoundException::new));
     }
 }

@@ -59,7 +59,7 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PutMapping(value = ApiPath.USERS_ACTIVATE_TAILOR,
+    @PutMapping(value = ApiPath.USERS_ID_ACTIVATE_TAILOR,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<ActivateTailorResponse>> activateTailor(

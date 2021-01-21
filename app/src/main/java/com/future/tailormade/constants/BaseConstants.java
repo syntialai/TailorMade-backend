@@ -7,6 +7,8 @@ public class BaseConstants {
     public static final int MIN_DESIGN_DESCRIPTION_COUNT = 3;
     public static final int MAX_DESIGN_DESCRIPTION_COUNT = 500;
 
+    public static final int MAX_SPECIAL_INSTRUCTIONS_COUNT = 1000;
+
     public static final String PART_SEPARATOR = ",";
     public static final String IMAGE_EXTENSION_PNG = ".png";
     public static final String IMAGE_EXTENSION_JPEG = ".jpeg";
