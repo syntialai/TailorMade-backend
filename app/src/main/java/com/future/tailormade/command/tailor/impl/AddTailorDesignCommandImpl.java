@@ -1,11 +1,14 @@
 package com.future.tailormade.command.tailor.impl;
 
+import com.future.tailormade.command.image.AddImageCommand;
 import com.future.tailormade.command.tailor.AddTailorDesignCommand;
+import com.future.tailormade.constants.BaseConstants;
 import com.future.tailormade.model.entity.base.Sequence;
 import com.future.tailormade.model.entity.design.Design;
 import com.future.tailormade.model.entity.user.TailorDesign;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.RoleEnum;
+import com.future.tailormade.payload.request.image.AddImageRequest;
 import com.future.tailormade.payload.request.tailor.AddTailorDesignRequest;
 import com.future.tailormade.payload.response.tailor.AddOrEditTailorDesignResponse;
 import com.future.tailormade.repository.DesignRepository;
@@ -30,6 +33,9 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     @Autowired
     private SequenceRepository sequenceRepository;
 
+    @Autowired
+    private AddImageCommand addImageCommand;
+
     @Override
     public Mono<AddOrEditTailorDesignResponse> execute(AddTailorDesignRequest request) {
         return findTailor(request.getTailorId())
@@ -42,7 +48,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     private Mono<Pair<User, Design>> addDesign(User tailor, AddTailorDesignRequest request) {
         return generateId(request.getTitle())
                 .map(sequence -> createDesign(sequence, tailor, request))
-                .flatMap(design -> designRepository.save(design))
+                .flatMap(this::saveDesign)
                 .map(design -> Pair.of(tailor, design));
     }
 
@@ -50,6 +56,15 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
         TailorDesign tailorDesign = createTailorDesign(design);
         tailor.addDesign(tailorDesign);
         return userRepository.save(tailor).thenReturn(design);
+    }
+
+    private Mono<String> addImage(String id, String image) {
+        AddImageRequest request = AddImageRequest.builder()
+                .fileName(id)
+                .filePath(BaseConstants.IMAGE_PATH_DESIGN)
+                .fileInBase64(image)
+                .build();
+        return addImageCommand.execute(request);
     }
 
     private AddOrEditTailorDesignResponse createResponse(Design design) {
@@ -90,6 +105,11 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
                 .switchIfEmpty(createSequence(name))
                 .flatMap(this::saveSequence)
                 .map(SequenceGeneratorUtil::generateSequence);
+    }
+
+    private Mono<Design> saveDesign(Design design) {
+        return addImage(design.getId(), design.getImage())
+                .flatMap(image -> designRepository.save(design));
     }
 
     private Mono<Sequence> saveSequence(Sequence sequence) {

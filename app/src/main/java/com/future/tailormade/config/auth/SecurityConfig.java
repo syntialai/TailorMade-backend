@@ -29,12 +29,22 @@ public class SecurityConfig {
             "/configuration/security",
             "/webjars/**",
             "/swagger-resources/configuration/ui",
-            "/swagger-ui.html**"
+            "/swagger-ui.html*"
     };
 
     private static final String[] AUTH_LIST = {
-            ApiPath.USERS_SIGN_IN,
-            ApiPath.USERS_SIGN_UP
+            ApiPath.USER_SIGN_IN,
+            ApiPath.USER_SIGN_UP
+    };
+
+    private static final String[] ALL_API = {
+            ApiPath.USERS,
+            ApiPath.USERS + "/*",
+            ApiPath.DESIGNS,
+            ApiPath.DESIGNS + "/*",
+            ApiPath.TAILORS,
+            ApiPath.TAILORS + "/*",
+            ApiPath.DASHBOARD_TAILORS
     };
 
     @Bean
@@ -65,7 +75,12 @@ public class SecurityConfig {
                 .authorizeExchange()
                 .pathMatchers(SWAGGER_LIST).permitAll()
                 .pathMatchers(AUTH_LIST).permitAll()
-                .anyExchange().permitAll()
+                .pathMatchers("/",
+                        "/*/*.png",
+                        "/*/*.gif",
+                        "/*/*.svg",
+                        "/*/*.jpeg").permitAll()
+                .anyExchange().authenticated()
                 .and().build();
     }
 }

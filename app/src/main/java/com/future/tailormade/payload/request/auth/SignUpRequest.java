@@ -32,6 +32,5 @@ public class SignUpRequest {
     @DateTimeFormat
     private String birthDate;
 
-    @NotBlank
     private GenderEnum gender;
 }

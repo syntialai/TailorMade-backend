@@ -21,6 +21,7 @@ import com.future.tailormade.payload.response.tailor.GetTailorDesignsResponse;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,7 @@ public class TailorController {
     private CommandExecutor commandExecutor;
 
     @GetMapping(ApiPath.DASHBOARD_TAILORS)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<List<GetDashboardTailorsResponse>>> getDashboardTailors(
             @RequestParam("page") int page,
             @RequestParam("itemPerPage") int itemPerPage
@@ -95,6 +97,7 @@ public class TailorController {
     @PostMapping(value = ApiPath.TAILORS_ID_DESIGNS,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('TAILOR')")
     public Mono<Response<AddOrEditTailorDesignResponse>> addTailorDesign(
             @PathVariable("tailorId") String tailorId,
             @RequestBody AddTailorDesignRequest request
@@ -108,6 +111,7 @@ public class TailorController {
     @PutMapping(value = ApiPath.TAILORS_ID_DESIGNS_ID,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('TAILOR')")
     public Mono<Response<AddOrEditTailorDesignResponse>> editTailorDesignById(
             @PathVariable("tailorId") String tailorId,
             @PathVariable("id") String id,
@@ -121,6 +125,7 @@ public class TailorController {
     }
 
     @DeleteMapping(ApiPath.TAILORS_ID_DESIGNS_ID)
+    @PreAuthorize("hasRole('TAILOR')")
     public Mono<Response<Object>> deleteTailorDesignById(
             @PathVariable("tailorId") String tailorId,
             @PathVariable("id") String id
