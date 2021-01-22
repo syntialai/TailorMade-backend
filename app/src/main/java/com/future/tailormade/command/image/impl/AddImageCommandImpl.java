@@ -17,24 +17,25 @@ public class AddImageCommandImpl implements AddImageCommand {
 
     @Override
     public Mono<String> execute(AddImageRequest request) {
-        return createFile(request.getFileName(), request.getFilePath())
-                .map(file -> {
-                    String encodedImageFile = getEncodedBase64Image(request.getFileInBase64());
-                    putFile(file, encodedImageFile);
-                    return file.getPath();
-                });
+        File file = createFile(request.getFileName(), request.getFilePath());
+        String encodedImageFile = getEncodedBase64Image(request.getFileInBase64());
+        putFile(file, encodedImageFile);
+        return Mono.just(file.getPath());
     }
 
-    private Mono<File> createFile(String fileName, String filePath) {
-        String directoryPath = new File("").getAbsolutePath() + ApiPath.UPLOADS_FOLDER_PATH + filePath;
+    private File createFile(String fileName, String filePath) {
+        File directoryFile = new File("");
+        String directoryPath = directoryFile.getAbsolutePath() + ApiPath.UPLOADS_FOLDER_PATH + filePath;
         String imageFileName = "/" + fileName + BaseConstants.IMAGE_EXTENSION_JPEG;
-        return Mono.just(new File(directoryPath + imageFileName));
+        return new File(directoryPath + imageFileName);
     }
 
     private void putFile(File imageFile, String encodedImageFile) {
-        try (FileOutputStream fos = new FileOutputStream(imageFile)) {
-            byte[] dataBytes = Base64.getMimeDecoder().decode(encodedImageFile);
+        byte[] dataBytes = Base64.getMimeDecoder().decode(encodedImageFile);
+        try {
+            FileOutputStream fos = new FileOutputStream(imageFile);
             fos.write(dataBytes);
+            fos.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

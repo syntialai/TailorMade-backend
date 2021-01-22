@@ -5,7 +5,7 @@ import reactor.core.publisher.Mono;
 
 public interface SequenceService {
 
-    public Mono<String> generateId(String title, String type);
+    Mono<String> generateId(String title, String type);
 
-    public Mono<Sequence> saveSequence(Sequence sequence);
+    Mono<Sequence> saveSequence(Sequence sequence);
 }

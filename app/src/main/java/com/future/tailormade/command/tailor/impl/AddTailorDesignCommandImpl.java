@@ -78,6 +78,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
         BeanUtils.copyProperties(request, design);
         design.setId(id);
         design.setTailorName(tailor.getName());
+        design.setActive(true);
         return design;
     }
 

@@ -17,7 +17,7 @@ public class SequenceServiceImpl implements SequenceService {
     @Override
     public Mono<String> generateId(String title, String type) {
         String name = SequenceGeneratorUtil.getId(type, title);
-        return sequenceRepository.findById(name)
+        return sequenceRepository.findByName(name)
                 .switchIfEmpty(createSequence(name))
                 .flatMap(this::saveSequence)
                 .map(SequenceGeneratorUtil::generateSequence);
