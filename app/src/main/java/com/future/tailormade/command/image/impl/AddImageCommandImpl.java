@@ -20,7 +20,7 @@ public class AddImageCommandImpl implements AddImageCommand {
         File file = createFile(request.getFileName(), request.getFilePath());
         String encodedImageFile = getEncodedBase64Image(request.getFileInBase64());
         putFile(file, encodedImageFile);
-        return Mono.just(file.getPath());
+        return Mono.just(request.getFilePath() + "/" + file.getName());
     }
 
     private File createFile(String fileName, String filePath) {

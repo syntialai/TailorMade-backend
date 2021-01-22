@@ -95,6 +95,9 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
 
     private Mono<Design> saveDesign(Design design) {
         return addImage(design.getId(), design.getImage())
-                .flatMap(image -> designRepository.save(design));
+                .flatMap(image -> {
+                    design.setImage(image);
+                    return designRepository.save(design);
+                });
     }
 }
