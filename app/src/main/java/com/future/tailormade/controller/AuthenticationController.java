@@ -15,7 +15,6 @@ import com.future.tailormade.payload.response.auth.ActivateTailorResponse;
 import com.future.tailormade.payload.response.auth.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,7 +29,9 @@ public class AuthenticationController {
     @Autowired
     private CommandExecutor commandExecutor;
 
-    @GetMapping(ApiPath.USER_REFRESH_TOKEN)
+    @PostMapping(value =ApiPath.USER_REFRESH_TOKEN,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<TokenResponse>> refreshToken(
             @RequestBody RefreshTokenRequest refreshTokenRequest
     ) {
