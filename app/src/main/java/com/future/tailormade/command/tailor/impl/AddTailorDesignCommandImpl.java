@@ -78,6 +78,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
         BeanUtils.copyProperties(request, design);
         design.setId(id);
         design.setTailorName(tailor.getName());
+        design.setActive(true);
         return design;
     }
 
@@ -94,6 +95,9 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
 
     private Mono<Design> saveDesign(Design design) {
         return addImage(design.getId(), design.getImage())
-                .flatMap(image -> designRepository.save(design));
+                .flatMap(image -> {
+                    design.setImage(image);
+                    return designRepository.save(design);
+                });
     }
 }
