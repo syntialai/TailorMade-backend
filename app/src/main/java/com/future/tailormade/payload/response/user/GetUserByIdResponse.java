@@ -18,7 +18,7 @@ public class GetUserByIdResponse {
 
     private String name;
 
-    private String birthDate;
+    private Long birthDate;
 
     private String image;
 
