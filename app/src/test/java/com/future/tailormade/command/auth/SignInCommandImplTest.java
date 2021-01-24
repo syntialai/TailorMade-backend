@@ -9,7 +9,7 @@ import com.future.tailormade.exceptions.UnauthorizedException;
 import com.future.tailormade.model.entity.auth.Token;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.auth.SignInRequest;
-import com.future.tailormade.payload.response.auth.TokenResponse;
+import com.future.tailormade.payload.response.auth.SignInResponse;
 import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -59,14 +59,14 @@ public class SignInCommandImplTest extends BaseTest {
     @Test
     public void testSignIn_success() {
         User user = createUser();
-        TokenResponse expectedResponse = createTokenResponse();
+        SignInResponse expectedResponse = createSignInResponse();
 
         Mockito.when(userRepository.findByEmail(USER_EMAIL)).thenReturn(Mono.just(user));
         Mockito.when(passwordEncoder.encode(USER_PASSWORD)).thenReturn(USER_PASSWORD_ENCODED);
         Mockito.when(jwtTokenProvider.generateAccessToken(user)).thenReturn(ACCESS_TOKEN);
         Mockito.when(jwtTokenProvider.generateRefreshToken(user)).thenReturn(REFRESH_TOKEN);
 
-        TokenResponse actualResponse = command.execute(createSignInRequest()).block();
+        SignInResponse actualResponse = command.execute(createSignInRequest()).block();
 
         Mockito.verify(userRepository).findByEmail(USER_EMAIL);
         Mockito.verify(passwordEncoder).encode(USER_PASSWORD);
@@ -117,8 +117,8 @@ public class SignInCommandImplTest extends BaseTest {
                 .build();
     }
 
-    private TokenResponse createTokenResponse() {
-        return TokenResponse.builder()
+    private SignInResponse createSignInResponse() {
+        return SignInResponse.builder()
                 .token(Token.builder()
                         .access(ACCESS_TOKEN)
                         .refresh(REFRESH_TOKEN)

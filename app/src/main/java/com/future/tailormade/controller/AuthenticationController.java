@@ -12,7 +12,9 @@ import com.future.tailormade.payload.request.auth.RefreshTokenRequest;
 import com.future.tailormade.payload.request.auth.SignInRequest;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
 import com.future.tailormade.payload.response.auth.ActivateTailorResponse;
+import com.future.tailormade.payload.response.auth.SignInResponse;
 import com.future.tailormade.payload.response.auth.TokenResponse;
+import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +45,7 @@ public class AuthenticationController {
     @PostMapping(value = ApiPath.USER_SIGN_IN,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Response<TokenResponse>> signIn(
+    public Mono<Response<SignInResponse>> signIn(
             @RequestBody SignInRequest signInRequest
     ) {
         return commandExecutor.execute(SignInCommand.class, signInRequest)
@@ -54,9 +56,9 @@ public class AuthenticationController {
     @PostMapping(value = ApiPath.USER_SIGN_UP,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Response<Object>> signUp(@RequestBody SignUpRequest signUpRequest) {
+    public Mono<Response<GetUserByIdResponse>> signUp(@RequestBody SignUpRequest signUpRequest) {
         return commandExecutor.execute(SignUpCommand.class, signUpRequest)
-                .map((user) -> ResponseHelper.ok())
+                .map(ResponseHelper::ok)
                 .subscribeOn(Schedulers.elastic());
     }
 
