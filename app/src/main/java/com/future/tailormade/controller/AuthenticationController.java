@@ -17,7 +17,6 @@ import com.future.tailormade.payload.response.auth.TokenResponse;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,7 +31,9 @@ public class AuthenticationController {
     @Autowired
     private CommandExecutor commandExecutor;
 
-    @GetMapping(ApiPath.USERS_REFRESH_TOKEN)
+    @PostMapping(value =ApiPath.USER_REFRESH_TOKEN,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<TokenResponse>> refreshToken(
             @RequestBody RefreshTokenRequest refreshTokenRequest
     ) {
@@ -41,7 +42,7 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PostMapping(value = ApiPath.USERS_SIGN_IN,
+    @PostMapping(value = ApiPath.USER_SIGN_IN,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<SignInResponse>> signIn(
@@ -52,7 +53,7 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PostMapping(value = ApiPath.USERS_SIGN_UP,
+    @PostMapping(value = ApiPath.USER_SIGN_UP,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<GetUserByIdResponse>> signUp(@RequestBody SignUpRequest signUpRequest) {
@@ -61,7 +62,7 @@ public class AuthenticationController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PutMapping(value = ApiPath.USERS_ACTIVATE_TAILOR,
+    @PutMapping(value = ApiPath.USERS_ID_ACTIVATE_TAILOR,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<ActivateTailorResponse>> activateTailor(

@@ -35,7 +35,7 @@ public class UserController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PutMapping(value = ApiPath.USERS_UPDATE_BASIC_INFO,
+    @PutMapping(value = ApiPath.USERS_ID_UPDATE_BASIC_INFO,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<EditUserBasicInfoResponse>> updateUserBasicInfo(
@@ -48,7 +48,7 @@ public class UserController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @PutMapping(value = ApiPath.USERS_UPDATE_MORE_INFO,
+    @PutMapping(value = ApiPath.USERS_ID_UPDATE_MORE_INFO,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Response<EditUserAdditionalInfoResponse>> updateUserAdditionalInfo(

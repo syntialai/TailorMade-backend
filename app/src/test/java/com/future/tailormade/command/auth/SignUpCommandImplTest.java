@@ -7,7 +7,7 @@ import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.GenderEnum;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class SignUpCommandImplTest extends BaseTest {
     private static final String USER_PASSWORD = "USER_PASSWORD";
     private static final String USER_PASSWORD_ENCODED = "USER_PASSWORD_ENCODED";
     private static final String USER_BIRTH_DATE = "2020-12-12";
-    private static final GenderEnum USER_GENDER = GenderEnum.GENDER_FEMALE;
+    private static final GenderEnum USER_GENDER = GenderEnum.Female;
 
     @InjectMocks
     private SignUpCommandImpl command;

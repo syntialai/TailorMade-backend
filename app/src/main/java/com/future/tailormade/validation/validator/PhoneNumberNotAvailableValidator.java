@@ -1,6 +1,6 @@
 package com.future.tailormade.validation.validator;
 
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import com.future.tailormade.validation.PhoneNumberNotAvailable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +23,6 @@ public class PhoneNumberNotAvailableValidator implements ConstraintValidator<Pho
             return true;
         }
 
-        return userRepository.existsByPhoneNumber(value).block();
+        return !userRepository.existsByPhoneNumber(value).block();
     }
 }

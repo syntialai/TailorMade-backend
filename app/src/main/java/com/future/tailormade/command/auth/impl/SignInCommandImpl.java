@@ -9,7 +9,7 @@ import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.auth.SignInRequest;
 import com.future.tailormade.payload.response.auth.SignInResponse;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
-import com.future.tailormade.repository.user.UserRepository;
+import com.future.tailormade.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +44,8 @@ public class SignInCommandImpl implements SignInCommand {
     }
 
     private Mono<User> findByUsername(String username) {
-        return userRepository.findByEmail(username);
+        return userRepository.findByEmail(username)
+                .switchIfEmpty(Mono.error(UnauthorizedException::new));
     }
 
     private Token getToken(String access, String refresh) {

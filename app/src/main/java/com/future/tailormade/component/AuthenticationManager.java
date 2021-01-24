@@ -10,8 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 @Component
 public class AuthenticationManager implements ReactiveAuthenticationManager {
@@ -29,18 +28,14 @@ public class AuthenticationManager implements ReactiveAuthenticationManager {
             }
 
             Claims claims = jwtTokenProvider.getAllClaimsFromToken(authToken);
-            List<String> rolesMap = claims.get("ROLE", List.class);
-            List<GrantedAuthority> authorities = new ArrayList<>();
-
-            for (String roleMap : rolesMap) {
-                authorities.add(new SimpleGrantedAuthority(roleMap));
-            }
+            String role = claims.get("ROLE", String.class);
+            GrantedAuthority authority = new SimpleGrantedAuthority(role);
 
             return Mono.just(
                     new UsernamePasswordAuthenticationToken(
                             claims.getSubject(),
                             null,
-                            authorities
+                            Collections.singletonList(authority)
                     )
             );
         } catch (Exception e) {

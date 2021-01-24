@@ -1,7 +1,7 @@
 package com.future.tailormade.validation;
 
 
-import com.future.tailormade.validation.validator.EmailNotAvailableValidator;
+import com.future.tailormade.validation.validator.PhoneNumberNotAvailableValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({TYPE, ANNOTATION_TYPE, METHOD, FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = {EmailNotAvailableValidator.class})
+@Constraint(validatedBy = {PhoneNumberNotAvailableValidator.class})
 @Documented
 public @interface PhoneNumberNotAvailable {
 
