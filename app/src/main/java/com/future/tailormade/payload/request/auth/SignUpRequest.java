@@ -1,6 +1,7 @@
 package com.future.tailormade.payload.request.auth;
 
 import com.future.tailormade.model.enums.GenderEnum;
+import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.validation.EmailNotAvailable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,4 +34,6 @@ public class SignUpRequest {
     private String birthDate;
 
     private GenderEnum gender;
+
+    private RoleEnum role;
 }
