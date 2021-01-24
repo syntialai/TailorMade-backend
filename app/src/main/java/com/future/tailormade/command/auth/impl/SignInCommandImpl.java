@@ -7,8 +7,10 @@ import com.future.tailormade.exceptions.UnauthorizedException;
 import com.future.tailormade.model.entity.auth.Token;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.auth.SignInRequest;
-import com.future.tailormade.payload.response.auth.TokenResponse;
+import com.future.tailormade.payload.response.auth.SignInResponse;
+import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import com.future.tailormade.repository.user.UserRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -26,7 +28,7 @@ public class SignInCommandImpl implements SignInCommand {
     private JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public Mono<TokenResponse> execute(SignInRequest request) {
+    public Mono<SignInResponse> execute(SignInRequest request) {
         return findByUsername(request.getUsername()).map(user -> {
             if (passwordEncoder.encode(
                     request.getPassword()).equals(user.getPassword())
@@ -35,7 +37,7 @@ public class SignInCommandImpl implements SignInCommand {
                         jwtTokenProvider.generateAccessToken(user),
                         jwtTokenProvider.generateRefreshToken(user)
                 );
-                return createResponse(token);
+                return createResponse(token, user);
             }
             throw new UnauthorizedException();
         });
@@ -52,9 +54,16 @@ public class SignInCommandImpl implements SignInCommand {
                 .build();
     }
 
-    private TokenResponse createResponse(Token token) {
-        return TokenResponse.builder()
+    private GetUserByIdResponse getUser(User user) {
+        GetUserByIdResponse response = GetUserByIdResponse.builder().build();
+        BeanUtils.copyProperties(user, response);
+        return response;
+    }
+
+    private SignInResponse createResponse(Token token, User user) {
+        return SignInResponse.builder()
                 .token(token)
+                .user(getUser(user))
                 .build();
     }
 }

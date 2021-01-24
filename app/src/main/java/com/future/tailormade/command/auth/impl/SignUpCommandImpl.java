@@ -5,6 +5,7 @@ import com.future.tailormade.component.CustomPasswordEncoder;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
+import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import com.future.tailormade.repository.user.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,10 @@ public class SignUpCommandImpl implements SignUpCommand {
     private CustomPasswordEncoder passwordEncoder;
 
     @Override
-    public Mono<User> execute(SignUpRequest request) {
+    public Mono<GetUserByIdResponse> execute(SignUpRequest request) {
         return Mono.fromCallable(() -> createUser(request))
-                .flatMap(user -> userRepository.save(user));
+                .flatMap(user -> userRepository.save(user))
+                .map(this::createResponse);
     }
 
     private User createUser(SignUpRequest signUpRequest) {
@@ -39,5 +41,11 @@ public class SignUpCommandImpl implements SignUpCommand {
         user.setRole(RoleEnum.ROLE_USER);
 
         return user;
+    }
+
+    private GetUserByIdResponse createResponse(User user) {
+        GetUserByIdResponse response = GetUserByIdResponse.builder().build();
+        BeanUtils.copyProperties(user, response);
+        return response;
     }
 }
