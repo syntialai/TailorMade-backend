@@ -30,8 +30,9 @@ public class SignUpCommandImplTest extends BaseTest {
     private static final String USER_EMAIL = "user444@mail.com";
     private static final String USER_PASSWORD = "USER_PASSWORD";
     private static final String USER_PASSWORD_ENCODED = "USER_PASSWORD_ENCODED";
-    private static final String USER_BIRTH_DATE = "2020-12-12";
+    private static final Long USER_BIRTH_DATE = 1500594930L;
     private static final GenderEnum USER_GENDER = GenderEnum.Female;
+    private static final RoleEnum USER_ROLE = RoleEnum.ROLE_USER;
 
     @InjectMocks
     private SignUpCommandImpl command;
@@ -90,7 +91,7 @@ public class SignUpCommandImplTest extends BaseTest {
                 .password(USER_PASSWORD_ENCODED)
                 .birthDate(USER_BIRTH_DATE)
                 .gender(USER_GENDER)
-                .role(RoleEnum.ROLE_USER)
+                .role(USER_ROLE)
                 .build();
     }
 
@@ -101,6 +102,7 @@ public class SignUpCommandImplTest extends BaseTest {
                 .password(USER_PASSWORD)
                 .birthDate(USER_BIRTH_DATE)
                 .gender(USER_GENDER)
+                .role(USER_ROLE)
                 .build();
     }
 }

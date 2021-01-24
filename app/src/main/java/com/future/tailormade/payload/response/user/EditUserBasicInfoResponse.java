@@ -16,7 +16,7 @@ public class EditUserBasicInfoResponse {
 
     private String phoneNumber;
 
-    private String birthDate;
+    private Long birthDate;
 
     private Location location;
 }
