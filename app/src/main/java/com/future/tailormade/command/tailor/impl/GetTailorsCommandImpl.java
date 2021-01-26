@@ -23,14 +23,14 @@ public class GetTailorsCommandImpl implements GetTailorsCommand {
 
     @Override
     public Mono<BasePagingResponse<GetTailorsResponse>> execute(GetTailorsRequest request) {
-        return getAllUsers(request)
+        return getAllTailors(request)
                 .map(this::createResponse)
                 .collectList()
                 .map(ResponseHelper::createPagingResponse)
                 .flatMap(pagingResponse -> getTailorsCount(request.getKeyword(), pagingResponse));
     }
 
-    private Flux<User> getAllUsers(GetTailorsRequest request) {
+    private Flux<User> getAllTailors(GetTailorsRequest request) {
         Pageable pageable = ResponseHelper
                 .createPageable(request.getPage(), request.getItemPerPage());
         return userRepository.findAllByRoleAndNameStartsWith(

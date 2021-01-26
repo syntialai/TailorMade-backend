@@ -9,15 +9,18 @@ import com.future.tailormade.command.tailor.EditTailorDesignCommand;
 import com.future.tailormade.command.tailor.GetDashboardTailorsCommand;
 import com.future.tailormade.command.tailor.GetTailorByIdCommand;
 import com.future.tailormade.command.tailor.GetTailorDesignsCommand;
+import com.future.tailormade.command.tailor.GetTailorsCommand;
 import com.future.tailormade.constants.ApiPath;
 import com.future.tailormade.payload.request.tailor.AddTailorDesignRequest;
 import com.future.tailormade.payload.request.tailor.DeleteTailorDesignRequest;
 import com.future.tailormade.payload.request.tailor.EditTailorDesignRequest;
 import com.future.tailormade.payload.request.tailor.GetDashboardTailorsRequest;
 import com.future.tailormade.payload.request.tailor.GetTailorDesignsRequest;
+import com.future.tailormade.payload.request.tailor.GetTailorsRequest;
 import com.future.tailormade.payload.response.tailor.AddOrEditTailorDesignResponse;
 import com.future.tailormade.payload.response.tailor.GetDashboardTailorsResponse;
 import com.future.tailormade.payload.response.tailor.GetTailorDesignsResponse;
+import com.future.tailormade.payload.response.tailor.GetTailorsResponse;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -58,6 +61,30 @@ public class TailorController {
                                 page,
                                 itemPerPage,
                                 dashboardTailors.getTotalItem()
+                        )
+                )
+                .subscribeOn(Schedulers.elastic());
+    }
+
+    @GetMapping(ApiPath.SEARCH_TAILOR)
+    @PreAuthorize("hasRole('USER')")
+    public Mono<Response<List<GetTailorsResponse>>> getTailors(
+            @RequestParam("name") String name,
+            @RequestParam("page") int page,
+            @RequestParam("itemPerPage") int itemPerPage
+    ) {
+        GetTailorsRequest request = GetTailorsRequest.builder()
+                .keyword(name)
+                .page(page)
+                .itemPerPage(itemPerPage)
+                .build();
+        return commandExecutor.execute(GetTailorsCommand.class, request)
+                .map(tailors -> com.future.tailormade.payload.response.base.helper
+                        .ResponseHelper.ok(
+                                tailors.getData(),
+                                page,
+                                itemPerPage,
+                                tailors.getTotalItem()
                         )
                 )
                 .subscribeOn(Schedulers.elastic());
