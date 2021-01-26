@@ -12,11 +12,11 @@ public interface DesignRepository extends ReactiveMongoRepository<Design, String
 
     Mono<Long> countAllByTailorId(String tailorId);
 
-    Mono<Long> countAllByTitleIsLikeOrCategoryExists(String keyword);
+    Mono<Long> countAllByTitleStartsWith(String keyword);
 
     Flux<Design> findAllByTailorId(String tailorId, Pageable pageable);
 
-    Flux<Design> findAllByTitleIsLikeOrCategoryExists(String keyword, Pageable pageable);
+    Flux<Design> findAllByTitleStartsWith(String keyword, Pageable pageable);
 
     Mono<Design> findByTailorIdAndId(String tailorId, String id);
 

@@ -25,6 +25,13 @@ public class ApiPath {
     public static final String DESIGNS_ID = DESIGNS + "/{id}";
 
     /**
+     * Search API Path
+     */
+    public static final String SEARCH = API_PATH + "/search";
+    public static final String SEARCH_DESIGN = SEARCH + "/design";
+    public static final String SEARCH_TAILOR = SEARCH + "/tailor";
+
+    /**
      * Tailors API Path
      */
     public static final String DASHBOARD_TAILORS = API_PATH + "/dashboard/tailors";
