@@ -25,7 +25,7 @@ public class DesignController {
     @Autowired
     private CommandExecutor commandExecutor;
 
-    @GetMapping(ApiPath.DESIGNS)
+    @GetMapping(ApiPath.SEARCH_DESIGN)
     public Mono<Response<List<GetDesignsResponse>>> getDesigns(
             @RequestParam("title") String title,
             @RequestParam("page") int page,

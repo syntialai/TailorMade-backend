@@ -15,6 +15,8 @@ public interface UserRepository extends ReactiveMongoRepository<User, String> {
 
     Flux<User> findAllByRole(RoleEnum role, Pageable pageable);
 
+    Flux<User> findAllByRoleAndNameStartsWith(RoleEnum role, String name, Pageable pageable);
+
     Mono<User> findByEmail(String email);
 
     Mono<User> findByIdAndRole(String id, RoleEnum role);

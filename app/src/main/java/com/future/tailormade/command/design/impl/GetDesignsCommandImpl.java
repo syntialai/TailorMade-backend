@@ -33,7 +33,7 @@ public class GetDesignsCommandImpl implements GetDesignsCommand {
         Pageable pageable = ResponseHelper
                 .createPageable(request.getPage(), request.getItemPerPage());
         return designRepository
-                .findAllByTitleIsLikeOrCategoryExists(request.getKeyword(), pageable)
+                .findAllByTitleStartsWith(request.getKeyword(), pageable)
                 .switchIfEmpty(Flux.empty());
     }
 
