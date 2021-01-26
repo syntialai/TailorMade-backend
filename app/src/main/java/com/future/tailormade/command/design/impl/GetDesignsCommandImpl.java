@@ -39,7 +39,7 @@ public class GetDesignsCommandImpl implements GetDesignsCommand {
 
     private Mono<BasePagingResponse<GetDesignsResponse>> getDesignsCount(
             String keyword, BasePagingResponse<GetDesignsResponse> pagingResponse) {
-        return designRepository.countAllByTitleIsLikeOrCategoryExists(keyword)
+        return designRepository.countAllByTitleStartsWith(keyword)
                 .map(count -> ResponseHelper
                         .setPagingResponseTotalItem(pagingResponse, count.intValue()));
     }

@@ -13,6 +13,8 @@ public interface UserRepository extends ReactiveMongoRepository<User, String> {
 
     Mono<Long> countAllByRole(RoleEnum role);
 
+    Mono<Long> countAllByRoleAndNameStartsWith(RoleEnum role, String name);
+
     Flux<User> findAllByRole(RoleEnum role, Pageable pageable);
 
     Flux<User> findAllByRoleAndNameStartsWith(RoleEnum role, String name, Pageable pageable);
