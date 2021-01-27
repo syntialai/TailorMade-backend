@@ -1,6 +1,5 @@
 package com.future.tailormade.command.tailor.impl;
 
-import com.future.tailormade.command.image.AddImageCommand;
 import com.future.tailormade.command.tailor.AddTailorDesignCommand;
 import com.future.tailormade.constants.BaseConstants;
 import com.future.tailormade.exceptions.UnauthorizedException;
@@ -13,12 +12,14 @@ import com.future.tailormade.payload.request.tailor.AddTailorDesignRequest;
 import com.future.tailormade.payload.response.tailor.AddOrEditTailorDesignResponse;
 import com.future.tailormade.repository.DesignRepository;
 import com.future.tailormade.repository.UserRepository;
+import com.future.tailormade.service.AmazonClientService;
 import com.future.tailormade.service.SequenceService;
 import com.future.tailormade.utils.SequenceGeneratorUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -34,7 +35,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     private SequenceService sequenceService;
 
     @Autowired
-    private AddImageCommand addImageCommand;
+    private AmazonClientService amazonClientService;
 
     @Override
     public Mono<AddOrEditTailorDesignResponse> execute(AddTailorDesignRequest request) {
@@ -48,7 +49,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     private Mono<Pair<User, Design>> addDesign(User tailor, AddTailorDesignRequest request) {
         return sequenceService.generateId(request.getTitle(), SequenceGeneratorUtil.DESIGN)
                 .map(sequence -> createDesign(sequence, tailor, request))
-                .flatMap(this::saveDesign)
+                .flatMap(design -> saveDesign(design, request.getImage()))
                 .map(design -> Pair.of(tailor, design));
     }
 
@@ -58,13 +59,13 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
         return userRepository.save(tailor).thenReturn(design);
     }
 
-    private Mono<String> addImage(String id, String image) {
+    private Mono<String> addImage(String id, MultipartFile image) {
         AddImageRequest request = AddImageRequest.builder()
                 .fileName(id)
                 .filePath(BaseConstants.IMAGE_PATH_DESIGN)
-                .fileInBase64(image)
+                .multipartFile(image)
                 .build();
-        return addImageCommand.execute(request);
+        return amazonClientService.uploadFile(request);
     }
 
     private AddOrEditTailorDesignResponse createResponse(Design design) {
@@ -93,10 +94,10 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
                 .switchIfEmpty(Mono.error(UnauthorizedException::new));
     }
 
-    private Mono<Design> saveDesign(Design design) {
-        return addImage(design.getId(), design.getImage())
-                .flatMap(image -> {
-                    design.setImage(image);
+    private Mono<Design> saveDesign(Design design, MultipartFile image) {
+        return addImage(design.getId(), image)
+                .flatMap(imagePath -> {
+                    design.setImage(imagePath);
                     return designRepository.save(design);
                 });
     }

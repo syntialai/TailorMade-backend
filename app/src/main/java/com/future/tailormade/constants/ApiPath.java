@@ -57,11 +57,4 @@ public class ApiPath {
     public static final String TAILORS_ID_ORDERS_ID = TAILORS_ID_ORDERS + "/{id}";
     public static final String TAILORS_ID_ORDERS_ID_ACCEPT = TAILORS_ID_ORDERS_ID + "/_accept";
     public static final String TAILORS_ID_ORDERS_ID_REJECT = TAILORS_ID_ORDERS_ID + "/_reject";
-
-    /**
-     * Image Path
-     */
-    public static final String UPLOADS_PATH = "./uploads/";
-    public static final String UPLOADS_FOLDER_PATH = "/uploads/";
-    public static final String IMAGE_FILE_PATH_FILE_NAME = "/image/{filePath}/{fileName}";
 }

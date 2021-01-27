@@ -1,10 +1,10 @@
 package com.future.tailormade.payload.request.image;
 
-import com.future.tailormade.validation.ImageInvalidType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 
@@ -15,8 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class AddImageRequest {
 
     @NotBlank
-    @ImageInvalidType
-    private String fileInBase64;
+    private MultipartFile multipartFile;
 
     private String fileName;
 

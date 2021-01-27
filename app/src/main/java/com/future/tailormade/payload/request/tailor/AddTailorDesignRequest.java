@@ -2,11 +2,11 @@ package com.future.tailormade.payload.request.tailor;
 
 import com.future.tailormade.model.entity.design.Color;
 import com.future.tailormade.model.entity.design.Size;
-import com.future.tailormade.validation.ImageInvalidType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -25,9 +25,7 @@ public class AddTailorDesignRequest {
     @NotBlank
     private String title;
 
-    @NotBlank
-    @ImageInvalidType
-    private String image;
+    private MultipartFile image;
 
     @Positive
     private Double price;
