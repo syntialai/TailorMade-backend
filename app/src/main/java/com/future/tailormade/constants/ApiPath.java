@@ -19,6 +19,11 @@ public class ApiPath {
     public static final String USERS_ID_UPDATE_MORE_INFO = USERS_ID + "/_update-more-info";
 
     /**
+     * Image API Path
+     */
+    public static final String UPLOAD_IMAGE_FILE_PATH = API_PATH + "/upload/{filePath}";
+
+    /**
      * Designs API Path
      */
     public static final String DESIGNS = API_PATH + "/designs";

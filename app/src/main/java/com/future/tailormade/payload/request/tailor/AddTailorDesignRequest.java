@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -25,7 +24,8 @@ public class AddTailorDesignRequest {
     @NotBlank
     private String title;
 
-    private MultipartFile image;
+    @NotBlank
+    private String image;
 
     @Positive
     private Double price;

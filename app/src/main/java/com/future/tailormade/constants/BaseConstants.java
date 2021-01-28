@@ -9,7 +9,6 @@ public class BaseConstants {
 
     public static final int MAX_SPECIAL_INSTRUCTIONS_COUNT = 1000;
 
+    public static final String IMAGE_EXT_JPEG = ".jpeg";
     public static final String PART_SEPARATOR = ",";
-
-    public static final String IMAGE_PATH_DESIGN = "/design";
 }
