@@ -2,7 +2,6 @@ package com.future.tailormade.payload.request.tailor;
 
 import com.future.tailormade.model.entity.design.Color;
 import com.future.tailormade.model.entity.design.Size;
-import com.future.tailormade.validation.ImageInvalidType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +25,6 @@ public class AddTailorDesignRequest {
     private String title;
 
     @NotBlank
-    @ImageInvalidType
     private String image;
 
     @Positive

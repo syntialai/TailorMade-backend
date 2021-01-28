@@ -1,4 +1,4 @@
-package com.future.tailormade.payload.request.image;
+package com.future.tailormade.payload.response.image;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetImageRequest {
+public class UploadImageResponse {
 
-    private String fileName;
-
-    private String filePath;
+    private String imageUrl;
 }
