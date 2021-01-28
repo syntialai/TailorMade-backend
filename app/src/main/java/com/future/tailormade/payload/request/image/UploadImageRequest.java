@@ -4,20 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.constraints.NotBlank;
+import org.springframework.http.codec.multipart.FilePart;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddImageRequest {
+public class UploadImageRequest {
 
-    @NotBlank
-    private MultipartFile multipartFile;
-
-    private String fileName;
+    private FilePart image;
 
     private String filePath;
 }

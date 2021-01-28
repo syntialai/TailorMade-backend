@@ -47,11 +47,15 @@ public class ResponseHelper {
     }
 
     private static Paging createPaging(int page, int itemPerPage, int totalItem) {
+        int totalPage = totalItem / itemPerPage;
+        if ((totalItem % itemPerPage) > 0) {
+            totalPage += 1;
+        }
         return Paging.builder()
                 .page(page)
                 .itemPerPage(itemPerPage)
                 .totalItem(totalItem)
-                .totalPage(totalItem / itemPerPage)
+                .totalPage(totalPage)
                 .build();
     }
 }

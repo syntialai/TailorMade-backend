@@ -10,6 +10,7 @@ import com.future.tailormade.payload.request.design.GetDesignsRequest;
 import com.future.tailormade.payload.response.design.GetDesignByIdResponse;
 import com.future.tailormade.payload.response.design.GetDesignsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,8 @@ public class DesignController {
     @Autowired
     private CommandExecutor commandExecutor;
 
-    @GetMapping(ApiPath.DESIGNS)
+    @GetMapping(ApiPath.SEARCH_DESIGN)
+    @PreAuthorize("hasRole('USER')")
     public Mono<Response<List<GetDesignsResponse>>> getDesigns(
             @RequestParam("title") String title,
             @RequestParam("page") int page,

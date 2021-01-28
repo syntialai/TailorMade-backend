@@ -42,7 +42,8 @@ public class GetDashboardTailorsCommandImpl implements GetDashboardTailorsComman
     private Mono<BasePagingResponse<GetDashboardTailorsResponse>> getTailorsCount(
             BasePagingResponse<GetDashboardTailorsResponse> pagingResponse) {
         return userRepository.countAllByRole(RoleEnum.ROLE_TAILOR)
-                .map(count -> ResponseHelper.setPagingResponseTotalItem(pagingResponse, count));
+                .map(count -> ResponseHelper
+                        .setPagingResponseTotalItem(pagingResponse, count.intValue()));
     }
 
     private GetDashboardTailorsResponse createResponse(User tailor) {

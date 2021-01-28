@@ -85,7 +85,7 @@ public class JwtTokenProvider {
     public Boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parse(token);
-            return true;
+            return !isTokenExpired(token);
         } catch (SignatureException
                 | MalformedJwtException
                 | ExpiredJwtException

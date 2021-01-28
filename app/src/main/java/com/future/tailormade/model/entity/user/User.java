@@ -39,7 +39,7 @@ public class User extends BaseEntity implements UserDetails {
 
     private String name;
 
-    private String birthDate;
+    private Long birthDate;
 
     private GenderEnum gender;
 

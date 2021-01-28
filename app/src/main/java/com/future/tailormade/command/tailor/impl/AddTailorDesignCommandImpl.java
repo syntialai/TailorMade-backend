@@ -1,14 +1,11 @@
 package com.future.tailormade.command.tailor.impl;
 
-import com.future.tailormade.command.image.AddImageCommand;
 import com.future.tailormade.command.tailor.AddTailorDesignCommand;
-import com.future.tailormade.constants.BaseConstants;
 import com.future.tailormade.exceptions.UnauthorizedException;
 import com.future.tailormade.model.entity.design.Design;
 import com.future.tailormade.model.entity.user.TailorDesign;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.RoleEnum;
-import com.future.tailormade.payload.request.image.AddImageRequest;
 import com.future.tailormade.payload.request.tailor.AddTailorDesignRequest;
 import com.future.tailormade.payload.response.tailor.AddOrEditTailorDesignResponse;
 import com.future.tailormade.repository.DesignRepository;
@@ -33,9 +30,6 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     @Autowired
     private SequenceService sequenceService;
 
-    @Autowired
-    private AddImageCommand addImageCommand;
-
     @Override
     public Mono<AddOrEditTailorDesignResponse> execute(AddTailorDesignRequest request) {
         return findTailor(request.getTailorId())
@@ -58,15 +52,6 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
         return userRepository.save(tailor).thenReturn(design);
     }
 
-    private Mono<String> addImage(String id, String image) {
-        AddImageRequest request = AddImageRequest.builder()
-                .fileName(id)
-                .filePath(BaseConstants.IMAGE_PATH_DESIGN)
-                .fileInBase64(image)
-                .build();
-        return addImageCommand.execute(request);
-    }
-
     private AddOrEditTailorDesignResponse createResponse(Design design) {
         AddOrEditTailorDesignResponse response = AddOrEditTailorDesignResponse.builder().build();
         BeanUtils.copyProperties(design, response);
@@ -78,6 +63,7 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
         BeanUtils.copyProperties(request, design);
         design.setId(id);
         design.setTailorName(tailor.getName());
+        design.setActive(true);
         return design;
     }
 
@@ -93,7 +79,6 @@ public class AddTailorDesignCommandImpl implements AddTailorDesignCommand {
     }
 
     private Mono<Design> saveDesign(Design design) {
-        return addImage(design.getId(), design.getImage())
-                .flatMap(image -> designRepository.save(design));
+        return designRepository.save(design);
     }
 }

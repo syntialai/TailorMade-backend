@@ -43,9 +43,5 @@ public class Design extends BaseEntity {
 
     private String tailorName;
 
-    private String userId;
-
-    private String userName;
-
     private boolean active = true;
 }

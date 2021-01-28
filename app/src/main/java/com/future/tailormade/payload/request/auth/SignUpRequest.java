@@ -1,15 +1,16 @@
 package com.future.tailormade.payload.request.auth;
 
 import com.future.tailormade.model.enums.GenderEnum;
+import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.validation.EmailNotAvailable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 @Data
 @Builder
@@ -28,9 +29,10 @@ public class SignUpRequest {
     @NotBlank
     private String password;
 
-    @NotBlank
-    @DateTimeFormat
-    private String birthDate;
+    @Positive
+    private Long birthDate;
 
     private GenderEnum gender;
+
+    private RoleEnum role;
 }

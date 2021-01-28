@@ -41,7 +41,8 @@ public class GetWishlistsCommandImpl implements GetWishlistsCommand {
     private Mono<BasePagingResponse<GetWishlistsResponse>> getWishlistsCount(
             String userId, BasePagingResponse<GetWishlistsResponse> pagingResponse) {
         return wishlistRepository.countAllByUserId(userId)
-                .map(count -> ResponseHelper.setPagingResponseTotalItem(pagingResponse, count));
+                .map(count -> ResponseHelper
+                        .setPagingResponseTotalItem(pagingResponse, count.intValue()));
     }
 
     private GetWishlistsResponse createResponse(Wishlist wishlist) {

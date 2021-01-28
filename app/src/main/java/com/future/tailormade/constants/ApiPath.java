@@ -19,10 +19,22 @@ public class ApiPath {
     public static final String USERS_ID_UPDATE_MORE_INFO = USERS_ID + "/_update-more-info";
 
     /**
+     * Image API Path
+     */
+    public static final String UPLOAD_IMAGE_FILE_PATH = API_PATH + "/upload/{filePath}";
+
+    /**
      * Designs API Path
      */
     public static final String DESIGNS = API_PATH + "/designs";
     public static final String DESIGNS_ID = DESIGNS + "/{id}";
+
+    /**
+     * Search API Path
+     */
+    public static final String SEARCH = API_PATH + "/search";
+    public static final String SEARCH_DESIGN = SEARCH + "/design";
+    public static final String SEARCH_TAILOR = SEARCH + "/tailor";
 
     /**
      * Tailors API Path
@@ -50,11 +62,4 @@ public class ApiPath {
     public static final String TAILORS_ID_ORDERS_ID = TAILORS_ID_ORDERS + "/{id}";
     public static final String TAILORS_ID_ORDERS_ID_ACCEPT = TAILORS_ID_ORDERS_ID + "/_accept";
     public static final String TAILORS_ID_ORDERS_ID_REJECT = TAILORS_ID_ORDERS_ID + "/_reject";
-
-    /**
-     * Image Path
-     */
-    public static final String UPLOADS_PATH = "./uploads/";
-    public static final String UPLOADS_FOLDER_PATH = "/uploads/";
-    public static final String IMAGE_FILE_PATH_FILE_NAME = "/image/{filePath}/{fileName}";
 }

@@ -52,7 +52,8 @@ public class GetTailorOrdersCommandImpl implements GetTailorOrdersCommand {
             BasePagingResponse<GetOrdersResponse> pagingResponse
     ) {
         return orderRepository.countAllByTailorIdAndStatus(tailorId, status)
-                .map(count -> ResponseHelper.setPagingResponseTotalItem(pagingResponse, count));
+                .map(count -> ResponseHelper
+                        .setPagingResponseTotalItem(pagingResponse, count.intValue()));
     }
 
     private GetOrdersResponse createResponse(Order order) {

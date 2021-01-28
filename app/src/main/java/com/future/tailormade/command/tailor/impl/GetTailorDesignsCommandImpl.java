@@ -42,7 +42,8 @@ public class GetTailorDesignsCommandImpl implements GetTailorDesignsCommand {
     private Mono<BasePagingResponse<GetTailorDesignsResponse>> getTailorDesignsCount(
             String tailorId, BasePagingResponse<GetTailorDesignsResponse> pagingResponse) {
         return designRepository.countAllByTailorId(tailorId)
-                .map(count -> ResponseHelper.setPagingResponseTotalItem(pagingResponse, count));
+                .map(count -> ResponseHelper
+                        .setPagingResponseTotalItem(pagingResponse, count.intValue()));
     }
 
     private GetTailorDesignsResponse createResponse(Design design) {

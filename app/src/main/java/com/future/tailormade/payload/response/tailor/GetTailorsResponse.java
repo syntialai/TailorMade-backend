@@ -1,4 +1,4 @@
-package com.future.tailormade.payload.response.user;
+package com.future.tailormade.payload.response.tailor;
 
 import com.future.tailormade.model.entity.base.Location;
 import lombok.AllArgsConstructor;
@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EditUserBasicInfoResponse {
+public class GetTailorsResponse {
+
+    private String id;
 
     private String name;
 
-    private String phoneNumber;
-
-    private Long birthDate;
+    private String image;
 
     private Location location;
 }

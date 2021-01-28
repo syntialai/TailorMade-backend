@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.regex.Pattern;
 
 @Component
 public class ImageInvalidTypeValidator implements ConstraintValidator<ImageInvalidType, String> {
@@ -20,12 +19,10 @@ public class ImageInvalidTypeValidator implements ConstraintValidator<ImageInval
             return false;
         }
 
-        if (!value.contains(BaseConstants.PART_SEPARATOR)) {
-            return false;
-        }
+        return value.contains(BaseConstants.PART_SEPARATOR);
 
-        String encodedImage = getEncodedBase64Image(value);
-        return Pattern.matches(BaseConstants.REGEX_IMAGE_BASE64, encodedImage);
+//        String encodedImage = getEncodedBase64Image(value);
+//        return Pattern.matches(BaseConstants.REGEX_IMAGE_BASE64, value);
     }
 
     private String getEncodedBase64Image(String base64File) {
