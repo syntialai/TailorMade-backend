@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Size {
 
-    private String id;
+    private String name;
 
     private SizeDetail detail;
 }
