@@ -28,6 +28,5 @@ public class AddWishlistRequest {
     @Positive
     private Integer quantity;
 
-    @NotBlank
     private AddWishlistDesignRequest design;
 }
