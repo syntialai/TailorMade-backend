@@ -21,8 +21,6 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.Date;
-
 @Service
 public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
 
@@ -48,11 +46,11 @@ public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
 
     private Order createOrder(String orderId, Wishlist wishlist, CheckoutWishlistRequest request) {
         Order order = Order.builder().build();
-        Date dateNow = DateTime.now().toDate();
+        Long timeStampNow = DateTime.now().getMillis();
         BeanUtils.copyProperties(wishlist, order);
         order.setId(orderId);
-        order.setCreatedAt(dateNow);
-        order.setUpdatedAt(dateNow);
+        order.setCreatedAt(timeStampNow);
+        order.setUpdatedAt(timeStampNow);
         order.setMeasurement(createOrderMeasurement(request.getMeasurements()));
         order.setDesign(createOrderDesign(wishlist.getDesign()));
         return order;
