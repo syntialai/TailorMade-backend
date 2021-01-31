@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Sequence {
 
     @Id
-    private String name;
+    private String id;
 
     private Long count;
 }

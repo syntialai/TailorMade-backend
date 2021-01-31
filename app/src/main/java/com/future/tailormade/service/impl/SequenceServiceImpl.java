@@ -16,22 +16,21 @@ public class SequenceServiceImpl implements SequenceService {
 
     @Override
     public Mono<String> generateId(String title, String type) {
-        String name = SequenceGeneratorUtil.getId(type, title);
-        return sequenceRepository.findByName(name)
-                .switchIfEmpty(createSequence(name))
+        String id = SequenceGeneratorUtil.getId(type, title);
+        return sequenceRepository.findById(id)
+                .switchIfEmpty(createSequence(id))
                 .flatMap(this::saveSequence)
                 .map(SequenceGeneratorUtil::generateSequence);
     }
 
-    @Override
-    public Mono<Sequence> saveSequence(Sequence sequence) {
+    private Mono<Sequence> saveSequence(Sequence sequence) {
         sequence.setCount(sequence.getCount() + 1);
         return sequenceRepository.save(sequence);
     }
 
-    private Mono<Sequence> createSequence(String name) {
+    private Mono<Sequence> createSequence(String id) {
         return Mono.just(Sequence.builder()
-                .name(name)
+                .id(id)
                 .count(0L)
                 .build());
     }
