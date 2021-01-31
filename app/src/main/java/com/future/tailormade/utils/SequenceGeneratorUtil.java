@@ -11,7 +11,7 @@ public class SequenceGeneratorUtil {
     public static final String ORDER = "ORDR";
 
     public static String generateSequence(Sequence sequence) {
-        return sequence.getName() + "_" + getCountString(sequence.getCount());
+        return sequence.getId() + "_" + getCountString(sequence.getCount());
     }
 
     public static String getId(String type, String name) {
