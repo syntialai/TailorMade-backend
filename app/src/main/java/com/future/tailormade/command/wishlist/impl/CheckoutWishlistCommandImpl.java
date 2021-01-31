@@ -14,11 +14,14 @@ import com.future.tailormade.repository.OrderRepository;
 import com.future.tailormade.repository.WishlistRepository;
 import com.future.tailormade.service.SequenceService;
 import com.future.tailormade.utils.SequenceGeneratorUtil;
+import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import java.util.Date;
 
 @Service
 public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
@@ -45,8 +48,11 @@ public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
 
     private Order createOrder(String orderId, Wishlist wishlist, CheckoutWishlistRequest request) {
         Order order = Order.builder().build();
+        Date dateNow = DateTime.now().toDate();
         BeanUtils.copyProperties(wishlist, order);
         order.setId(orderId);
+        order.setCreatedAt(dateNow);
+        order.setUpdatedAt(dateNow);
         order.setMeasurement(createOrderMeasurement(request.getMeasurements()));
         order.setDesign(createOrderDesign(wishlist.getDesign()));
         return order;
