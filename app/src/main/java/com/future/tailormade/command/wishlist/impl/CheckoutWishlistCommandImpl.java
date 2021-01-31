@@ -47,10 +47,16 @@ public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
     private Order createOrder(String orderId, Wishlist wishlist, CheckoutWishlistRequest request) {
         Order order = Order.builder().build();
         Long timeStampNow = DateTime.now().getMillis();
+        double totalPrice = wishlist.getQuantity() * wishlist.getDesign().getPrice();
+        double totalDiscount = wishlist.getQuantity() * wishlist.getDesign().getDiscount();
+
         BeanUtils.copyProperties(wishlist, order);
+
         order.setId(orderId);
         order.setCreatedAt(timeStampNow);
         order.setUpdatedAt(timeStampNow);
+        order.setTotalPrice(totalPrice);
+        order.setTotalDiscount(totalDiscount);
         order.setMeasurement(createOrderMeasurement(request.getMeasurements()));
         order.setDesign(createOrderDesign(wishlist.getDesign()));
         return order;
