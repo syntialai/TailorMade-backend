@@ -13,9 +13,9 @@ public class GetOrdersResponse {
 
     private String id;
 
-    private String createdAt;
+    private Long createdAt;
 
-    private String updatedAt;
+    private Long updatedAt;
 
     private String userId;
 
