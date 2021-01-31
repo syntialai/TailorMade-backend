@@ -7,6 +7,7 @@ import com.future.tailormade.model.entity.order.OrderDesign;
 import com.future.tailormade.model.entity.order.OrderMeasurement;
 import com.future.tailormade.model.entity.wishlist.Wishlist;
 import com.future.tailormade.model.entity.wishlist.WishlistDesign;
+import com.future.tailormade.model.enums.OrderStatusEnum;
 import com.future.tailormade.payload.request.wishlist.CheckoutWishlistMeasurementRequest;
 import com.future.tailormade.payload.request.wishlist.CheckoutWishlistRequest;
 import com.future.tailormade.payload.response.wishlist.CheckoutWishlistResponse;
@@ -14,6 +15,7 @@ import com.future.tailormade.repository.OrderRepository;
 import com.future.tailormade.repository.WishlistRepository;
 import com.future.tailormade.service.SequenceService;
 import com.future.tailormade.utils.SequenceGeneratorUtil;
+import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -45,10 +47,20 @@ public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
 
     private Order createOrder(String orderId, Wishlist wishlist, CheckoutWishlistRequest request) {
         Order order = Order.builder().build();
+        Long timeStampNow = DateTime.now().getMillis();
+        double totalPrice = wishlist.getQuantity() * wishlist.getDesign().getPrice();
+        double totalDiscount = wishlist.getQuantity() * wishlist.getDesign().getDiscount();
+
         BeanUtils.copyProperties(wishlist, order);
+
         order.setId(orderId);
+        order.setCreatedAt(timeStampNow);
+        order.setUpdatedAt(timeStampNow);
+        order.setTotalPrice(totalPrice);
+        order.setTotalDiscount(totalDiscount);
         order.setMeasurement(createOrderMeasurement(request.getMeasurements()));
         order.setDesign(createOrderDesign(wishlist.getDesign()));
+        order.setStatus(OrderStatusEnum.Incoming);
         return order;
     }
 

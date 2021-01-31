@@ -1,5 +1,6 @@
 package com.future.tailormade.payload.response.order;
 
+import com.future.tailormade.model.enums.OrderStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,9 +14,9 @@ public class GetOrdersResponse {
 
     private String id;
 
-    private String createdAt;
+    private Long createdAt;
 
-    private String updatedAt;
+    private Long updatedAt;
 
     private String userId;
 
@@ -26,6 +27,8 @@ public class GetOrdersResponse {
     private Double totalPrice;
 
     private Double totalDiscount;
+
+    private OrderStatusEnum status;
 
     private GetOrdersDesignResponse design;
 }
