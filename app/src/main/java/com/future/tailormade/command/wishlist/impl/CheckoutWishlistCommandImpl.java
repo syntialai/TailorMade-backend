@@ -7,6 +7,7 @@ import com.future.tailormade.model.entity.order.OrderDesign;
 import com.future.tailormade.model.entity.order.OrderMeasurement;
 import com.future.tailormade.model.entity.wishlist.Wishlist;
 import com.future.tailormade.model.entity.wishlist.WishlistDesign;
+import com.future.tailormade.model.enums.OrderStatusEnum;
 import com.future.tailormade.payload.request.wishlist.CheckoutWishlistMeasurementRequest;
 import com.future.tailormade.payload.request.wishlist.CheckoutWishlistRequest;
 import com.future.tailormade.payload.response.wishlist.CheckoutWishlistResponse;
@@ -59,6 +60,7 @@ public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
         order.setTotalDiscount(totalDiscount);
         order.setMeasurement(createOrderMeasurement(request.getMeasurements()));
         order.setDesign(createOrderDesign(wishlist.getDesign()));
+        order.setStatus(OrderStatusEnum.Incoming);
         return order;
     }
 
