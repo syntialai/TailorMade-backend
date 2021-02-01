@@ -14,6 +14,7 @@ import com.future.tailormade.payload.request.wishlist.CheckoutWishlistRequest;
 import com.future.tailormade.payload.request.wishlist.EditQuantityWishlistRequest;
 import com.future.tailormade.payload.request.wishlist.GetWishlistByIdRequest;
 import com.future.tailormade.payload.request.wishlist.GetWishlistsRequest;
+import com.future.tailormade.payload.response.wishlist.AddWishlistResponse;
 import com.future.tailormade.payload.response.wishlist.CheckoutWishlistResponse;
 import com.future.tailormade.payload.response.wishlist.EditQuantityWishlistResponse;
 import com.future.tailormade.payload.response.wishlist.GetWishlistByIdResponse;
@@ -82,14 +83,13 @@ public class WishlistController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('USER')")
-    public Mono<Response<Object>> addUserWishlist(
+    public Mono<Response<AddWishlistResponse>> addUserWishlist(
             @PathVariable("userId") String userId,
             @RequestBody AddWishlistRequest request
     ) {
         request.setUserId(userId);
         return commandExecutor.execute(AddWishlistCommand.class, request)
-                .thenReturn(com.future.tailormade.payload.response.base.helper
-                        .ResponseHelper.created())
+                .map(ResponseHelper::ok)
                 .subscribeOn(Schedulers.elastic());
     }
 
