@@ -8,6 +8,7 @@ import com.future.tailormade.model.entity.wishlist.WishlistDesign;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.wishlist.AddWishlistDesignRequest;
 import com.future.tailormade.payload.request.wishlist.AddWishlistRequest;
+import com.future.tailormade.payload.response.wishlist.AddWishlistResponse;
 import com.future.tailormade.repository.UserRepository;
 import com.future.tailormade.repository.WishlistRepository;
 import com.future.tailormade.service.SequenceService;
@@ -30,12 +31,18 @@ public class AddWishlistCommandImpl implements AddWishlistCommand {
     private SequenceService sequenceService;
 
     @Override
-    public Mono<Void> execute(AddWishlistRequest request) {
+    public Mono<AddWishlistResponse> execute(AddWishlistRequest request) {
         String title = getTitle(request.getUserName(), request.getDesign().getTitle());
         return sequenceService.generateId(title, SequenceGeneratorUtil.WISHLIST)
                 .map(id -> createWishlist(id, request))
                 .flatMap(wishlist -> saveWishlist(request.getUserId(), wishlist))
-                .then();
+                .map(this::createResponse);
+    }
+
+    private AddWishlistResponse createResponse(Wishlist wishlist) {
+        return AddWishlistResponse.builder()
+                .wishlistId(wishlist.getId())
+                .build();
     }
 
     private Wishlist createWishlist(String id, AddWishlistRequest request) {
