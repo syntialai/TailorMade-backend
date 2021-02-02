@@ -5,23 +5,27 @@ import com.blibli.oss.common.response.Response;
 import com.blibli.oss.common.response.ResponseHelper;
 import com.future.tailormade.command.wishlist.AddWishlistCommand;
 import com.future.tailormade.command.wishlist.CheckoutWishlistCommand;
+import com.future.tailormade.command.wishlist.DeleteWishlistCommand;
 import com.future.tailormade.command.wishlist.EditQuantityWishlistCommand;
 import com.future.tailormade.command.wishlist.GetWishlistByIdCommand;
 import com.future.tailormade.command.wishlist.GetWishlistsCommand;
 import com.future.tailormade.constants.ApiPath;
 import com.future.tailormade.payload.request.wishlist.AddWishlistRequest;
 import com.future.tailormade.payload.request.wishlist.CheckoutWishlistRequest;
+import com.future.tailormade.payload.request.wishlist.DeleteWishlistRequest;
 import com.future.tailormade.payload.request.wishlist.EditQuantityWishlistRequest;
 import com.future.tailormade.payload.request.wishlist.GetWishlistByIdRequest;
 import com.future.tailormade.payload.request.wishlist.GetWishlistsRequest;
 import com.future.tailormade.payload.response.wishlist.AddWishlistResponse;
 import com.future.tailormade.payload.response.wishlist.CheckoutWishlistResponse;
+import com.future.tailormade.payload.response.wishlist.DeleteWishlistResponse;
 import com.future.tailormade.payload.response.wishlist.EditQuantityWishlistResponse;
 import com.future.tailormade.payload.response.wishlist.GetWishlistByIdResponse;
 import com.future.tailormade.payload.response.wishlist.GetWishlistsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -121,6 +125,23 @@ public class WishlistController {
         request.setWishlistId(id);
         request.setUserId(userId);
         return commandExecutor.execute(EditQuantityWishlistCommand.class, request)
+                .map(ResponseHelper::ok)
+                .subscribeOn(Schedulers.elastic());
+    }
+
+    @DeleteMapping(value = ApiPath.USERS_ID_WISHLISTS_ID,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('USER')")
+    public Mono<Response<DeleteWishlistResponse>> deleteWishlist(
+            @PathVariable("userId") String userId,
+            @PathVariable("id") String id
+    ) {
+        DeleteWishlistRequest request = DeleteWishlistRequest.builder()
+                .id(id)
+                .userId(userId)
+                .build();
+        return commandExecutor.execute(DeleteWishlistCommand.class, request)
                 .map(ResponseHelper::ok)
                 .subscribeOn(Schedulers.elastic());
     }
