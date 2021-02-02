@@ -129,9 +129,7 @@ public class WishlistController {
                 .subscribeOn(Schedulers.elastic());
     }
 
-    @DeleteMapping(value = ApiPath.USERS_ID_WISHLISTS_ID,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(ApiPath.USERS_ID_WISHLISTS_ID)
     @PreAuthorize("hasRole('USER')")
     public Mono<Response<DeleteWishlistResponse>> deleteWishlist(
             @PathVariable("userId") String userId,
