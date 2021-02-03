@@ -16,4 +16,10 @@ public class GetTailorDesignsResponse {
     private String title;
 
     private String image;
+
+    private Double price;
+
+    private Double discount;
+
+    private boolean active;
 }
