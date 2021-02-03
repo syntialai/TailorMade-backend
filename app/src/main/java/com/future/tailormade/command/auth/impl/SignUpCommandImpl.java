@@ -3,6 +3,7 @@ package com.future.tailormade.command.auth.impl;
 import com.future.tailormade.command.auth.SignUpCommand;
 import com.future.tailormade.component.CustomPasswordEncoder;
 import com.future.tailormade.model.entity.user.User;
+import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import com.future.tailormade.repository.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.Collections;
 import java.util.UUID;
 
 @Service
@@ -36,6 +38,10 @@ public class SignUpCommandImpl implements SignUpCommand {
         BeanUtils.copyProperties(signUpRequest, user);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        if (signUpRequest.getRole() == RoleEnum.ROLE_TAILOR) {
+            user.setDesigns(Collections.emptyList());
+        }
 
         return user;
     }
