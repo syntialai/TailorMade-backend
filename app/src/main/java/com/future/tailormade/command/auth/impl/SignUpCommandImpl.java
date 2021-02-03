@@ -2,9 +2,6 @@ package com.future.tailormade.command.auth.impl;
 
 import com.future.tailormade.command.auth.SignUpCommand;
 import com.future.tailormade.component.CustomPasswordEncoder;
-import com.future.tailormade.model.entity.base.Location;
-import com.future.tailormade.model.entity.user.Education;
-import com.future.tailormade.model.entity.user.Occupation;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
@@ -46,15 +43,6 @@ public class SignUpCommandImpl implements SignUpCommand {
             user.setDesigns(Collections.emptyList());
         }
 
-        return addUserEmptyField(user);
-    }
-
-    private User addUserEmptyField(User user) {
-        user.setEducation(Education.builder().build());
-        user.setImage(null);
-        user.setLocation(Location.builder().build());
-        user.setOccupation(Occupation.builder().build());
-        user.setPhoneNumber(null);
         return user;
     }
 
