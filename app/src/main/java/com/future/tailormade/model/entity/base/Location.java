@@ -11,9 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Location {
 
+    private float lat;
+
+    private float lon;
+
     private String address;
 
-    private String distinct;
+    private String district;
 
     private String city;
 
