@@ -1,7 +1,6 @@
 package com.future.tailormade.payload.request.user;
 
 import com.future.tailormade.model.entity.base.Location;
-import com.future.tailormade.validation.PhoneNumberNotAvailable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +20,6 @@ public class EditUserBasicInfoRequest {
     @NotBlank
     private String name;
 
-    @PhoneNumberNotAvailable
     private String phoneNumber;
 
     @Positive
