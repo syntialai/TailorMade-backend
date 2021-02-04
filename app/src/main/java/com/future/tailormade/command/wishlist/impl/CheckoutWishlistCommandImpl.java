@@ -59,6 +59,7 @@ public class CheckoutWishlistCommandImpl implements CheckoutWishlistCommand {
         order.setTotalPrice(totalPrice);
         order.setTotalDiscount(totalDiscount);
         order.setMeasurement(createOrderMeasurement(request.getMeasurements()));
+        order.setSpecialInstructions(request.getSpecialInstructions());
         order.setDesign(createOrderDesign(wishlist.getDesign()));
         order.setStatus(OrderStatusEnum.Incoming);
         return order;
