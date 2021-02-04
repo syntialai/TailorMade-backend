@@ -24,7 +24,7 @@ public class AcceptTailorOrderCommandImpl implements AcceptTailorOrderCommand {
     }
 
     private Mono<Order> findOrder(AcceptTailorOrderRequest request) {
-        return orderRepository.findByTailorIdAndIdAndStatus(
+        return orderRepository.findByTailorIdAndIdAndStatusOrderByCreatedAtDesc(
                 request.getTailorId(), request.getId(), OrderStatusEnum.Incoming)
                 .switchIfEmpty(Mono.error(NotFoundException::new));
     }

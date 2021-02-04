@@ -35,7 +35,7 @@ public class GetUserOrdersCommandImpl implements GetUserOrdersCommand {
     private Flux<Order> getAllUserOrders(GetUserOrdersRequest request) {
         Pageable pageable = ResponseHelper
                 .createPageable(request.getPage(), request.getItemPerPage());
-        return orderRepository.findAllByUserId(request.getUserId(), pageable)
+        return orderRepository.findAllByUserIdOrderByCreatedAtDesc(request.getUserId(), pageable)
                 .switchIfEmpty(Flux.empty());
     }
 
