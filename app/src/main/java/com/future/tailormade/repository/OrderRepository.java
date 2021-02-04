@@ -17,7 +17,7 @@ public interface OrderRepository extends ReactiveMongoRepository<Order, String> 
 
     Mono<Long> countAllByUserId(String userId);
 
-    Flux<Order> findAllByUserId(String userId, Pageable pageable);
+    Flux<Order> findAllByUserIdOrderByCreatedAtDesc(String userId, Pageable pageable);
 
     Flux<Order> findAllByTailorIdAndStatus(
             String tailorId, OrderStatusEnum status, Pageable pageable);
@@ -28,5 +28,6 @@ public interface OrderRepository extends ReactiveMongoRepository<Order, String> 
 
     Mono<Order> findByTailorIdAndId(String tailorId, String id);
 
-    Mono<Order> findByTailorIdAndIdAndStatus(String tailorId, String id, OrderStatusEnum status);
+    Mono<Order> findByTailorIdAndIdAndStatusOrderByCreatedAtDesc(
+            String tailorId, String id, OrderStatusEnum status);
 }
