@@ -1,5 +1,6 @@
 package com.future.tailormade.payload.request.auth;
 
+import com.future.tailormade.model.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,4 +21,6 @@ public class SignInRequest {
 
     @NotBlank
     private String password;
+    
+    private RoleEnum role;
 }
