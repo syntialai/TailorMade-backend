@@ -14,32 +14,32 @@
   "code": 200,
   "status": "OK",
   "data": [{
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
-    "tailorId": "STE_12001",
+    "id" : "WSLT_USER_0001",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
+    "tailorId": "UUID",
     "quantity": 1,
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
+      "image": null,
       "price": 500000.0,
       "discount": 0.0,
       "size": "S",
       "color": "Navy"
     }
   }, {
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
-    "tailorId": "STE_12001",
+    "id" : "WSLT_USER_0002",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
+    "tailorId": "UUID",
     "quantity": 1,
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN_0002",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
+      "image": null,
       "price": 500000.0,
       "discount": 0.0,
       "size": "S",
@@ -86,27 +86,27 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
-    "userName": "Syntia",
-    "tailorId": "STE_12001",
+    "id" : "WSLT_USER_0001",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
+    "userName": "useria",
+    "tailorId": "UUID",
     "tailorName": "Steven",
     "quantity": 1,
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
+      "image": null,
       "price": 500000.0,
       "discount": 0.0,
       "size": "S",
       "sizeDetail": {
-        "chest": 120,
-        "waist": 120,
-        "hips": 120,
-        "neckToWaist": 120,
-        "inseam": 120
+        "chest": 120.0,
+        "waist": 120.0,
+        "hips": 120.0,
+        "neckToWaist": 120.0,
+        "inseam": 120.0
       },
       "color": "Navy"
     }
@@ -141,15 +141,15 @@
 
 ```json
 {
-  "userId": "SYN_0001",
-  "userName": "Syntia",
-  "tailorId": "STE_12001",
+  "userId": "UUID",
+  "userName": "User",
+  "tailorId": "UUID",
   "tailorName": "Steven",
   "quantity": 1,
   "design": {
-    "id" : "STE_12001_MEN_0001",
+    "id" : "DSGN_MEN_0001",
     "title": "Men's Suits",
-    "image": "design/STE_12001_MEN_0001.png",
+    "image": null,
     "price": 500000.0,
     "discount": 0.0,
     "size": "S",
@@ -162,8 +162,11 @@
 
 ```json
 {
-  "code": 201,
-  "status": "CREATED"
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "wishlistId": "WLST_USER_0001"
+  }
 }
 ```
 
@@ -176,18 +179,18 @@
   "errors": {
     "design": {
       "title": [
-        "NotBlank", "InvalidFormat"
+        "NotBlank"
       ],
       "image": [
-        "NotBlank", "InvalidType"
+        "NotBlank"
       ],
       "price": [
-        "NotBlank"
+        "Positive"
       ],
-      "size": [
-        "NotBlank"
+      "discount": [
+        "Positive"
       ],
-      "color": [
+      "description": [
         "NotBlank"
       ]
     }
@@ -245,7 +248,7 @@
   "status": "BAD_REQUEST",
   "errors": {
     "quantity": [
-      "NotBlank", "InvalidFormat"
+      "Positive"
     ]
   }
 }

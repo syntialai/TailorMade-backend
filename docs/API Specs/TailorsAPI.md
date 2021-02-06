@@ -17,7 +17,7 @@
     "id" : "UUID",
     "name" : "Siapa",
     "image": null,
-    "birthDate" : 
+    "birthDate" : 1611669999,
     "gender": "Female",
     "role": "ROLE_TAILOR",
     "location": {
@@ -132,22 +132,22 @@
     "tailorName": "Steven",
     "description": "",
     "size": [{
-      "S": true,
+      "name": "S",
       "detail": {
-        "chest": 120,
-        "waist": 120,
-        "hips": 120,
-        "neckToWaist": 120,
-        "inseam": 120
+        "chest": 120.0,
+        "waist": 120.0,
+        "hips": 120.0,
+        "neckToWaist": 120.0,
+        "inseam": 120.0
       }
     }, {
-      "M": false,
+      "name": "M",
       "detail": {
-        "chest": 140,
-        "waist": 140,
-        "hips": 140,
-        "neckToWaist": 140,
-        "inseam": 140
+        "chest": 140.0,
+        "waist": 140.0,
+        "hips": 140.0,
+        "neckToWaist": 140.0,
+        "inseam": 140.0
       }
     }],
     "color": [{
@@ -157,7 +157,7 @@
       "name": "Black",
       "color": "#000000"
     }],
-    "category": ["winter"],
+    "category": null,
     "active": true
   }
 }
@@ -190,27 +190,27 @@
 ```json
 {
   "title": "Men's Suits",
-  "image": "design/UUID_MEN_0001.png",
+  "image": null,
   "price": 500000.0,
   "discount": 0.0,
   "description": "",
   "size": [{
-    "S": true,
+    "name": "S",
     "detail": {
-      "chest": 120,
-      "waist": 120,
-      "hips": 120,
-      "neckToWaist": 120,
-      "inseam": 120
+      "chest": 120.0,
+      "waist": 120.0,
+      "hips": 120.0,
+      "neckToWaist": 120.0,
+      "inseam": 120.0
     }
   }, {
-    "M": false,
+    "name": "M",
     "detail": {
-      "chest": 140,
-      "waist": 140,
-      "hips": 140,
-      "neckToWaist": 140,
-      "inseam": 140
+      "chest": 140.0,
+      "waist": 140.0,
+      "hips": 140.0,
+      "neckToWaist": 140.0,
+      "inseam": 140.0
     }
   }],
   "color": [{
@@ -220,7 +220,7 @@
     "name": "Black",
     "color": "#000000"
   }],
-  "category": ["winter"]
+  "category": null
 }
 ```
 
@@ -240,22 +240,22 @@
     "tailorName": "Steven",
     "description": "",
     "size": [{
-      "S": true,
+      "name": "S",
       "detail": {
-        "chest": 120,
-        "waist": 120,
-        "hips": 120,
-        "neckToWaist": 120,
-        "inseam": 120
+        "chest": 120.0,
+        "waist": 120.0,
+        "hips": 120.0,
+        "neckToWaist": 120.0,
+        "inseam": 120.0
       }
     }, {
-      "M": false,
+      "name": "M",
       "detail": {
-        "chest": 140,
-        "waist": 140,
-        "hips": 140,
-        "neckToWaist": 140,
-        "inseam": 140
+        "chest": 140.0,
+        "waist": 140.0,
+        "hips": 140.0,
+        "neckToWaist": 140.0,
+        "inseam": 140.0
       }
     }],
     "color": [{
@@ -265,7 +265,7 @@
       "name": "Black",
       "color": "#000000"
     }],
-    "category": ["winter"],
+    "category": null,
     "active": true
   }
 }
@@ -279,23 +279,20 @@
   "status": "BAD_REQUEST",
   "errors": {
     "title": [
-      "NotBlank", "InvalidFormat"
+      "NotBlank"
     ],
     "image": [
-      "NotBlank", "InvalidType"
+      "NotBlank"
     ],
     "price": [
+      "Positive"
+    ],
+    "discount": [
+      "Positive"
+    ],
+    "description": [
       "NotBlank"
-    ],
-    "size": [
-      "NotBlank"
-    ],
-    "color": [
-      "NotBlank"
-    ],
-    "category": [
-      "NotBlank", "InvalidFormat"
-    ],
+    ]
   }
 }
 
@@ -318,29 +315,29 @@
 ```json
 {
   "title": "Men's Suits",
-  "image": "design/UUID_MEN_0001.png",
+  "image": null,
   "price": 500000.0,
   "discount": 0.0,
   "tailorId": "UUID",
   "tailorName": "Steven",
   "description": "",
   "size": [{
-    "S": true,
+    "name": "S",
     "detail": {
-      "chest": 120,
-      "waist": 120,
-      "hips": 120,
-      "neckToWaist": 120,
-      "inseam": 120
+      "chest": 120.0,
+      "waist": 120.0,
+      "hips": 120.0,
+      "neckToWaist": 120.0,
+      "inseam": 120.0
     }
   }, {
-    "M": false,
+    "name": "M",
     "detail": {
-      "chest": 140,
-      "waist": 140,
-      "hips": 140,
-      "neckToWaist": 140,
-      "inseam": 140
+      "chest": 140.0,
+      "waist": 140.0,
+      "hips": 140.0,
+      "neckToWaist": 140.0,
+      "inseam": 140.0
     }
   }],
   "color": [{
@@ -350,7 +347,7 @@
     "name": "Black",
     "color": "#000000"
   }],
-  "category": ["winter"]
+  "category": null
 }
 ```
 
@@ -370,22 +367,22 @@
     "tailorName": "Steven",
     "description": "",
     "size": [{
-      "S": true,
+      "name": "S",
       "detail": {
-        "chest": 120,
-        "waist": 120,
-        "hips": 120,
-        "neckToWaist": 120,
-        "inseam": 120
+        "chest": 120.0,
+        "waist": 120.0,
+        "hips": 120.0,
+        "neckToWaist": 120.0,
+        "inseam": 120.0
       }
     }, {
-      "M": false,
+      "name": "M",
       "detail": {
-        "chest": 140,
-        "waist": 140,
-        "hips": 140,
-        "neckToWaist": 140,
-        "inseam": 140
+        "chest": 140.0,
+        "waist": 140.0,
+        "hips": 140.0,
+        "neckToWaist": 140.0,
+        "inseam": 140.0
       }
     }],
     "color": [{
@@ -395,7 +392,7 @@
       "name": "Black",
       "color": "#000000"
     }],
-    "category": ["winter"],
+    "category": null,
     "active": true
   }
 }
@@ -409,23 +406,20 @@
   "status": "BAD_REQUEST",
   "errors": {
     "title": [
-      "NotBlank", "InvalidFormat"
+      "NotBlank"
     ],
     "image": [
-      "NotBlank", "InvalidType"
+      "NotBlank"
     ],
     "price": [
+      "Positive"
+    ],
+    "discount": [
+      "Positive"
+    ],
+    "description": [
       "NotBlank"
-    ],
-    "size": [
-      "NotBlank"
-    ],
-    "color": [
-      "NotBlank"
-    ],
-    "category": [
-      "NotBlank", "InvalidFormat"
-    ],
+    ]
   }
 }
 
@@ -451,8 +445,6 @@
 + Path Variable :
   + tailorId
   + id
-+ Request Header :
-  + Accept: `application/json`
 + Response Body (Success) :
 
 ```json

@@ -6,7 +6,7 @@
 + HTTP Method : `GET`
 + Auth : Required
 + Request Param :
-  + Title
+  + title
   + page
   + itemPerPage
 + Response Body (Success) :
