@@ -14,62 +14,62 @@
   "code": 200,
   "status": "OK",
   "data": [{
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
-    "tailorId": "STE_12001",
+    "id" : "WSLT_MEN'_0001",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
+    "tailorId": "UUID",
     "quantity": 1,
     "totalPrice": 50000.0,
     "totalDiscount": 0.0,
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN'_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
-      "price": 50000.00,
+      "image": null,
+      "price": 50000.0,
       "discount": 0.0,
       "size": "S",
       "color": "Navy"
     },
-    "status": "ACCEPTED"
+    "status": "Accepted"
   }, {
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
-    "tailorId": "STE_12001",
+    "id" : "WSLT_MEN'_0001",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
+    "tailorId": "UUID",
     "quantity": 1,
     "totalPrice": 50000.0,
     "totalDiscount": 0.0,
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN'_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
+      "image": null,
       "price": 50000.00,
       "discount": 0.0,
       "size": "S",
       "color": "Navy"
     },
-    "status": "REJECTED"
+    "status": "Rejected"
   }, {
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
-    "tailorId": "STE_12001",
+    "id" : "WSLT_MEN'_0001",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
+    "tailorId": "UUID",
     "quantity": 1,
     "totalPrice": 50000.0,
     "totalDiscount": 0.0,
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN'_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
+      "image": null,
       "price": 50000.00,
       "discount": 0.0,
       "size": "S",
       "color": "Navy"
     },
-    "status": "CANCELLED"
+    "status": "Incoming"
   }],
   "paging": {
     "page": 1,
@@ -105,25 +105,25 @@
   "code": 200,
   "status": "OK",
   "data": [{
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
-    "tailorId": "STE_12001",
+    "id" : "WSLT_MEN'_0001",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
+    "tailorId": "UUID",
     "quantity": 1,
     "totalPrice": 50000.0,
     "totalDiscount": 0.0,
     "specialInstructions": "",
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN'_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
-      "price": 50000.00,
+      "image": null,
+      "price": 50000.0,
       "discount": 0.0,
       "size": "S",
       "color": "Navy"
     },
-    "status": "PENDING"
+    "status": "Incoming"
   }],
   "paging": {
     "page": 1,
@@ -164,36 +164,36 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id" : "1234567890",
-    "createdAt": "2019-08-23T04:22:26.690+0000",
-    "updatedAt": "2019-08-23T04:22:26.690+0000",
-    "userId": "SYN_0001",
+    "id" : "WSLT_MEN'_0001",
+    "createdAt": 1611669999000,
+    "updatedAt": 1611669999000,
+    "userId": "UUID",
     "userName": "Syntia",
-    "tailorId": "STE_12001",
+    "tailorId": "UUID",
     "tailorName": "Steven",
     "quantity": 1,
     "totalPrice": 50000.0,
     "totalDiscount": 0.0,
     "measurement": [{
-      "chest": 120,
-      "waist": 120,
-      "hips": 120,
-      "neckToWaist": 120,
-      "inseam": 120
+      "chest": 120.0,
+      "waist": 120.0,
+      "hips": 120.0,
+      "neckToWaist": 120.0,
+      "inseam": 120.0
     }],
     "specialInstructions": "",
     "design": {
-      "id" : "STE_12001_MEN_0001",
+      "id" : "DSGN_MEN'_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
+      "image": null,
       "price": 50000.0,
       "discount": 0.0,
-      "tailorId": "STE_12001",
+      "tailorId": "UUID",
       "tailorName": "Steven",
       "size": "S",
       "color": "Navy"
     },
-    "status": "REJECTED"
+    "status": "Rejected"
   }
 }
 ```
@@ -223,28 +223,28 @@
 
 ```json
 {
-  "userId": "SYN_0001",
+  "userId": "UUID",
   "userName": "Syntia",
-  "tailorId": "STE_12001",
+  "tailorId": "UUID",
   "tailorName": "Steven",
   "quantity": 1,
   "totalPrice": 50000.0,
   "totalDiscount": 0.0,
-  "measurement": [{
-    "chest": 120,
-    "waist": 120,
-    "hips": 120,
-    "neckToWaist": 120,
-    "inseam": 120
+  "measurements": [{
+    "chest": 120.0,
+    "waist": 120.0,
+    "hips": 120.0,
+    "neckToWaist": 120.0,
+    "inseam": 120.0
   }],
   "specialInstructions": "",
   "design": {
-    "id" : "STE_12001_MEN_0001",
+    "id" : "DSGN_MEN'_0001",
     "title": "Men's Suits",
-    "image": "design/STE_12001_MEN_0001.png",
+    "image": null,
     "price": 50000.00,
     "discount": 0.0,
-    "tailorId": "STE_12001",
+    "tailorId": "UUID",
     "tailorName": "Steven",
     "size": "S",
     "color": "Navy"
