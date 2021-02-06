@@ -2,14 +2,10 @@
 
 ## Get Tailors
 
-Based on proximity with user
-
 + Endpoint : ``/api/dashboard/tailors``
 + HTTP Method : `GET`
 + Required: Auth
 + Request Param :
-  + lat
-  + lon
   + page
   + itemPerPage
 + Response Body (Success) :
@@ -21,34 +17,38 @@ Based on proximity with user
   "data": [{
     "id": "UUID",
     "name": "Name",
-    "image": "",
+    "image": null,
     "location": {
       "city": "Medan",
       "country": "Indonesia"
     },
     "designs": [{
-      "id": "NAM_DES_0001_0001",
-      "image": "/UUID/NAM_DES_0001_0001.jpg",
+      "id": "DSGN_NAME_0001",
+      "title": "Name 1",
+      "image": null
     }, {
-      "id": "NAM_DES_0001_0002",
-      "image": "/UUID/NAM_DES_0001_0002.jpg",
-    }],
+      "id": "DSGN_NAME_0002",
+      "title": "Name 2",
+      "image": null
+    }]
   },
   {
     "id": "UUID",
     "name": "Name",
-    "image": "",
+    "image": null,
     "location": {
       "city": "Medan",
       "country": "Indonesia"
     },
     "designs": [{
-      "id": "NAM_DES_0001_0001",
-      "image": "/UUID/NAM_DES_0001_0001.jpg",
+      "id": "DSGN_NAME_0001",
+      "title": "Name 1",
+      "image": null
     }, {
-      "id": "NAM_DES_0001_0002",
-      "image": "/UUID/NAM_DES_0001_0002.jpg",
-    }],
+      "id": "DSGN_NAME_0002",
+      "title": "Name 2",
+      "image": null
+    }]
   }],
   "paging": {
     "page": 1,

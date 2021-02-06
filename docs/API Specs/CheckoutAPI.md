@@ -10,12 +10,12 @@
 ```json
 {
   "specialInstructions": "",
-  "measurement": {
-    "chest": 120,
-    "waist": 120,
-    "hips": 120,
-    "neckToWaist": 120,
-    "inseam": 120
+  "measurements": {
+    "chest": 120.0,
+    "waist": 120.0,
+    "hips": 120.0,
+    "neckToWaist": 120.0,
+    "inseam": 120.0
   }
 }
 ```
@@ -27,8 +27,8 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id" : "1234567890",
-    "userId": "SYN_0001",
+    "id" : "ORDR_SYNT_0001",
+    "userId": "UUID",
     "tailorId": "STE_12001",
     "quantity": 1,
     "totalPrice": 500000.0,
@@ -36,11 +36,13 @@
     "design": {
       "id" : "STE_12001_MEN_0001",
       "title": "Men's Suits",
-      "image": "design/STE_12001_MEN_0001.png",
+      "image": null,
       "price": 500000.0,
       "discount": 0.0,
       "size": "S",
-      "color": "Navy"
+      "color": "Navy",
+      "tailorId": "UUID",
+      "tailorName": "Steven"
     }
   }
 }
