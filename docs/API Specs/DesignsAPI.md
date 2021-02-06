@@ -7,9 +7,6 @@
 + Auth : Required
 + Request Param :
   + Title
-  + Category
-  + Price
-  + Location
   + page
   + itemPerPage
 + Response Body (Success) :
@@ -19,17 +16,17 @@
   "code": 200,
   "status": "OK",
   "data": [{
-    "id" : "STE_12001_MEN_0001",
+    "id" : "DSGN_MEN'_0001",
     "title": "Men's Suits",
-    "image": "UUID/STE_12001_MEN_0001.png",
+    "image": null,
     "price": 500000.0,
     "discount": 0.0,
     "active": true
   },
   {
-    "id" : "STE_12001_MEN_0001",
+    "id" : "DSGN_MEN'_0002",
     "title": "Men's Suits",
-    "image": "design/STE_12001_MEN_0001.png",
+    "image": null,
     "price": 500000.0,
     "discount": 0.0,
     "active": true
@@ -37,7 +34,8 @@
   "paging": {
     "page": 1,
     "itemPerPage": 10,
-    "totalPage": 50
+    "totalPage": 1,
+    "totalItem": 1
   }
 }
 ```
@@ -72,31 +70,31 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id" : "STE_12001_MEN_0001",
+    "id" : "DSGN_MEN'_0001",
     "title": "Men's Suits",
-    "image": "design/STE_12001_MEN_0001.png",
+    "image": null,
     "price": 500000.0,
     "discount": 0.0,
-    "tailorId": "STE_12001",
+    "tailorId": "UUID",
     "tailorName": "Steven",
-    "description": "",
+    "description": "Anything",
     "size": [{
-      "S": true,
+      "name": "S",
       "detail": {
-        "chest": 120,
-        "waist": 120,
-        "hips": 120,
-        "neckToWaist": 120,
-        "inseam": 120
+        "chest": 120.0,
+        "waist": 120.0,
+        "hips": 120.0,
+        "neckToWaist": 120.0,
+        "inseam": 120.0
       }
     }, {
-      "M": false,
+      "name": "M",
       "detail": {
-        "chest": 140,
-        "waist": 140,
-        "hips": 140,
-        "neckToWaist": 140,
-        "inseam": 140
+        "chest": 140.0,
+        "waist": 140.0,
+        "hips": 140.0,
+        "neckToWaist": 140.0,
+        "inseam": 140.0
       }
     }],
     "color": [{
@@ -106,7 +104,7 @@
       "name": "Black",
       "color": "#000000"
     }],
-    "category": ["winter"],
+    "category": null,
     "active": true
   }
 }

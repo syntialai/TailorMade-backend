@@ -53,7 +53,8 @@
   "paging": {
     "page": 1,
     "itemPerPage": 10,
-    "totalPage": 50
+    "totalPage": 1,
+    "totalItem": 1
   }
 }
 ```

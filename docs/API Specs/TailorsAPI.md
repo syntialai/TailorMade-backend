@@ -16,14 +16,17 @@
   "data": {
     "id" : "UUID",
     "name" : "Siapa",
-    "image": "user/UUID.png",
+    "image": null,
+    "birthDate" : 
+    "gender": "Female",
+    "role": "ROLE_TAILOR",
     "location": {
       "address": "Jl. Demak No. 5G/E",
       "distinct": "Medan Area",
       "city": "Medan",
       "province": "Sumatera Utara",
       "country": "Indonesia",
-      "postCode": 20214
+      "postCode": "20214"
     },
     "occupation": {
       "company": "",
@@ -72,18 +75,19 @@
   "code": 200,
   "status": "OK",
   "data": [{
-    "id": "NAM_DES_0001_0001",
+    "id": "DSGN_DESI_0001",
     "title": "Design ku",
-    "image": "/UUID/NAM_DES_0001_0001.jpg",
+    "image": null
   }, {
-    "id": "NAM_DES_0001_0002",
+    "id": "DSGN_DESI_0002",
     "title": "Design mu",
-    "image": "/UUID/NAM_DES_0001_0002.jpg"
+    "image": null
   }],
   "paging": {
     "page": 1,
     "itemPerPage": 10,
-    "totalPage": 50
+    "totalPage": 1,
+    "totalItem": 1
   }
 }
 ```
@@ -112,9 +116,6 @@
 + Path Variable :
   + id
   + tailorId
-+ Request Param :
-  + page
-  + itemPerPage
 + Response Body (Success) :
 
 ```json
@@ -122,12 +123,12 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id": "NAM_DES_0001_0001",
+    "id": "DSGN_DESI_0001",
     "title": "Design ku",
-    "image": "UUID/NAM_DES_0001_0001.jpg",
+    "image": null,
     "price": 500000.0,
     "discount": 0.0,
-    "tailorId": "STE_12001",
+    "tailorId": "UUID",
     "tailorName": "Steven",
     "description": "",
     "size": [{
@@ -189,7 +190,7 @@
 ```json
 {
   "title": "Men's Suits",
-  "image": "design/STE_12001_MEN_0001.png",
+  "image": "design/UUID_MEN_0001.png",
   "price": 500000.0,
   "discount": 0.0,
   "description": "",
@@ -230,12 +231,12 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id": "NAM_DES_0001_0001",
+    "id": "DSGN_DESI_0001",
     "title": "Design ku",
-    "image": "UUID/NAM_DES_0001_0001.jpg",
+    "image": null,
     "price": 500000.0,
     "discount": 0.0,
-    "tailorId": "STE_12001",
+    "tailorId": "UUID",
     "tailorName": "Steven",
     "description": "",
     "size": [{
@@ -317,10 +318,10 @@
 ```json
 {
   "title": "Men's Suits",
-  "image": "design/STE_12001_MEN_0001.png",
+  "image": "design/UUID_MEN_0001.png",
   "price": 500000.0,
   "discount": 0.0,
-  "tailorId": "STE_12001",
+  "tailorId": "UUID",
   "tailorName": "Steven",
   "description": "",
   "size": [{
@@ -360,12 +361,12 @@
   "code": 200,
   "status": "OK",
   "data": {
-    "id": "NAM_DES_0001_0001",
+    "id": "DSGN_DESI_0001",
     "title": "Design ku",
-    "image": "UUID/NAM_DES_0001_0001.jpg",
+    "image": null,
     "price": 500000.0,
     "discount": 0.0,
-    "tailorId": "STE_12001",
+    "tailorId": "UUID",
     "tailorName": "Steven",
     "description": "",
     "size": [{

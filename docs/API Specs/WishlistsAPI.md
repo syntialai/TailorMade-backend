@@ -45,7 +45,13 @@
       "size": "S",
       "color": "Navy"
     }
-  }]
+  }],
+  "paging": {
+    "page": 1,
+    "itemPerPage": 10,
+    "totalPage": 1,
+    "totalItem": 1
+  }
 }
 ```
 
