@@ -11,8 +11,9 @@
   "name" : "Syntia",
   "email" : "syntia@gmail.com",
   "password": "passworedq13213",
-  "birthDate" : "2020-03-28",
-  "gender": "female"
+  "birthDate" : 1611669999,
+  "gender": "Female",
+  "role": "ROLE_USER"
 }
 ```
 
@@ -25,10 +26,14 @@
   "data": {
     "id" : "UUID",
     "name" : "Siapa",
-    "email": "Siapajuga@mail.com",
-    "birthDate": "",
+    "birthDate": 1611669999,
+    "image": null,
+    "phoneNumber": null,
+    "role": "ROLE_USER",
     "gender": "Female",
-    "role": 0
+    "location": null,
+    "occupation": null,
+    "education": null
   }
 }
 ```
@@ -44,16 +49,13 @@
       "Required", "Email", "NotAvailable"
     ],
     "name": [
-      "Required", "InvalidFormat"
+      "Required"
     ],
     "password": [
-      "Required", "InvalidFormat"
+      "Required"
     ],
     "birthDate": [
-      "Required", "InvalidFormat"
-    ],
-    "gender": [
-      "Required"
+      "Positive"
     ]
   },
 }
@@ -67,8 +69,9 @@
 
 ```json
 {
-  "username": "example@mail.com",
-  "password": "123456"
+  "username" : "syntia@gmail.com",
+  "password": "passworedq13213",
+  "role": "ROLE_USER"
 }
 ```
 
@@ -82,6 +85,18 @@
     "token": {
       "access": "b3912854-5bc2-46a8-b57a-8828daf395f6",
       "refresh": "b3912854-5bc2-46a8-b57a-8828daf395f6"
+    },
+    "user": {
+      "id" : "UUID",
+      "name" : "Siapa",
+      "birthDate": 1611669999,
+      "image": null,
+      "phoneNumber": null,
+      "role": "ROLE_USER",
+      "gender": "Female",
+      "location": null,
+      "occupation": null,
+      "education": null
     }
   }
 }
@@ -159,32 +174,6 @@
 }
 ```
 
-## Activate Tailor Role
-
-+ Endpoint : ``/api/users/_activate-tailor``
-+ HTTP Method : `GET`
-+ Required : Auth
-+ Response Body (Success) :
-
-```json
-{
-  "code": 200,
-  "status": "OK",
-  "data": {
-    "role": 1
-  }
-}
-```
-
-+ Response Body (Fail) :
-
-```json
-{
-  "code": 401,
-  "status": "UNAUTHORIZED"
-}
-```
-
 ## Get User by Id
 
 + Endpoint : ``/api/users/{id}``
@@ -201,7 +190,11 @@
   "data": {
     "id" : "UUID",
     "name" : "Siapa",
-    "image": "user/UUID.png",
+    "birthDate": 1611669999,
+    "image": null,
+    "phoneNumber": null,
+    "role": "ROLE_USER",
+    "gender": "Female",
     "location": {
       "address": "Jl. Demak No. 5G/E",
       "distinct": "Medan Area",
@@ -252,15 +245,15 @@
 ```json
 {
   "name" : "Steven R",
-  "phoneNumber" : "+6281990333364",
-  "birthDate" : "1999-10-15",
+  "phoneNumber" : "081990333364",
+  "birthDate" : 1611669999,
   "location": {
     "address": "Jl. Demak No. 5G/E",
     "distinct": "Medan Area",
     "city": "Medan",
     "province": "Sumatera Utara",
     "country": "Indonesia",
-    "postCode": 20214
+    "postCode": "20214"
   }
 }
 ```
@@ -273,15 +266,15 @@
   "status": "OK",
   "data": {
     "name" : "Steven R",
-    "phoneNumber" : "+6281990333364",
-    "birthDate" : "1999-10-15",
+    "phoneNumber" : "081990333364",
+    "birthDate" : 1611669999,
     "location": {
       "address": "Jl. Demak No. 5G/E",
       "distinct": "Medan Area",
       "city": "Medan",
       "province": "Sumatera Utara",
       "country": "Indonesia",
-      "postCode": 20214
+      "postCode": "20214"
     }
   }
 }
