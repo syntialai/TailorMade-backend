@@ -30,9 +30,7 @@ public class SignInCommandImpl implements SignInCommand {
     @Override
     public Mono<SignInResponse> execute(SignInRequest request) {
         return findByUsername(request.getUsername()).map(user -> {
-            if (passwordEncoder.encode(
-                    request.getPassword()).equals(user.getPassword())
-            ) {
+            if (isDataValid(request, user)) {
                 Token token = getToken(
                         jwtTokenProvider.generateAccessToken(user),
                         jwtTokenProvider.generateRefreshToken(user)
@@ -46,6 +44,11 @@ public class SignInCommandImpl implements SignInCommand {
     private Mono<User> findByUsername(String username) {
         return userRepository.findByEmail(username)
                 .switchIfEmpty(Mono.error(UnauthorizedException::new));
+    }
+
+    private boolean isDataValid(SignInRequest request, User user) {
+        return passwordEncoder.encode(request.getPassword()).equals(user.getPassword())
+                && request.getRole().equals(user.getRole());
     }
 
     private Token getToken(String access, String refresh) {
