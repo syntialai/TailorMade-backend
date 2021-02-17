@@ -20,15 +20,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EditUserBasicInfoCommandImplTest extends BaseTest {
 
-    private static final String USER_ID = UUID.randomUUID().toString();
-    private static final String USER_NAME = "USER_NAME";
-    private static final String USER_EMAIL = "user@mail.com";
     private static final String USER_PHONE_NUMBER = "081990333333";
 
     @InjectMocks
