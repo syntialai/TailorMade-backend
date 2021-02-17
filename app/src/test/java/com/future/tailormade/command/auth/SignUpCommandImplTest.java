@@ -4,8 +4,6 @@ import com.future.tailormade.BaseTest;
 import com.future.tailormade.command.auth.impl.SignUpCommandImpl;
 import com.future.tailormade.component.CustomPasswordEncoder;
 import com.future.tailormade.model.entity.user.User;
-import com.future.tailormade.model.enums.GenderEnum;
-import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.request.auth.SignUpRequest;
 import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
@@ -26,13 +24,9 @@ import reactor.core.publisher.Mono;
 @SpringBootTest
 public class SignUpCommandImplTest extends BaseTest {
 
-    private static final String USER_NAME = "USER_NAME";
-    private static final String USER_EMAIL = "user444@mail.com";
     private static final String USER_PASSWORD = "USER_PASSWORD";
     private static final String USER_PASSWORD_ENCODED = "USER_PASSWORD_ENCODED";
     private static final Long USER_BIRTH_DATE = 1500594930L;
-    private static final GenderEnum USER_GENDER = GenderEnum.Female;
-    private static final RoleEnum USER_ROLE = RoleEnum.ROLE_USER;
 
     @InjectMocks
     private SignUpCommandImpl command;

@@ -22,13 +22,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EditUserAdditionalInfoCommandImplTest extends BaseTest {
 
-    private static final String USER_ID = UUID.randomUUID().toString();
     private static final String USER_EDUCATION_SCHOOL = "USER_SCHOOL";
     private static final String USER_OCCUPATION_COMPANY = "USER_COMPANY";
 
