@@ -17,15 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GetUserByIdCommandImplTest extends BaseTest {
-
-    private static final String USER_ID = UUID.randomUUID().toString();
-    private static final String USER_NAME = "USER_NAME";
-    private static final String USER_EMAIL = "user@mail.com";
 
     @InjectMocks
     private GetUserByIdCommandImpl command;

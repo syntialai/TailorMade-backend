@@ -26,7 +26,6 @@ import reactor.core.publisher.Mono;
 @SpringBootTest
 public class SignInCommandImplTest extends BaseTest {
 
-    private static final String USER_EMAIL = "user@mail.com";
     private static final String USER_PASSWORD = "USER_PASSWORD";
     private static final String USER_PASSWORD_ENCODED = "USER_PASSWORD_ENCODED";
     private static final String ACCESS_TOKEN = "ACCESS_TOKEN";
@@ -51,9 +50,11 @@ public class SignInCommandImplTest extends BaseTest {
 
     @Override
     public void tearDown() {
-        Mockito.verifyNoMoreInteractions(userRepository,
+        Mockito.verifyNoMoreInteractions(
+                userRepository,
                 passwordEncoder,
-                jwtTokenProvider);
+                jwtTokenProvider
+        );
     }
 
     @Test
@@ -103,10 +104,27 @@ public class SignInCommandImplTest extends BaseTest {
         }
     }
 
+    @Test
+    public void testSignIn_wrongRole() {
+        User user = createUser();
+        user.setRole(TAILOR_ROLE);
+
+        Mockito.when(userRepository.findByEmail(USER_EMAIL)).thenReturn(Mono.just(user));
+        Mockito.when(passwordEncoder.encode(USER_PASSWORD)).thenReturn(USER_PASSWORD);
+
+        try {
+            command.execute(createSignInRequest()).block();
+        } catch (UnauthorizedException exception) {
+            Mockito.verify(userRepository).findByEmail(USER_EMAIL);
+            Mockito.verify(passwordEncoder).encode(USER_PASSWORD);
+        }
+    }
+
     private User createUser() {
         return User.builder()
                 .email(USER_EMAIL)
                 .password(USER_PASSWORD_ENCODED)
+                .role(USER_ROLE)
                 .build();
     }
 
@@ -114,6 +132,7 @@ public class SignInCommandImplTest extends BaseTest {
         return SignInRequest.builder()
                 .username(USER_EMAIL)
                 .password(USER_PASSWORD)
+                .role(USER_ROLE)
                 .build();
     }
 
