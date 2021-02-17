@@ -1,6 +1,7 @@
 package com.future.tailormade;
 
 import com.future.tailormade.model.enums.GenderEnum;
+import com.future.tailormade.model.enums.OrderStatusEnum;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.response.base.BasePagingResponse;
 import org.junit.After;
@@ -35,6 +36,7 @@ public abstract class BaseTest {
     protected static final String DESIGN_TITLE = "DESIGN TITLE";
 
     protected static final String ORDER_ID = "ORDER ID";
+    protected static final OrderStatusEnum ORDER_STATUS = OrderStatusEnum.Accepted;
 
     @Before
     public abstract void setUp();
