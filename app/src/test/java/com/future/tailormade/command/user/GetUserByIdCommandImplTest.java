@@ -7,18 +7,13 @@ import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.BeanUtils;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class GetUserByIdCommandImplTest extends BaseTest {
 
     @InjectMocks
