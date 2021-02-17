@@ -28,6 +28,5 @@ public interface OrderRepository extends ReactiveMongoRepository<Order, String> 
 
     Mono<Order> findByTailorIdAndId(String tailorId, String id);
 
-    Mono<Order> findByTailorIdAndIdAndStatusOrderByCreatedAtDesc(
-            String tailorId, String id, OrderStatusEnum status);
+    Mono<Order> findByTailorIdAndIdAndStatus(String tailorId, String id, OrderStatusEnum status);
 }
