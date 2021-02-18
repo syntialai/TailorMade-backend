@@ -63,7 +63,7 @@ public class GetTailorOrderByIdCommandImplTest extends BaseTest {
     public void getTailorOrderById_notFound() {
         Mockito.when(orderRepository
                 .findByTailorIdAndId(ArgumentMatchers.anyString(), ArgumentMatchers.anyString())
-        ).thenReturn(Mono.error(NotFoundException::new));
+        ).thenReturn(Mono.empty());
 
         try {
             command.execute(createGetTailorOrderByIdRequest()).block();

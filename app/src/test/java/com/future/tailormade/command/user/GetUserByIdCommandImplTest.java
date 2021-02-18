@@ -2,6 +2,7 @@ package com.future.tailormade.command.user;
 
 import com.future.tailormade.BaseTest;
 import com.future.tailormade.command.user.impl.GetUserByIdCommandImpl;
+import com.future.tailormade.exceptions.NotFoundException;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import com.future.tailormade.repository.UserRepository;
@@ -46,13 +47,13 @@ public class GetUserByIdCommandImplTest extends BaseTest {
         Assert.assertEquals(expectedUserResponse, actualUserResponse);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void testGetUserById_notFound() {
-        Mockito.when(userRepository.findById(USER_ID)).thenThrow(new Exception());
+        Mockito.when(userRepository.findById(USER_ID)).thenReturn(Mono.empty());
 
         try {
             command.execute(USER_ID).block();
-        } catch (Exception exception) {
+        } catch (NotFoundException exception) {
             Mockito.verify(userRepository).findById(USER_ID);
         }
     }

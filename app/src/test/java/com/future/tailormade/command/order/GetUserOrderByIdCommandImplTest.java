@@ -63,7 +63,7 @@ public class GetUserOrderByIdCommandImplTest extends BaseTest {
     public void getUserOrderById_notFound() {
         Mockito.when(orderRepository
                 .findByUserIdAndId(ArgumentMatchers.anyString(), ArgumentMatchers.anyString())
-        ).thenReturn(Mono.error(NotFoundException::new));
+        ).thenReturn(Mono.empty());
 
         try {
             command.execute(createGetUserOrderByIdRequest()).block();
