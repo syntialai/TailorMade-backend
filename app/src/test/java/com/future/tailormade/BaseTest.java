@@ -30,6 +30,7 @@ public abstract class BaseTest {
     protected static final GenderEnum USER_GENDER = GenderEnum.Female;
 
     protected static final String TAILOR_ID = UUID.randomUUID().toString();
+    protected static final String TAILOR_NAME = "TAILOR NAME";
     protected static final RoleEnum TAILOR_ROLE = RoleEnum.ROLE_TAILOR;
 
     protected static final String DESIGN_ID = "DESIGN ID";
