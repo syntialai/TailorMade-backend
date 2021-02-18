@@ -35,6 +35,8 @@ public abstract class BaseTest {
     protected static final String DESIGN_ID = "DESIGN ID";
     protected static final String DESIGN_TITLE = "DESIGN TITLE";
 
+    protected static final String WISHLIST_ID = "WISHLIST ID";
+
     protected static final String ORDER_ID = "ORDER ID";
     protected static final OrderStatusEnum ORDER_STATUS = OrderStatusEnum.Accepted;
 

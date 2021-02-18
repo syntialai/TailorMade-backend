@@ -83,7 +83,7 @@ public class AcceptTailorOrderCommandImplTest extends BaseTest {
                 ArgumentMatchers.anyString(),
                 ArgumentMatchers.anyString(),
                 ArgumentMatchers.any(OrderStatusEnum.class)
-        )).thenReturn(Mono.error(NotFoundException::new));
+        )).thenReturn(Mono.empty());
 
         try {
             command.execute(createAcceptTailorOrderRequest()).block();

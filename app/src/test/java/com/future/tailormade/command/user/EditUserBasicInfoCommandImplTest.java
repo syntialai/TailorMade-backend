@@ -60,9 +60,9 @@ public class EditUserBasicInfoCommandImplTest extends BaseTest {
         Assert.assertEquals(expectedUserResponse, actualUserResponse);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void testEditUserBasicInfo_notFound() {
-        Mockito.when(userRepository.findById(USER_ID)).thenThrow(new Exception());
+        Mockito.when(userRepository.findById(USER_ID)).thenReturn(Mono.empty());
 
         try {
             command.execute(createUserRequest()).block();
