@@ -10,6 +10,7 @@ import com.future.tailormade.model.entity.auth.Token;
 import com.future.tailormade.model.entity.user.User;
 import com.future.tailormade.payload.request.auth.SignInRequest;
 import com.future.tailormade.payload.response.auth.SignInResponse;
+import com.future.tailormade.payload.response.user.GetUserByIdResponse;
 import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -117,8 +118,18 @@ public class SignInCommandImplTest extends BaseTest {
 
     private User createUser() {
         return User.builder()
+                .id(USER_ID)
+                .name(USER_NAME)
                 .email(USER_EMAIL)
                 .password(USER_PASSWORD_ENCODED)
+                .role(USER_ROLE)
+                .build();
+    }
+
+    private GetUserByIdResponse createUserResponse() {
+        return GetUserByIdResponse.builder()
+                .id(USER_ID)
+                .name(USER_NAME)
                 .role(USER_ROLE)
                 .build();
     }
@@ -137,6 +148,7 @@ public class SignInCommandImplTest extends BaseTest {
                         .access(ACCESS_TOKEN)
                         .refresh(REFRESH_TOKEN)
                         .build())
+                .user(createUserResponse())
                 .build();
     }
 }
