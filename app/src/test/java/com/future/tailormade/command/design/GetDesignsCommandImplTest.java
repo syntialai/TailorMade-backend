@@ -50,12 +50,12 @@ public class GetDesignsCommandImplTest extends BaseTest {
 
         Mockito.when(
                 designRepository.findAllByTitleStartsWith(
-                        ArgumentMatchers.any(String.class),
+                        ArgumentMatchers.anyString(),
                         ArgumentMatchers.any(Pageable.class)
                 )
         ).thenReturn(Flux.just(expectedDesign));
         Mockito.when(
-                designRepository.countAllByTitleStartsWith(ArgumentMatchers.any(String.class))
+                designRepository.countAllByTitleStartsWith(ArgumentMatchers.anyString())
         ).thenReturn(Mono.just(ITEM_COUNT));
 
         BasePagingResponse<GetDesignsResponse> actualResponse = command
@@ -79,12 +79,12 @@ public class GetDesignsCommandImplTest extends BaseTest {
 
         Mockito.when(
                 designRepository.findAllByTitleStartsWith(
-                        ArgumentMatchers.any(String.class),
+                        ArgumentMatchers.anyString(),
                         ArgumentMatchers.any(Pageable.class)
                 )
         ).thenReturn(Flux.empty());
         Mockito.when(
-                designRepository.countAllByTitleStartsWith(ArgumentMatchers.any(String.class))
+                designRepository.countAllByTitleStartsWith(ArgumentMatchers.anyString())
         ).thenReturn(Mono.just(ITEM_EMPTY_COUNT));
 
         BasePagingResponse<GetDesignsResponse> actualResponse = command

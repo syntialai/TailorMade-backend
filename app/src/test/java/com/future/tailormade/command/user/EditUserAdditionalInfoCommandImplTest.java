@@ -10,7 +10,6 @@ import com.future.tailormade.payload.response.user.EditUserAdditionalInfoRespons
 import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
@@ -18,12 +17,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.BeanUtils;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class EditUserAdditionalInfoCommandImplTest extends BaseTest {
 
     private static final String USER_EDUCATION_SCHOOL = "USER_SCHOOL";
@@ -69,9 +64,9 @@ public class EditUserAdditionalInfoCommandImplTest extends BaseTest {
         Assert.assertEquals(expectedUserResponse, actualUserResponse);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void testEditUserAdditionalInfo_notFound() {
-        Mockito.when(userRepository.findById(USER_ID)).thenThrow(new Exception());
+        Mockito.when(userRepository.findById(USER_ID)).thenReturn(Mono.empty());
 
         try {
             command.execute(createUserRequest()).block();

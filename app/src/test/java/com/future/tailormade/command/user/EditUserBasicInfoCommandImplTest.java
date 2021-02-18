@@ -8,7 +8,6 @@ import com.future.tailormade.payload.response.user.EditUserBasicInfoResponse;
 import com.future.tailormade.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
@@ -16,12 +15,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.BeanUtils;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class EditUserBasicInfoCommandImplTest extends BaseTest {
 
     private static final String USER_PHONE_NUMBER = "081990333333";
@@ -65,9 +60,9 @@ public class EditUserBasicInfoCommandImplTest extends BaseTest {
         Assert.assertEquals(expectedUserResponse, actualUserResponse);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void testEditUserBasicInfo_notFound() {
-        Mockito.when(userRepository.findById(USER_ID)).thenThrow(new Exception());
+        Mockito.when(userRepository.findById(USER_ID)).thenReturn(Mono.empty());
 
         try {
             command.execute(createUserRequest()).block();

@@ -1,6 +1,7 @@
 package com.future.tailormade;
 
 import com.future.tailormade.model.enums.GenderEnum;
+import com.future.tailormade.model.enums.OrderStatusEnum;
 import com.future.tailormade.model.enums.RoleEnum;
 import com.future.tailormade.payload.response.base.BasePagingResponse;
 import org.junit.After;
@@ -28,10 +29,19 @@ public abstract class BaseTest {
     protected static final RoleEnum USER_ROLE = RoleEnum.ROLE_USER;
     protected static final GenderEnum USER_GENDER = GenderEnum.Female;
 
+    protected static final String TAILOR_ID = UUID.randomUUID().toString();
+    protected static final String TAILOR_NAME = "TAILOR NAME";
     protected static final RoleEnum TAILOR_ROLE = RoleEnum.ROLE_TAILOR;
 
     protected static final String DESIGN_ID = "DESIGN ID";
     protected static final String DESIGN_TITLE = "DESIGN TITLE";
+    protected static final Integer DESIGN_QUANTITY = 1;
+
+    protected static final String WISHLIST_ID = "WISHLIST ID";
+    protected static final Integer WISHLIST_QUANTITY = 2;
+
+    protected static final String ORDER_ID = "ORDER ID";
+    protected static final OrderStatusEnum ORDER_STATUS = OrderStatusEnum.Accepted;
 
     @Before
     public abstract void setUp();
